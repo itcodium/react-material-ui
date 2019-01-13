@@ -4,12 +4,7 @@ import MainApp from './components/main';
 class App extends Component {
   render () {
     return (
-      <div className="ui stackable four column grid panel">
-        <div className="row">
-          <HeaderApp></HeaderApp>
           <MainApp></MainApp>
-        </div>
-      </div>
     );
   }
 }

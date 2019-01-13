@@ -1,3 +1,3 @@
 git add .
-git commit -m "2018-16-12 demo reactjs"
+git commit -m "2019-01-12 Se agrega validacion de campos"
 git push origin master
