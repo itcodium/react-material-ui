@@ -1,5 +1,10 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+1. npm install @material-ui/core
+2. npm install @material-ui/icons
+
+
+
 ## Available Scripts
 
 In the project directory, you can run:
