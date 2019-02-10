@@ -4,9 +4,6 @@ import SvgIcons from './components/svg_Icons'
 import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
 import SimpleSnackbar from './components/snackbars'
-import IconButton from '@material-ui/core/IconButton';
-import CloseIcon from '@material-ui/icons/Close';
-
 import { SnackbarProvider, withSnackbar } from 'notistack';
 
 
@@ -23,21 +20,12 @@ class App extends Component {
     var _this = this;
     this.id = this.props.enqueueSnackbar('Item moved to recently deleted folder.', {
       variant: 'default',
-      maxSnack: 3,
-      autoHideDuration: 8000,
-      action: [<Button color="secondary" size="small">Undo</Button>, <IconButton
-        key="close"
-        aria-label="Close"
-        color="inherit"
-      >
-        <CloseIcon />
-      </IconButton>],
-      onClickAction: _this.handleClose()
+      autoHideDuration: 8000
     })
   };
-  handleClickVariant = variant => () => {
+  handleClickVariant = () => {
     // variant could be success, error, warning or info
-    this.props.enqueueSnackbar('This is a warning message!', { variant: "success" });
+    this.props.enqueueSnackbar('This is a warning message!', { variant: "error" });
   };
 
 
@@ -46,12 +34,10 @@ class App extends Component {
       <div className="App">
         <header className="App-header">
           <p>Main</p>
-
           <SvgIcons></SvgIcons>
           <SimpleSnackbar></SimpleSnackbar>
-          <React.Fragment>
-            <Button onClick={ this.handleClick }>Delete Folder</Button>
-          </React.Fragment>
+          <Button onClick={ this.handleClick }>Delete Folder</Button>
+          <Button onClick={ this.handleClickVariant }>Warning</Button>
         </header>
       </div>
 
@@ -68,7 +54,11 @@ const MyApp = withSnackbar(App);
 
 function IntegrationNotistack () {
   return (
-    <SnackbarProvider maxSnack={ 3 }>
+    <SnackbarProvider maxSnack={ 3 }
+      action={ [
+        <Button color="secondary" size="small">UNDO</Button>
+      ] }
+    >
       <MyApp />
     </SnackbarProvider>
   );
