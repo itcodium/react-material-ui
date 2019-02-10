@@ -5,61 +5,67 @@ import Button from '@material-ui/core/Button';
 import Snackbar from '@material-ui/core/Snackbar';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
+import { withSnackbar } from 'notistack';
 
 const styles = theme => ({
     close: {
         padding: theme.spacing.unit / 2,
     },
 });
-
 class SimpleSnackbar extends React.Component {
     state = {
         open: false,
-    };
 
+    };
+    id = null;
+    constructor(props) {
+        super(props);
+
+        this.id = this.props.enqueueSnackbar(
+            'Failed fetching data.', { autoHideDuration: 1000 });
+
+        console.log("this.id ", this.id)
+    }
     handleClick = () => {
         this.setState({ open: true });
     };
-
     handleClose = (event, reason) => {
         if (reason === 'clickaway') {
             return;
         }
-
         this.setState({ open: false });
     };
-
-    render() {
+    render () {
         const { classes } = this.props;
         return (
             <div>
-                <Button onClick={this.handleClick}>Open simple snackbar</Button>
+                <Button onClick={ this.handleClick }>Open simple snackbar</Button>
                 <Snackbar
-                    anchorOrigin={{
+                    anchorOrigin={ {
                         vertical: 'bottom',
                         horizontal: 'left',
-                    }}
-                    open={this.state.open}
-                    autoHideDuration={6000}
-                    onClose={this.handleClose}
-                    ContentProps={{
+                    } }
+                    open={ this.state.open }
+                    autoHideDuration={ 6000 }
+                    onClose={ this.handleClose }
+                    ContentProps={ {
                         'aria-describedby': 'message-id',
-                    }}
-                    message={<span id="message-id">Note archived</span>}
-                    action={[
-                        <Button key="undo" color="secondary" size="small" onClick={this.handleClose}>
+                    } }
+                    message={ <span id="message-id">Note archived</span> }
+                    action={ [
+                        <Button key="undo" color="secondary" size="small" onClick={ this.handleClose }>
                             UNDO
-            </Button>,
+                        </Button>,
                         <IconButton
                             key="close"
                             aria-label="Close"
                             color="inherit"
-                            className={classes.close}
-                            onClick={this.handleClose}
+                            className={ classes.close }
+                            onClick={ this.handleClose }
                         >
                             <CloseIcon />
                         </IconButton>,
-                    ]}
+                    ] }
                 />
             </div>
         );
@@ -70,4 +76,8 @@ SimpleSnackbar.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(SimpleSnackbar);
+SimpleSnackbar.propTypes = {
+    enqueueSnackbar: PropTypes.func.isRequired,
+};
+
+export default withSnackbar((withStyles(styles)(SimpleSnackbar)))
