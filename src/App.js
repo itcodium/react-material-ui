@@ -3,13 +3,12 @@ import './App.css';
 import SvgIcons from './components/svg_Icons'
 import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
-import SimpleSnackbar from './components/snackbars'
+import SimpleSnackbar from './components/simpleSnackbar'
 import { SnackbarProvider, withSnackbar } from 'notistack';
 
 
 class App extends Component {
   id = null;
-
   handleClose = (event, reason) => {
     if (reason === 'clickaway') {
       return;
@@ -17,27 +16,24 @@ class App extends Component {
     this.props.closeSnackbar(this.id)
   };
   handleClick = () => {
-    var _this = this;
     this.id = this.props.enqueueSnackbar('Item moved to recently deleted folder.', {
       variant: 'default',
       autoHideDuration: 8000
     })
   };
   handleClickVariant = () => {
-    // variant could be success, error, warning or info
     this.props.enqueueSnackbar('This is a warning message!', { variant: "error" });
   };
 
-
-  render () {
+  render() {
     return (
       <div className="App">
         <header className="App-header">
           <p>Main</p>
           <SvgIcons></SvgIcons>
           <SimpleSnackbar></SimpleSnackbar>
-          <Button onClick={ this.handleClick }>Delete Folder</Button>
-          <Button onClick={ this.handleClickVariant }>Warning</Button>
+          <Button onClick={this.handleClick}>Delete Folder</Button>
+          <Button onClick={this.handleClickVariant}>Warning</Button>
         </header>
       </div>
 
@@ -51,14 +47,9 @@ App.propTypes = {
 };
 
 const MyApp = withSnackbar(App);
-
-function IntegrationNotistack () {
+function IntegrationNotistack() {
   return (
-    <SnackbarProvider maxSnack={ 3 }
-      action={ [
-        <Button color="secondary" size="small">UNDO</Button>
-      ] }
-    >
+    <SnackbarProvider maxSnack={3}>
       <MyApp />
     </SnackbarProvider>
   );
