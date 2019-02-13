@@ -3,31 +3,31 @@ import './App.css';
 import SvgIcons from './components/svg_Icons'
 import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
+
+import { withStyles } from '@material-ui/core/styles';
+import Header from './app/Header'
 import SimpleSnackbar from './components/simpleSnackbar'
+import ProductList from './components/chapter1/ProductList'
+
+import Grid from '@material-ui/core/Grid';
+import Paper from '@material-ui/core/Paper';
 import { SnackbarProvider, withSnackbar } from 'notistack';
 
 
-import { withStyles } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
-import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
+
+import { Route, NavLink, HashRouter } from "react-router-dom";
 
 
-
-const styles = {
+const styles = theme => ({
   root: {
     flexGrow: 1,
   },
-  grow: {
-    flexGrow: 1,
+  paper: {
+    padding: theme.spacing.unit * 2,
+    textAlign: 'center',
+    color: theme.palette.text.secondary,
   },
-  menuButton: {
-    marginLeft: -12,
-    marginRight: 20,
-  },
-};
+});
 
 
 class App extends Component {
@@ -54,38 +54,47 @@ class App extends Component {
 
     return (
 
+      <HashRouter>
+        <div className="App">
+          <Header></Header>
+          <div className={classes.root}>
+            <Grid container spacing={24}>
+              <Grid item xs={12}>
+                <Paper className={classes.paper}>
+                  <Route exact path="/" component={SimpleSnackbar} />
+                  <Route path="/ProductList" component={ProductList} />
+                </Paper>
+              </Grid>
+            </Grid>
+          </div>
 
-      <div className="App">
-       <AppBar position="static">
-        <Toolbar>
-          <IconButton className={classes.menuButton} color="inherit" aria-label="Menu">
-            <MenuIcon />
-          </IconButton>
-          <Typography variant="h6" color="inherit" className={classes.grow}>
-            News
-          </Typography>
-          <Button color="inherit">Login</Button>
-        </Toolbar>
-      </AppBar>
-        <header className="App-header">
-          <p>Main</p>
-          <SvgIcons></SvgIcons>
-          <SimpleSnackbar></SimpleSnackbar>
-          <Button onClick={this.handleClick}>Delete Folder</Button>
-          <Button onClick={this.handleClickVariant}>Warning</Button>
-        </header>
-      </div>
+          <div className="content">
 
+          </div>
+        </div>
+      </HashRouter>
     );
   }
 }
 
-App.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
+/*
+
+            <SvgIcons></SvgIcons>
+            <div>
+              <h1>Popular Products</h1>
+              <ProductList></ProductList>
+            </div>
+            <SimpleSnackbar></SimpleSnackbar>
+            <Button onClick={this.handleClick}>Delete Folder</Button>
+            <Button onClick={this.handleClickVariant}>Warning</Button>
+
+*/
 
 App.propTypes = {
   enqueueSnackbar: PropTypes.func.isRequired,
+};
+App.propTypes = {
+  classes: PropTypes.object.isRequired,
 };
 
 const MyApp = withSnackbar((withStyles(styles)(App)));
@@ -96,5 +105,7 @@ function IntegrationNotistack() {
     </SnackbarProvider>
   );
 }
+
+
 export default IntegrationNotistack;
 
