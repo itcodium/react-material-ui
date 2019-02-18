@@ -56,6 +56,7 @@ class App extends Component {
 
       <HashRouter>
         <div className="App">
+  
           <Header></Header>
           <div className={classes.root}>
             <Grid container spacing={0}>
