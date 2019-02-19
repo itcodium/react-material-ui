@@ -22,61 +22,6 @@ const styles = theme => ({
     toolbarTitle: {
         flex: 1,
     },
-    toolbarSecondary: {
-        justifyContent: 'space-between',
-    },
-    mainFeaturedPost: {
-        backgroundColor: theme.palette.grey[800],
-        color: theme.palette.common.white,
-        marginBottom: theme.spacing.unit * 4,
-    },
-    mainFeaturedPostContent: {
-        padding: `${theme.spacing.unit * 6}px`,
-        [theme.breakpoints.up('md')]: {
-            paddingRight: 0,
-        },
-    },
-    mainGrid: {
-        marginTop: theme.spacing.unit * 3,
-    },
-    card: {
-        display: 'flex',
-    },
-    cardDetails: {
-        flex: 1,
-    },
-    cardMedia: {
-        width: 160,
-    },
-    markdown: {
-        padding: `${theme.spacing.unit * 3}px 0`,
-    },
-    sidebarAboutBox: {
-        padding: theme.spacing.unit * 2,
-        backgroundColor: theme.palette.grey[200],
-    },
-    sidebarSection: {
-        marginTop: theme.spacing.unit * 3,
-    },
-    footer: {
-        backgroundColor: theme.palette.background.paper,
-        marginTop: theme.spacing.unit * 8,
-        padding: `${theme.spacing.unit * 6}px 0`,
-    },
-    root: {
-        flexGrow: 1,
-    },
-    grow: {
-        flexGrow: 1,
-    },
-    menuButton: {
-        //marginLeft: -12,
-        //marginRight: 20,
-    },
-
-    fullList: {
-        width: 'auto',
-    },
     hide: {
         display: 'none',
     }
@@ -104,9 +49,7 @@ class Header extends React.Component {
         const { classes } = this.props;
         const hide = { display: "none" };
         return (
-
             <div>
-
                 <Drawer open={this.state.left} onClose={this.toggleDrawer('left', false)}>
                     <div
                         tabIndex={0}
@@ -116,30 +59,41 @@ class Header extends React.Component {
                         <AppMenuCustom></AppMenuCustom>
                     </div>
                 </Drawer>
-
                 <Toolbar className={classes.toolbarMain}>
+                    <Hidden smDown>
+                        <Typography component="h2"
+                            variant="h5"
+                            color="inherit"
+                            align="center"
+                            noWrap
+                            className={classes.toolbarTitle}>
+                            {AplicationText.title}
+                        </Typography>
+                    </Hidden>
                     <Hidden smUp>
-                        <IconButton className={classes.menuButton} onClick={this.toggleDrawer('left', true)} color="inherit" aria-label="Menu">
+                        <Typography component="h2"
+                            variant="h5"
+                            color="inherit"
+                            align="left"
+                            noWrap
+                            className={classes.toolbarTitle}>
+                            {AplicationText.title}
+                        </Typography>
+                    </Hidden>
+
+
+                    <Hidden smUp>
+                        <IconButton onClick={this.toggleDrawer('left', true)} color="inherit" aria-label="Menu">
                             <MenuIcon />
                         </IconButton>
                     </Hidden>
-                    <Typography component="h2"
-                        variant="h5"
-                        color="inherit"
-                        align="center"
-                        noWrap
-                        className={classes.toolbarTitle}>
-                        {AplicationText.title}
-                    </Typography>
-                    <IconButton>
+                    <IconButton style={hide}>
                         <SearchIcon />
                     </IconButton>
-                    <Button variant="outlined" size="small">
+                    <Button style={hide} variant="outlined" size="small">
                         Sign up
                 </Button>
                     <Button color="inherit" style={hide}>Features</Button>
-                    <Button color="inherit" style={hide}>Enterprise</Button>
-                    <Button color="inherit" style={hide}>Support</Button>
                 </Toolbar>
             </div>
         );
@@ -149,19 +103,3 @@ Header.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 export default withStyles(styles)(Header);
-
-/*
- <AppBar position="static" >  
-  <Drawer open={this.state.left} onClose={this.toggleDrawer('left', false)}>
-                        <div
-                            tabIndex={0}
-                            role="button"
-                            onClick={this.toggleDrawer('left', false)}
-                            onKeyDown={this.toggleDrawer('left', false)}>
-                            <AppBarCustom></AppBarCustom>
-                        </div>
- </Drawer>
- 
- </AppBar>
-
-*/
