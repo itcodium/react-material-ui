@@ -7,25 +7,62 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import Button from '@material-ui/core/Button';
 import { withStyles } from '@material-ui/core/styles';
-import AppBarCustom from './AppBarCustom';
-
-import Menu from '@material-ui/core/Menu';
-import MenuItem from '@material-ui/core/MenuItem';
-
-import { NavLink } from "react-router-dom";
-
+import AplicationText from './AplicationText';
+import AppMenuCustom from './AppMenuCustom';
+import Hidden from '@material-ui/core/Hidden';
 import Drawer from '@material-ui/core/Drawer';
-import List from '@material-ui/core/List';
-import Divider from '@material-ui/core/Divider';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
+import SearchIcon from '@material-ui/icons/Search';
 
+const styles = theme => ({
 
-
-const styles = {
+    toolbarMain: {
+        borderBottom: `1px solid ${theme.palette.grey[300]}`,
+        margin: 0
+    },
+    toolbarTitle: {
+        flex: 1,
+    },
+    toolbarSecondary: {
+        justifyContent: 'space-between',
+    },
+    mainFeaturedPost: {
+        backgroundColor: theme.palette.grey[800],
+        color: theme.palette.common.white,
+        marginBottom: theme.spacing.unit * 4,
+    },
+    mainFeaturedPostContent: {
+        padding: `${theme.spacing.unit * 6}px`,
+        [theme.breakpoints.up('md')]: {
+            paddingRight: 0,
+        },
+    },
+    mainGrid: {
+        marginTop: theme.spacing.unit * 3,
+    },
+    card: {
+        display: 'flex',
+    },
+    cardDetails: {
+        flex: 1,
+    },
+    cardMedia: {
+        width: 160,
+    },
+    markdown: {
+        padding: `${theme.spacing.unit * 3}px 0`,
+    },
+    sidebarAboutBox: {
+        padding: theme.spacing.unit * 2,
+        backgroundColor: theme.palette.grey[200],
+    },
+    sidebarSection: {
+        marginTop: theme.spacing.unit * 3,
+    },
+    footer: {
+        backgroundColor: theme.palette.background.paper,
+        marginTop: theme.spacing.unit * 8,
+        padding: `${theme.spacing.unit * 6}px 0`,
+    },
     root: {
         flexGrow: 1,
     },
@@ -33,8 +70,8 @@ const styles = {
         flexGrow: 1,
     },
     menuButton: {
-        marginLeft: -12,
-        marginRight: 20,
+        //marginLeft: -12,
+        //marginRight: 20,
     },
 
     fullList: {
@@ -42,8 +79,10 @@ const styles = {
     },
     hide: {
         display: 'none',
-    },
-};
+    }
+});
+
+
 
 class Header extends React.Component {
     state = {
@@ -65,57 +104,64 @@ class Header extends React.Component {
         const { classes } = this.props;
         const hide = { display: "none" };
         return (
-            <AppBar position="static" >
-                <Toolbar>
-                    <IconButton className={classes.menuButton} onClick={this.toggleDrawer('left', true)} color="inherit" aria-label="Menu">
-                        <MenuIcon />
-                    </IconButton>
-                    <Typography variant="h6" color="inherit" className={classes.grow}>
-                        COADYS
-                        </Typography>
-                    <Button color="inherit" style={hide}>Features</Button>
-                    <Button color="inherit" style={hide}>Enterprise</Button>
-                    <Button color="inherit" style={hide}>Support</Button>
-                </Toolbar>
+
+            <div>
+
                 <Drawer open={this.state.left} onClose={this.toggleDrawer('left', false)}>
                     <div
                         tabIndex={0}
                         role="button"
                         onClick={this.toggleDrawer('left', false)}
                         onKeyDown={this.toggleDrawer('left', false)}>
-                        <AppBarCustom></AppBarCustom>
+                        <AppMenuCustom></AppMenuCustom>
                     </div>
                 </Drawer>
-            </AppBar>
+
+                <Toolbar className={classes.toolbarMain}>
+                    <Hidden smUp>
+                        <IconButton className={classes.menuButton} onClick={this.toggleDrawer('left', true)} color="inherit" aria-label="Menu">
+                            <MenuIcon />
+                        </IconButton>
+                    </Hidden>
+                    <Typography component="h2"
+                        variant="h5"
+                        color="inherit"
+                        align="center"
+                        noWrap
+                        className={classes.toolbarTitle}>
+                        {AplicationText.title}
+                    </Typography>
+                    <IconButton>
+                        <SearchIcon />
+                    </IconButton>
+                    <Button variant="outlined" size="small">
+                        Sign up
+                </Button>
+                    <Button color="inherit" style={hide}>Features</Button>
+                    <Button color="inherit" style={hide}>Enterprise</Button>
+                    <Button color="inherit" style={hide}>Support</Button>
+                </Toolbar>
+            </div>
         );
     }
 }
 Header.propTypes = {
     classes: PropTypes.object.isRequired,
 };
-
 export default withStyles(styles)(Header);
 
 /*
- <Menu
-                    id="simple-menu"
-                    anchorEl={anchorEl}
-                    open={Boolean(anchorEl)}
-                    onClose={this.handleClose}>
-                    <MenuItem onClick={this.handleClose}><NavLink to="/">Home</NavLink></MenuItem>
-                    <MenuItem onClick={this.handleClose}><NavLink to="/ProductList">PORQUE COADYS</NavLink></MenuItem>
-                    <MenuItem onClick={this.handleClose}><NavLink to="/ProductList">GESTION</NavLink></MenuItem>
-                    <MenuItem onClick={this.handleClose}><NavLink to="/"></NavLink>PROVEEDORES</MenuItem>
-                    <MenuItem onClick={this.handleClose}><NavLink to="/"></NavLink>TRABAJO </MenuItem>
-                    <MenuItem onClick={this.handleClose}><NavLink to="/"></NavLink>SERVICIOS</MenuItem>
-                </Menu>
-                <Menu
-                    id="simple-menu"
-                    anchorEl={anchorEl}
-                    open={Boolean(anchorEl)}
-                    onClose={this.handleClose}>
-                    <MenuItem onClick={this.handleClose}><NavLink to="/"></NavLink>CONTACTENOS</MenuItem>
-                </Menu>
-
+ <AppBar position="static" >  
+  <Drawer open={this.state.left} onClose={this.toggleDrawer('left', false)}>
+                        <div
+                            tabIndex={0}
+                            role="button"
+                            onClick={this.toggleDrawer('left', false)}
+                            onKeyDown={this.toggleDrawer('left', false)}>
+                            <AppBarCustom></AppBarCustom>
+                        </div>
+ </Drawer>
+ 
+ </AppBar>
 
 */

@@ -13,12 +13,17 @@ class SimpleSnackbar extends React.Component {
     id = null;
     constructor(props) {
         super(props);
-        this.id = this.props.enqueueSnackbar('Test OnLoad.', { autoHideDuration: 4000, variant: "warning" });
+        //  this.id = this.props.enqueueSnackbar('Test OnLoad.', { autoHideDuration: 4000, variant: "warning" });
 
     }
     handleClick = () => {
         this.id = this.props.enqueueSnackbar(
-            'TEST from component.', { autoHideDuration: 3000 });
+            'TEST from component.', {
+                autoHideDuration: 3000, anchorOrigin: {
+                    vertical: 'bottom',
+                    horizontal: 'center',
+                }
+            });
     };
     render() {
         return (
@@ -32,3 +37,5 @@ SimpleSnackbar.propTypes = {
     enqueueSnackbar: PropTypes.func.isRequired,
 };
 export default withSnackbar((withStyles(styles)(SimpleSnackbar)))
+
+// https://iamhosseindhv.com/notistack
