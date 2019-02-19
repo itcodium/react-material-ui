@@ -88,9 +88,8 @@ const styles = theme => ({
     },
     menuSubLink: {
         marginLeft: theme.spacing.unit * 5,
-        color: brown[500],
         textDecoration: 'none',
-        fontWeight: '500',
+        color: grey[900],
 
     }
 });
