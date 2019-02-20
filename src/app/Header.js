@@ -13,6 +13,8 @@ import Hidden from '@material-ui/core/Hidden';
 import Drawer from '@material-ui/core/Drawer';
 import SearchIcon from '@material-ui/icons/Search';
 
+import mainLogo from '../assets/logo_app.png';
+
 const styles = theme => ({
 
     toolbarMain: {
@@ -68,9 +70,11 @@ class Header extends React.Component {
                             color="inherit"
                             align="left"
                             noWrap
+
                             className={ classes.toolbarTitle }>
-                            { AplicationText.title }
+                         <img width='120' flex='1' align="left" src={ mainLogo }></img>
                         </Typography>
+
                     </Hidden>
                     <Hidden smDown>
                         <Typography component="h2"
@@ -78,9 +82,11 @@ class Header extends React.Component {
                             color="inherit"
                             align="center"
                             noWrap
+
                             className={ classes.toolbarTitle }>
-                            { AplicationText.title }
+                            <img width='120' flex='1' align="center" src={ mainLogo }></img>
                         </Typography>
+
                     </Hidden>
 
                     <Hidden mdUp>
