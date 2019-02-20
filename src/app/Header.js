@@ -16,7 +16,7 @@ import SearchIcon from '@material-ui/icons/Search';
 const styles = theme => ({
 
     toolbarMain: {
-        borderBottom: `1px solid ${theme.palette.grey[300]}`,
+        borderBottom: `1px solid ${ theme.palette.grey[300] }`,
         margin: 0
     },
     toolbarTitle: {
@@ -45,55 +45,56 @@ class Header extends React.Component {
         });
     };
 
-    render() {
+    render () {
         const { classes } = this.props;
         const hide = { display: "none" };
         return (
             <div>
-                <Drawer open={this.state.left} onClose={this.toggleDrawer('left', false)}>
-                    <div
-                        tabIndex={0}
-                        role="button"
-                        onClick={this.toggleDrawer('left', false)}
-                        onKeyDown={this.toggleDrawer('left', false)}>
-                        <AppMenuCustom></AppMenuCustom>
-                    </div>
-                </Drawer>
-                <Toolbar className={classes.toolbarMain}>
+                <Hidden mdUp>
+                    <Drawer open={ this.state.left } onClose={ this.toggleDrawer('left', false) }>
+                        <div
+                            tabIndex={ 0 }
+                            role="button"
+                            onClick={ this.toggleDrawer('left', false) }
+                            onKeyDown={ this.toggleDrawer('left', false) }>
+                            <AppMenuCustom></AppMenuCustom>
+                        </div>
+                    </Drawer>
+                </Hidden>
+                <Toolbar className={ classes.toolbarMain }>
+                    <Hidden mdUp>
+                        <Typography component="h2"
+                            variant="h5"
+                            color="inherit"
+                            align="left"
+                            noWrap
+                            className={ classes.toolbarTitle }>
+                            { AplicationText.title }
+                        </Typography>
+                    </Hidden>
                     <Hidden smDown>
                         <Typography component="h2"
                             variant="h5"
                             color="inherit"
                             align="center"
                             noWrap
-                            className={classes.toolbarTitle}>
-                            {AplicationText.title}
-                        </Typography>
-                    </Hidden>
-                    <Hidden smUp>
-                        <Typography component="h2"
-                            variant="h5"
-                            color="inherit"
-                            align="left"
-                            noWrap
-                            className={classes.toolbarTitle}>
-                            {AplicationText.title}
+                            className={ classes.toolbarTitle }>
+                            { AplicationText.title }
                         </Typography>
                     </Hidden>
 
-
-                    <Hidden smUp>
-                        <IconButton onClick={this.toggleDrawer('left', true)} color="inherit" aria-label="Menu">
+                    <Hidden mdUp>
+                        <IconButton onClick={ this.toggleDrawer('left', true) } color="inherit" aria-label="Menu">
                             <MenuIcon />
                         </IconButton>
                     </Hidden>
-                    <IconButton style={hide}>
+                    <IconButton style={ hide }>
                         <SearchIcon />
                     </IconButton>
-                    <Button style={hide} variant="outlined" size="small">
+                    <Button style={ hide } variant="outlined" size="small">
                         Sign up
                 </Button>
-                    <Button color="inherit" style={hide}>Features</Button>
+                    <Button color="inherit" style={ hide }>Features</Button>
                 </Toolbar>
             </div>
         );

@@ -23,7 +23,6 @@ const AplicationText =
             url: "/test",
             items: []
         }
-
     ],
     navBar: [
         {
@@ -57,4 +56,3 @@ const AplicationText =
 }
 
 export default AplicationText;
-

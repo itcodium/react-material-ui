@@ -8,11 +8,11 @@ import { withStyles } from '@material-ui/core/styles';
 import Header from './app/Header'
 import SimpleSnackbar from './components/simpleSnackbar'
 import ProductList from './components/chapter1/ProductList'
-
+import withWidth from '@material-ui/core/withWidth';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import { SnackbarProvider, withSnackbar } from 'notistack';
-
+import compose from 'recompose/compose';
 
 
 import { Route, NavLink, HashRouter } from "react-router-dom";
@@ -45,7 +45,7 @@ const styles = theme => ({
     marginBottom: theme.spacing.unit * 4,
   },
   mainFeaturedPostContent: {
-    padding: `${theme.spacing.unit * 6}px`,
+    padding: `${ theme.spacing.unit * 6 }px`,
     [theme.breakpoints.up('md')]: {
       paddingRight: 0,
     },
@@ -63,7 +63,7 @@ const styles = theme => ({
     width: 160,
   },
   markdown: {
-    padding: `${theme.spacing.unit * 3}px 0`,
+    padding: `${ theme.spacing.unit * 3 }px 0`,
   },
   sidebarAboutBox: {
     padding: theme.spacing.unit * 2,
@@ -75,7 +75,7 @@ const styles = theme => ({
   footer: {
     backgroundColor: theme.palette.background.paper,
     marginTop: theme.spacing.unit * 8,
-    padding: `${theme.spacing.unit * 6}px 0`,
+    padding: `${ theme.spacing.unit * 6 }px 0`,
   },
   root: {
     flexGrow: 1,
@@ -116,29 +116,29 @@ class App extends Component {
     this.props.enqueueSnackbar('This is a warning message!', { variant: "error" });
   };
 
-  render() {
+  render () {
 
     const { classes } = this.props;
 
     return (
 
       <HashRouter>
-        <div className={classes.layout}>
+        <div className={ classes.layout }>
           <Header></Header>
           <NavBarCustom></NavBarCustom>
-          <div className={classes.root}>
-            <Grid container spacing={0}>
-              <Grid item xs={12}>
-                <Paper className={classes.paper}>
-                  <Route exact path="/" component={SimpleSnackbar} />
-                  <Route path="/ProductList" component={ProductList} />
+          <div className={ classes.root }>
+            <Grid container spacing={ 0 }>
+              <Grid item xs={ 12 }>
+                <Paper className={ classes.paper }>
+                  <Route exact path="/" component={ SimpleSnackbar } />
+                  <Route path="/ProductList" component={ ProductList } />
                 </Paper>
               </Grid>
             </Grid>
           </div>
 
           <div className="content">
-
+            <h1>{ this.props.width }</h1>
           </div>
 
         </div>
@@ -167,12 +167,22 @@ App.propTypes = {
 };
 App.propTypes = {
   classes: PropTypes.object.isRequired,
+
+};
+App.propTypes = {
+  width: PropTypes.string.isRequired,
 };
 
-const MyApp = withSnackbar((withStyles(styles)(App)));
-function IntegrationNotistack() {
+// const MyApp = withSnackbar((withStyles(styles)(App)));
+const MyApp = withSnackbar(compose(
+  withStyles(styles),
+  withWidth(),
+)(App));
+
+
+function IntegrationNotistack () {
   return (
-    <SnackbarProvider maxSnack={3}>
+    <SnackbarProvider maxSnack={ 3 }>
       <MyApp />
     </SnackbarProvider>
   );
@@ -180,4 +190,3 @@ function IntegrationNotistack() {
 
 
 export default IntegrationNotistack;
-

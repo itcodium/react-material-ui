@@ -11,7 +11,7 @@ import { NavLink } from "react-router-dom";
 const styles = theme => ({
     toolbarSecondary: {
         justifyContent: 'center',
-        borderBottom: `1px solid ${theme.palette.grey[300]}`,
+        borderBottom: `1px solid ${ theme.palette.grey[300] }`,
     },
     menuSubLink: {
         marginLeft: theme.spacing.unit * 5,
@@ -21,14 +21,14 @@ const styles = theme => ({
     }
 });
 class NavBarCustom extends React.Component {
-    render() {
+    render () {
         const { classes } = this.props;
         return (
             <Hidden smDown>
-                <Toolbar variant="dense" className={classes.toolbarSecondary} >
-                    {AplicationText.navBar.map(item => (
-                        <NavLink button className={classes.menuSubLink} to={item.url}>{item.text}  </NavLink>
-                    ))}
+                <Toolbar variant="dense" className={ classes.toolbarSecondary } >
+                    { AplicationText.navBar.map(item => (
+                        <NavLink button className={ classes.menuSubLink } to={ item.url }>{ item.text }  </NavLink>
+                    )) }
                 </Toolbar>
             </Hidden>
         );
@@ -38,4 +38,3 @@ NavBarCustom.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 export default withStyles(styles)(NavBarCustom);
-

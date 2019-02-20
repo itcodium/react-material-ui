@@ -1,3 +1,3 @@
 git add .
-git commit -m "2019-02-19 Se centra el menu segun el tamaño de pantalla"
+git commit -m "2019-02-19 Se muestra el menu segun la resolucion de la pantalla."
 git push
