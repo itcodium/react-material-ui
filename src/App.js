@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 
 import { withStyles } from '@material-ui/core/styles';
 import Header from './app/Header'
+import Footer from './app/Footer'
 import SimpleSnackbar from './components/simpleSnackbar'
 import ProductList from './components/chapter1/ProductList'
 import withWidth from '@material-ui/core/withWidth';
@@ -37,6 +38,11 @@ const styles = theme => ({
     textAlign: 'center',
     color: theme.palette.text.secondary,
   },
+  content: {
+    minHeight: 600
+    ,
+  }
+
 });
 
 class App extends Component {
@@ -57,9 +63,10 @@ class App extends Component {
               </Grid>
             </Grid>
           </div>
-          <div className="content">
+          <div className={classes.content}>
             <h1>{this.props.width}</h1>
           </div>
+          <Footer></Footer>
         </div>
       </HashRouter>
     );

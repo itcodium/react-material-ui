@@ -20,33 +20,30 @@ const styles = theme => ({
     },
     toolbarTitle: {
         flex: 1,
-    },
-    hide: {
-        display: 'none',
     }
 });
-
-
 
 class Header extends React.Component {
     state = {
         anchorEl: null,
-    };
-    handleClick = event => {
-        this.setState({ anchorEl: event.currentTarget });
-    };
-    handleClose = () => {
-        this.setState({ anchorEl: null });
     };
     toggleDrawer = (side, open) => () => {
         this.setState({
             [side]: open,
         });
     };
-
+    getLogo = function (align, classes) {
+        return <Typography component="h2"
+            variant="h5"
+            color="inherit"
+            align={align}
+            noWrap
+            className={classes.toolbarTitle}>
+            <img width='140' flex='1' align="center" src={mainLogo}></img>
+        </Typography>
+    }
     render() {
         const { classes } = this.props;
-        const hide = { display: "none" };
         return (
             <div>
                 <Hidden mdUp>
@@ -62,42 +59,16 @@ class Header extends React.Component {
                 </Hidden>
                 <Toolbar className={classes.toolbarMain}>
                     <Hidden mdUp>
-                        <Typography component="h2"
-                            variant="h5"
-                            color="inherit"
-                            align="left"
-                            noWrap
-
-                            className={classes.toolbarTitle}>
-                            <img width='120' flex='1' align="left" src={mainLogo}></img>
-                        </Typography>
-
+                        {this.getLogo("left", classes)}
                     </Hidden>
                     <Hidden smDown>
-                        <Typography component="h2"
-                            variant="h5"
-                            color="inherit"
-                            align="center"
-                            noWrap
-
-                            className={classes.toolbarTitle}>
-                            <img width='140' flex='1' align="center" src={mainLogo}></img>
-                        </Typography>
-
+                        {this.getLogo("center", classes)}
                     </Hidden>
-
                     <Hidden mdUp>
                         <IconButton onClick={this.toggleDrawer('left', true)} color="inherit" aria-label="Menu">
                             <MenuIcon />
                         </IconButton>
                     </Hidden>
-                    <IconButton style={hide}>
-                        <SearchIcon />
-                    </IconButton>
-                    <Button style={hide} variant="outlined" size="small">
-                        Sign up
-                </Button>
-                    <Button color="inherit" style={hide}>Features</Button>
                 </Toolbar>
             </div>
         );
