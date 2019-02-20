@@ -3,26 +3,40 @@ const AplicationText =
     title: "Test",
     menu: [
         {
-            text: "Home",
+            text: "Porque COADYS",
             url: "/",
-            items: [{
-                text: "Sub Item 1",
-                url: "/SubItem1"
-            }, {
-                text: "Sub Item 2",
-                url: "/SubItem2"
-            }]
+            items: []
         },
         {
-            text: "Product List",
+            text: "Gestion",
             url: "/ProductList",
             items: []
         },
         {
-            text: "test",
+            text: "Proveedores",
             url: "/test",
             items: []
         }
+        ,
+        {
+            text: "Trabajo",
+            url: "/test",
+            items: []
+        }
+        ,
+        {
+            text: "Servicios",
+            url: "/test",
+            items: []
+        }
+        ,
+        {
+            text: "Contactenos",
+            url: "/test",
+            items: []
+        }
+
+
     ],
     navBar: [
         {

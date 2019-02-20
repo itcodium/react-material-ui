@@ -8,6 +8,8 @@ import grey from '@material-ui/core/colors/grey';
 import AplicationText from './AplicationText'
 
 
+import Typography from '@material-ui/core/Typography';
+
 import { NavLink } from "react-router-dom";
 
 const styles = {
@@ -18,12 +20,10 @@ const styles = {
     menuLink: {
         color: grey[900],
         textDecoration: 'none',
-        fontWeight: 'bold',
         margin: 0,
         paddingLeft: 0
     },
     menuSubLink: {
-        color: grey[900],
         textDecoration: 'none',
         margin: 0,
         paddingLeft: 10
@@ -34,13 +34,16 @@ class AppMenuCustom extends React.Component {
     render() {
         const { classes } = this.props;
         const productComponents = AplicationText.menu.map((item) => (
-            <div>
+            <div >
                 <ListItem key={item.text}>
-                    <NavLink className={classes.menuLink} to={item.url}>{item.text}  </NavLink>
+                    <NavLink className={classes.menuLink} to={item.url}>
+                        <Typography> {item.text}</Typography> </NavLink>
                 </ListItem>
                 {item.items.map((sub) => (
                     <ListItem key={item.text}>
-                        <NavLink className={classes.menuSubLink} to={sub.url}>{sub.text}  </NavLink>
+                        <NavLink className={classes.menuSubLink} to={sub.url}>
+                            <Typography>{sub.text}</Typography>
+                        </NavLink>
                     </ListItem>
                 ))}
             </div>

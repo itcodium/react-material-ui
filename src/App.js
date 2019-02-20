@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import SvgIcons from './components/svg_Icons'
 import PropTypes from 'prop-types';
-import Button from '@material-ui/core/Button';
 
 import { withStyles } from '@material-ui/core/styles';
 import Header from './app/Header'
@@ -14,12 +12,8 @@ import Paper from '@material-ui/core/Paper';
 import { SnackbarProvider, withSnackbar } from 'notistack';
 import compose from 'recompose/compose';
 
-
-import { Route, NavLink, HashRouter } from "react-router-dom";
-
+import { Route, HashRouter } from "react-router-dom";
 import NavBarCustom from './app/NavBarCustom';
-
-import Drawer from '@material-ui/core/Drawer';
 
 const styles = theme => ({
   layout: {
@@ -31,54 +25,6 @@ const styles = theme => ({
       marginLeft: 'auto',
       marginRight: 'auto',
     },
-  },
-
-  toolbarTitle: {
-    flex: 1,
-  },
-  toolbarSecondary: {
-    justifyContent: 'space-between',
-  },
-  mainFeaturedPost: {
-    backgroundColor: theme.palette.grey[800],
-    color: theme.palette.common.white,
-    marginBottom: theme.spacing.unit * 4,
-  },
-  mainFeaturedPostContent: {
-    padding: `${ theme.spacing.unit * 6 }px`,
-    [theme.breakpoints.up('md')]: {
-      paddingRight: 0,
-    },
-  },
-  mainGrid: {
-    marginTop: theme.spacing.unit * 3,
-  },
-  card: {
-    display: 'flex',
-  },
-  cardDetails: {
-    flex: 1,
-  },
-  cardMedia: {
-    width: 160,
-  },
-  markdown: {
-    padding: `${ theme.spacing.unit * 3 }px 0`,
-  },
-  sidebarAboutBox: {
-    padding: theme.spacing.unit * 2,
-    backgroundColor: theme.palette.grey[200],
-  },
-  sidebarSection: {
-    marginTop: theme.spacing.unit * 3,
-  },
-  footer: {
-    backgroundColor: theme.palette.background.paper,
-    marginTop: theme.spacing.unit * 8,
-    padding: `${ theme.spacing.unit * 6 }px 0`,
-  },
-  root: {
-    flexGrow: 1,
   },
   grow: {
     flexGrow: 1,
@@ -93,54 +39,27 @@ const styles = theme => ({
   },
 });
 
-
-
 class App extends Component {
-  id = null;
-  handleClose = (event, reason) => {
-    if (reason === 'clickaway') {
-      return;
-    }
-    this.props.closeSnackbar(this.id)
-  }
-  handleClick = () => {
-    this.id = this.props.enqueueSnackbar('Item moved to recently deleted folder.', {
-      variant: 'default',
-      autoHideDuration: 8000,
-      vertical: 'bottom',
-      horizontal: 'center',
-    }
-    )
-  }
-  handleClickVariant = () => {
-    this.props.enqueueSnackbar('This is a warning message!', { variant: "error" });
-  };
-
-  render () {
-
+  render() {
     const { classes } = this.props;
-
     return (
-
       <HashRouter>
-        <div className={ classes.layout }>
+        <div className={classes.layout}>
           <Header></Header>
           <NavBarCustom></NavBarCustom>
-          <div className={ classes.root }>
-            <Grid container spacing={ 0 }>
-              <Grid item xs={ 12 }>
-                <Paper className={ classes.paper }>
-                  <Route exact path="/" component={ SimpleSnackbar } />
-                  <Route path="/ProductList" component={ ProductList } />
+          <div className={classes.root}>
+            <Grid container spacing={0}>
+              <Grid item xs={12}>
+                <Paper className={classes.paper}>
+                  <Route exact path="/" component={SimpleSnackbar} />
+                  <Route path="/ProductList" component={ProductList} />
                 </Paper>
               </Grid>
             </Grid>
           </div>
-
           <div className="content">
-            <h1>{ this.props.width }</h1>
+            <h1>{this.props.width}</h1>
           </div>
-
         </div>
       </HashRouter>
     );
@@ -150,15 +69,6 @@ class App extends Component {
 /*
 https://github.com/mui-org/material-ui/blob/master/docs/src/pages/getting-started/page-layout-examples/blog/Blog.js
 https://material-ui.com/getting-started/page-layout-examples/blog/
-
-            <SvgIcons></SvgIcons>
-            <div>
-              <h1>Popular Products</h1>
-              <ProductList></ProductList>
-            </div>
-            <SimpleSnackbar></SimpleSnackbar>
-            <Button onClick={this.handleClick}>Delete Folder</Button>
-            <Button onClick={this.handleClickVariant}>Warning</Button>
 
 */
 
@@ -173,20 +83,18 @@ App.propTypes = {
   width: PropTypes.string.isRequired,
 };
 
-// const MyApp = withSnackbar((withStyles(styles)(App)));
 const MyApp = withSnackbar(compose(
   withStyles(styles),
   withWidth(),
 )(App));
 
 
-function IntegrationNotistack () {
+function IntegrationNotistack() {
   return (
-    <SnackbarProvider maxSnack={ 3 }>
+    <SnackbarProvider maxSnack={3}>
       <MyApp />
     </SnackbarProvider>
   );
 }
-
 
 export default IntegrationNotistack;

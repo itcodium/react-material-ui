@@ -4,6 +4,10 @@ import Toolbar from '@material-ui/core/Toolbar';
 import { withStyles } from '@material-ui/core/styles';
 import AplicationText from './AplicationText';
 
+
+
+import Typography from '@material-ui/core/Typography';
+
 import grey from '@material-ui/core/colors/grey';
 import Hidden from '@material-ui/core/Hidden';
 import { NavLink } from "react-router-dom";
@@ -11,7 +15,7 @@ import { NavLink } from "react-router-dom";
 const styles = theme => ({
     toolbarSecondary: {
         justifyContent: 'center',
-        borderBottom: `1px solid ${ theme.palette.grey[300] }`,
+        borderBottom: `1px solid ${theme.palette.grey[300]}`,
     },
     menuSubLink: {
         marginLeft: theme.spacing.unit * 5,
@@ -21,14 +25,16 @@ const styles = theme => ({
     }
 });
 class NavBarCustom extends React.Component {
-    render () {
+    render() {
         const { classes } = this.props;
         return (
             <Hidden smDown>
-                <Toolbar variant="dense" className={ classes.toolbarSecondary } >
-                    { AplicationText.navBar.map(item => (
-                        <NavLink button className={ classes.menuSubLink } to={ item.url }>{ item.text }  </NavLink>
-                    )) }
+                <Toolbar className={classes.toolbarSecondary} >
+                    {AplicationText.navBar.map(item => (
+                        <NavLink className={classes.menuSubLink} to={item.url}>
+                            <Typography>{item.text} </Typography>
+                        </NavLink>
+                    ))}
                 </Toolbar>
             </Hidden>
         );
