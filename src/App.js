@@ -5,16 +5,17 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Header from './app/Header'
 import Footer from './app/Footer'
-import SimpleSnackbar from './components/simpleSnackbar'
+
+import QuienesSomos from './componentes/quienes_somos'
 import ProductList from './components/chapter1/ProductList'
 import withWidth from '@material-ui/core/withWidth';
 import Grid from '@material-ui/core/Grid';
-import Paper from '@material-ui/core/Paper';
 import { SnackbarProvider, withSnackbar } from 'notistack';
 import compose from 'recompose/compose';
 
 import { Route, HashRouter } from "react-router-dom";
 import NavBarCustom from './app/NavBarCustom';
+
 
 const styles = theme => ({
   layout: {
@@ -22,7 +23,7 @@ const styles = theme => ({
     marginLeft: theme.spacing.unit * 3,
     marginRight: theme.spacing.unit * 3,
     [theme.breakpoints.up(1100 + theme.spacing.unit * 3 * 2)]: {
-      width: 1100,
+      width: 1024,
       marginLeft: 'auto',
       marginRight: 'auto',
     },
@@ -35,8 +36,8 @@ const styles = theme => ({
   },
   paper: {
     padding: theme.spacing.unit * 2,
-    textAlign: 'center',
     color: theme.palette.text.secondary,
+    textAlign: "justify"
   },
   content: {
     minHeight: 600
@@ -46,25 +47,21 @@ const styles = theme => ({
 });
 
 class App extends Component {
-  render() {
+  render () {
     const { classes } = this.props;
     return (
       <HashRouter>
-        <div className={classes.layout}>
+        <div className={ classes.layout }>
           <Header></Header>
           <NavBarCustom></NavBarCustom>
-          <div className={classes.root}>
-            <Grid container spacing={0}>
-              <Grid item xs={12}>
-                <Paper className={classes.paper}>
-                  <Route exact path="/" component={SimpleSnackbar} />
-                  <Route path="/ProductList" component={ProductList} />
-                </Paper>
+          <div className={ classes.root }>
+            <Grid container spacing={ 0 }>
+              <Grid item xs={ 12 } className={ classes.paper } >
+                <Route exact path="/" component={ QuienesSomos } />
+                <Route path="/ProductList" component={ ProductList } />
+                <Route path="/QuienesSomos" component={ QuienesSomos } />
               </Grid>
             </Grid>
-          </div>
-          <div className={classes.content}>
-            <h1>{this.props.width}</h1>
           </div>
           <Footer></Footer>
         </div>
@@ -76,7 +73,7 @@ class App extends Component {
 /*
 https://github.com/mui-org/material-ui/blob/master/docs/src/pages/getting-started/page-layout-examples/blog/Blog.js
 https://material-ui.com/getting-started/page-layout-examples/blog/
-
+  <h1>{ this.props.width }</h1>
 */
 
 App.propTypes = {
@@ -96,9 +93,9 @@ const MyApp = withSnackbar(compose(
 )(App));
 
 
-function IntegrationNotistack() {
+function IntegrationNotistack () {
   return (
-    <SnackbarProvider maxSnack={3}>
+    <SnackbarProvider maxSnack={ 3 }>
       <MyApp />
     </SnackbarProvider>
   );

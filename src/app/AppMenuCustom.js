@@ -14,7 +14,6 @@ import { NavLink } from "react-router-dom";
 
 const styles = {
     fullList: {
-        width: 'auto',
         width: 250,
     },
     menuLink: {

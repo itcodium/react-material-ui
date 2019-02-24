@@ -2,7 +2,15 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 1. npm install @material-ui/core
 2. npm install @material-ui/icons
-
+3. Editar webpack config: react-material-ui\node_modules\react-scripts\config\webpack.config.js
+    oneOf: [
+            // "url" loader works like "file" loader except that it embeds assets
+            // smaller than specified limit in bytes as data URLs to avoid requests.
+            // A missing `test` is equivalent to a match.
+            {
+              test: /\.txt$/,
+              use: 'raw-loader'
+              },
 
 
 ## Available Scripts
@@ -91,5 +99,3 @@ We suggest that you begin by typing:
 
   cd test
   npm start
-
-  
