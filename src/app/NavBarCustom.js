@@ -3,19 +3,19 @@ import PropTypes from 'prop-types';
 import Toolbar from '@material-ui/core/Toolbar';
 import { withStyles } from '@material-ui/core/styles';
 import AplicationText from './AplicationText';
-
+import { NavLink } from "react-router-dom";
 
 
 import Typography from '@material-ui/core/Typography';
 
 import grey from '@material-ui/core/colors/grey';
 import Hidden from '@material-ui/core/Hidden';
-import { NavLink } from "react-router-dom";
+
 
 const styles = theme => ({
     toolbarSecondary: {
         justifyContent: 'center',
-        borderBottom: `1px solid ${theme.palette.grey[300]}`,
+
     },
     menuSubLink: {
         marginLeft: theme.spacing.unit * 5,
@@ -25,16 +25,16 @@ const styles = theme => ({
     }
 });
 class NavBarCustom extends React.Component {
-    render() {
+    render () {
         const { classes } = this.props;
         return (
             <Hidden smDown>
-                <Toolbar className={classes.toolbarSecondary} >
-                    {AplicationText.navBar.map(item => (
-                        <NavLink className={classes.menuSubLink} to={item.url}>
-                            <Typography>{item.text} </Typography>
+                <Toolbar className={ classes.toolbarSecondary } >
+                    { AplicationText.navBar.map(item => (
+                        <NavLink className={ classes.menuSubLink } to={ item.url }>
+                            <Typography>{ item.text.toUpperCase() } </Typography>
                         </NavLink>
-                    ))}
+                    )) }
                 </Toolbar>
             </Hidden>
         );

@@ -53,7 +53,6 @@ class App extends Component {
       <HashRouter>
         <div className={ classes.layout }>
           <Header></Header>
-          <NavBarCustom></NavBarCustom>
           <div className={ classes.root }>
             <Grid container spacing={ 0 }>
               <Grid item xs={ 12 } className={ classes.paper } >
