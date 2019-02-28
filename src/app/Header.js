@@ -8,36 +8,10 @@ import { withStyles } from '@material-ui/core/styles';
 import AppMenuCustom from './AppMenuCustom';
 import Hidden from '@material-ui/core/Hidden';
 import Drawer from '@material-ui/core/Drawer';
-import grey from '@material-ui/core/colors/grey';
-import red from '@material-ui/core/colors/red';
 import AplicationText from './AplicationText';
 import { NavLink } from "react-router-dom";
 import mainLogo from '../assets/logo_app.png';
-
-const styles = theme => ({
-    toolbarMain: {
-
-        margin: 0
-    },
-    toolbarTitle: {
-        flex: 1,
-    },
-    toolbarSecondary: {
-        justifyContent: 'center',
-
-    },
-    menuSubLink: {
-        marginLeft: theme.spacing.unit * 3,
-        textDecoration: 'none',
-        color: red[900],
-        fontSize: '12px',
-    },
-    menuSubLinkText: {
-        textDecoration: 'none',
-        fontSize: '12px',
-        fontWeight: "bold"
-    }
-});
+import styles from '../common/styles';
 
 class Header extends React.Component {
     state = {
@@ -52,43 +26,43 @@ class Header extends React.Component {
         return <Typography component="h2"
             variant="h5"
             color="inherit"
-            align={ align }
+            align={align}
             noWrap
-            className={ classes.toolbarTitle }>
-            <img width='140' alt="" flex='1' align="center" src={ mainLogo }></img>
+            className={classes.toolbarTitle}>
+            <img width='140' alt="" flex='1' align="center" src={mainLogo}></img>
         </Typography>
     }
-    render () {
+    render() {
         const { classes } = this.props;
         return (
             <div>
                 <Hidden mdUp>
-                    <Drawer open={ this.state.left } onClose={ this.toggleDrawer('left', false) }>
+                    <Drawer open={this.state.left} onClose={this.toggleDrawer('left', false)}>
                         <div
-                            tabIndex={ 0 }
+                            tabIndex={0}
                             role="button"
-                            onClick={ this.toggleDrawer('left', false) }
-                            onKeyDown={ this.toggleDrawer('left', false) }>
+                            onClick={this.toggleDrawer('left', false)}
+                            onKeyDown={this.toggleDrawer('left', false)}>
                             <AppMenuCustom></AppMenuCustom>
                         </div>
                     </Drawer>
                 </Hidden>
-                <Toolbar className={ classes.toolbarMain }>
+                <Toolbar className={classes.toolbarMain}>
                     <Hidden mdUp>
-                        { this.getLogo("left", classes) }
+                        {this.getLogo("left", classes)}
                     </Hidden>
                     <Hidden smDown>
-                        { this.getLogo("left", classes) }
-                        <Toolbar className={ classes.toolbarSecondary } >
-                            { AplicationText.navBar.map(item => (
-                                <NavLink className={ classes.menuSubLink } to={ item.url }>
-                                    <Typography className={ classes.menuSubLinkText } variant="button" gutterBottom>{ item.text.toUpperCase() } </Typography>
+                        {this.getLogo("left", classes)}
+                        <Toolbar className={classes.toolbarSecondary} >
+                            {AplicationText.navBar.map(item => (
+                                <NavLink className={classes.menuSubLink} to={item.url}>
+                                    <Typography className={classes.menuSubLinkText} variant="button" gutterBottom>{item.text.toUpperCase()} </Typography>
                                 </NavLink>
-                            )) }
+                            ))}
                         </Toolbar>
                     </Hidden>
                     <Hidden mdUp>
-                        <IconButton onClick={ this.toggleDrawer('left', true) } color="inherit" aria-label="Menu">
+                        <IconButton onClick={this.toggleDrawer('left', true)} color="inherit" aria-label="Menu">
                             <MenuIcon />
                         </IconButton>
                     </Hidden>

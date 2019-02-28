@@ -8,10 +8,12 @@ import { NavLink } from "react-router-dom";
 
 import Typography from '@material-ui/core/Typography';
 
-import grey from '@material-ui/core/colors/grey';
+
 import Hidden from '@material-ui/core/Hidden';
+import styles from '../common/styles';
 
-
+/*
+import grey from '@material-ui/core/colors/grey';
 const styles = theme => ({
     toolbarSecondary: {
         justifyContent: 'center',
@@ -24,17 +26,18 @@ const styles = theme => ({
 
     }
 });
+*/
 class NavBarCustom extends React.Component {
-    render () {
+    render() {
         const { classes } = this.props;
         return (
             <Hidden smDown>
-                <Toolbar className={ classes.toolbarSecondary } >
-                    { AplicationText.navBar.map(item => (
-                        <NavLink className={ classes.menuSubLink } to={ item.url }>
-                            <Typography>{ item.text.toUpperCase() } </Typography>
+                <Toolbar className={classes.toolbarSecondary} >
+                    {AplicationText.navBar.map(item => (
+                        <NavLink className={classes.menuSubLink} to={item.url}>
+                            <Typography>{item.text.toUpperCase()} </Typography>
                         </NavLink>
-                    )) }
+                    ))}
                 </Toolbar>
             </Hidden>
         );

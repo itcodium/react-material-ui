@@ -7,6 +7,9 @@ import Grid from '@material-ui/core/Grid';
 import classNames from 'classnames';
 import BottomNavigation from '@material-ui/core/BottomNavigation';
 
+import styles from '../common/styles';
+
+/*
 const styles = theme => ({
     layout: {
         width: 'auto',
@@ -25,6 +28,7 @@ const styles = theme => ({
     },
 });
 
+*/
 class Footer extends React.Component {
 
     state = {
@@ -34,28 +38,28 @@ class Footer extends React.Component {
     handleChange = (event, value) => {
         this.setState({ value });
     };
-    render () {
+    render() {
         const { classes } = this.props;
         const { value } = this.state;
         return (
             <BottomNavigation
-                value={ value }
-                onChange={ this.handleChange }
+                value={value}
+                onChange={this.handleChange}
                 showLabels
-                className={ classNames(classes.footer, classes.layout) }>
-                <Grid container spacing={ 32 } justify="space-evenly">
-                    { AplicationText.footers.map(footer => (
-                        <Grid item xs key={ footer.title }>
+                className={classNames(classes.footer, classes.layout)}>
+                <Grid container spacing={32} justify="space-evenly">
+                    {AplicationText.footers.map(footer => (
+                        <Grid item xs key={footer.title}>
                             <Typography variant="h6" color="textPrimary" gutterBottom>
-                                { footer.title }
+                                {footer.title}
                             </Typography>
-                            { footer.description.map(item => (
-                                <Typography key={ item } variant="subtitle1" color="textSecondary">
-                                    { item }
+                            {footer.description.map(item => (
+                                <Typography key={item} variant="subtitle1" color="textSecondary">
+                                    {item}
                                 </Typography>
-                            )) }
+                            ))}
                         </Grid>
-                    )) }
+                    ))}
                 </Grid>
             </BottomNavigation>
         );

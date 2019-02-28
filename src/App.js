@@ -6,7 +6,7 @@ import { withStyles } from '@material-ui/core/styles';
 import Header from './app/Header'
 import Footer from './app/Footer'
 
-import QuienesSomos from './componentes/quienes_somos'
+import QuienesSomos from './components/paginas/quienes_somos'
 import ProductList from './components/chapter1/ProductList'
 import withWidth from '@material-ui/core/withWidth';
 import Grid from '@material-ui/core/Grid';
@@ -14,51 +14,21 @@ import { SnackbarProvider, withSnackbar } from 'notistack';
 import compose from 'recompose/compose';
 
 import { Route, HashRouter } from "react-router-dom";
-import NavBarCustom from './app/NavBarCustom';
-
-
-const styles = theme => ({
-  layout: {
-    width: 'auto',
-    marginLeft: theme.spacing.unit * 3,
-    marginRight: theme.spacing.unit * 3,
-    [theme.breakpoints.up(1100 + theme.spacing.unit * 3 * 2)]: {
-      width: 1024,
-      marginLeft: 'auto',
-      marginRight: 'auto',
-    },
-  },
-  grow: {
-    flexGrow: 1,
-  },
-  root: {
-    flexGrow: 1,
-  },
-  paper: {
-    padding: theme.spacing.unit * 2,
-    color: theme.palette.text.secondary,
-    textAlign: "justify"
-  },
-  content: {
-    minHeight: 600
-    ,
-  }
-
-});
+import styles from './common/styles';
 
 class App extends Component {
-  render () {
+  render() {
     const { classes } = this.props;
     return (
       <HashRouter>
-        <div className={ classes.layout }>
+        <div className={classes.layout}>
           <Header></Header>
-          <div className={ classes.root }>
-            <Grid container spacing={ 0 }>
-              <Grid item xs={ 12 } className={ classes.paper } >
-                <Route exact path="/" component={ QuienesSomos } />
-                <Route path="/ProductList" component={ ProductList } />
-                <Route path="/QuienesSomos" component={ QuienesSomos } />
+          <div className={classes.root}>
+            <Grid container spacing={0}>
+              <Grid item xs={12} className={classes.paper} >
+                <Route exact path="/" component={QuienesSomos} />
+                <Route path="/ProductList" component={ProductList} />
+                <Route path="/QuienesSomos" component={QuienesSomos} />
               </Grid>
             </Grid>
           </div>
@@ -92,9 +62,9 @@ const MyApp = withSnackbar(compose(
 )(App));
 
 
-function IntegrationNotistack () {
+function IntegrationNotistack() {
   return (
-    <SnackbarProvider maxSnack={ 3 }>
+    <SnackbarProvider maxSnack={3}>
       <MyApp />
     </SnackbarProvider>
   );
