@@ -4,6 +4,15 @@ import { withStyles } from '@material-ui/core/styles';
 import Markdown from './Markdown';
 import blog1 from './quienes_somos.txt';
 
+import Typography from '@material-ui/core/Typography';
+
+import GridList from '@material-ui/core/GridList';
+import GridListTile from '@material-ui/core/GridListTile';
+import GridListTileBar from '@material-ui/core/GridListTileBar';
+import IconButton from '@material-ui/core/IconButton';
+import StarBorderIcon from '@material-ui/icons/StarBorder';
+import tileData from './tileData'
+
 const styles = theme => ({
     close: {
         padding: theme.spacing.unit / 2,
@@ -31,6 +40,20 @@ const styles = theme => ({
     mainGrid: {
         marginTop: theme.spacing.unit * 3,
     },
+    gridList: {
+        width: 'auto',
+        height: 'auto',
+        // Promote the list into his own layer on Chrome. This cost memory but helps keeping high FPS.
+        transform: 'translateZ(0)',
+    },
+    titleBar: {
+        background:
+            'linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, ' +
+            'rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)',
+    },
+    icon: {
+        color: 'white',
+    },
 });
 
 
@@ -43,15 +66,34 @@ class QuienesSomos extends React.Component {
 
     render () {
         const { classes } = this.props;
+        const mark = posts.map(post => (
+            <Markdown className={ classes.markdown } key={ post.substring(0, 40) }>
+                { post }
+            </Markdown>
+        ))
         return (
+            <div>
+                <GridList cellHeight={ 200 } spacing={ 1 } className={ classes.gridList }>
+                    { tileData.map(tile => (
+                        <GridListTile key={ tile.img } cols={ tile.featured ? 2 : 1 } rows={ tile.featured ? 2 : 1 }>
+                            <img src={ tile.img } alt={ tile.title } />
 
-
-            posts.map(post => (
-                <Markdown className={ classes.markdown } key={ post.substring(0, 40) }>
-                    { post }
-                </Markdown>
-            ))
-
+                            <GridListTileBar
+                                title={ tile.title }
+                                titlePosition="top"
+                                actionIcon={
+                                    <IconButton className={ classes.icon }>
+                                        <StarBorderIcon />
+                                    </IconButton>
+                                }
+                                actionPosition="left"
+                                className={ classes.titleBar }
+                            />
+                        </GridListTile>
+                    )) }
+                </GridList>
+                { mark }
+            </div>
         );
     }
 }

@@ -25,32 +25,38 @@ const styles = {
     menuSubLink: {
         textDecoration: 'none',
         margin: 0,
-        paddingLeft: 10
+        paddingLeft: 10,
+
     },
+    menuSubLinkText: {
+        textDecoration: 'none',
+        fontSize: '12px',
+        fontWeight: "bold"
+    }
 };
 
 class AppMenuCustom extends React.Component {
-    render() {
+    render () {
         const { classes } = this.props;
         const productComponents = AplicationText.menu.map((item) => (
             <div >
-                <ListItem key={item.text}>
-                    <NavLink className={classes.menuLink} to={item.url}>
-                        <Typography> {item.text}</Typography> </NavLink>
+                <ListItem key={ item.text }>
+                    <NavLink className={ classes.menuLink } to={ item.url }>
+                        <Typography className={ classes.menuSubLinkText } > { item.text }</Typography> </NavLink>
                 </ListItem>
-                {item.items.map((sub) => (
-                    <ListItem key={item.text}>
-                        <NavLink className={classes.menuSubLink} to={sub.url}>
-                            <Typography>{sub.text}</Typography>
+                { item.items.map((sub) => (
+                    <ListItem key={ item.text }>
+                        <NavLink className={ classes.menuSubLink } to={ sub.url }>
+                            <Typography  className={ classes.menuSubLinkText } >{ sub.text }</Typography>
                         </NavLink>
                     </ListItem>
-                ))}
+                )) }
             </div>
         ));
         return (
-            <div className={classes.fullList}>
+            <div className={ classes.fullList }>
                 <List>
-                    {productComponents}
+                    { productComponents }
                 </List>
             </div>
         );

@@ -9,6 +9,7 @@ import AppMenuCustom from './AppMenuCustom';
 import Hidden from '@material-ui/core/Hidden';
 import Drawer from '@material-ui/core/Drawer';
 import grey from '@material-ui/core/colors/grey';
+import red from '@material-ui/core/colors/red';
 import AplicationText from './AplicationText';
 import { NavLink } from "react-router-dom";
 import mainLogo from '../assets/logo_app.png';
@@ -28,10 +29,13 @@ const styles = theme => ({
     menuSubLink: {
         marginLeft: theme.spacing.unit * 3,
         textDecoration: 'none',
-        color: grey[900],
-        fontWeight: 'bold'
-
-
+        color: red[900],
+        fontSize: '12px',
+    },
+    menuSubLinkText: {
+        textDecoration: 'none',
+        fontSize: '12px',
+        fontWeight: "bold"
     }
 });
 
@@ -78,7 +82,7 @@ class Header extends React.Component {
                         <Toolbar className={ classes.toolbarSecondary } >
                             { AplicationText.navBar.map(item => (
                                 <NavLink className={ classes.menuSubLink } to={ item.url }>
-                                    <Typography variant="button" gutterBottom>{ item.text.toUpperCase() } </Typography>
+                                    <Typography className={ classes.menuSubLinkText } variant="button" gutterBottom>{ item.text.toUpperCase() } </Typography>
                                 </NavLink>
                             )) }
                         </Toolbar>
