@@ -1,21 +1,41 @@
 import React from 'react';
 class Product extends React.Component {
-    render () {
+    constructor(props) {
+        super(props);
+        this.handleUpVote = this.handleUpVote.bind(this);
+    }
+
+    handleUpVote = () => (
+        this.props.onVote(this.props.id)
+    );
+    render() {
         return (
             <div className='item'>
                 <div className='image'>
-                    <img alt="" src='images/products/image-aqua.png' />
+                    <img src={this.props.productImageUrl} />
                 </div>
                 <div className='middle aligned content'>
+
+                    <div className='header'>
+                        <a onClick={this.handleUpVote}>
+                            <i className='large caret up icon' /> Vote ->
+                        </a>
+                        {this.props.votes}
+                    </div>
+
                     <div className='description'>
-                        <a href=" ">Fort Knight</a>
-                        <p>Authentic renaissance actors, delivered in just two weeks.</p>
+                        <a href={this.props.url}>
+                            {this.props.title}
+                        </a>
+                        <p>
+                            {this.props.description}
+                        </p>
                     </div>
                     <div className='extra'>
                         <span>Submitted by:</span>
-                        <img alt=""
+                        <img
                             className='ui avatar image'
-                            src='images/avatars/daniel.jpg'
+                            src={this.props.submitterAvatarUrl}
                         />
                     </div>
                 </div>

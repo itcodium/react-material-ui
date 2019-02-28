@@ -26,8 +26,8 @@ class App extends Component {
           <div className={classes.root}>
             <Grid container spacing={0}>
               <Grid item xs={12} className={classes.paper} >
-                <Route exact path="/" component={QuienesSomos} />
-                <Route path="/ProductList" component={ProductList} />
+                <Route path="/" component={ProductList} />
+                <Route exact path="/QuienesSomos" component={QuienesSomos} />
                 <Route path="/QuienesSomos" component={QuienesSomos} />
               </Grid>
             </Grid>
