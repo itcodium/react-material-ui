@@ -1,23 +1,28 @@
 const tileData = [
     {
-        img: 'https://material-ui.com/static/images/grid-list/breakfast.jpg',
-        title: 'Breakfast',
+        img: '/static/media/_proyectos.jpg',
+        title: 'Proyectos',
         author: 'jill111',
-        cols: 2,
+        cols: 1,
         featured: true,
-    },
-    {
-        img: 'https://material-ui.com/static/images/grid-list/burgers.jpg',
-        title: 'Tasty burger',
-        author: 'director90',
-    },
-    {
-        img: 'https://material-ui.com/static/images/grid-list/camera.jpg',
-        title: 'Camera',
-        author: 'Danson67',
-    },
+
+    }
 
 
 ];
+/*
 
+,
+    {
+        img: '/static/media/empalme.jpg',
+        title: 'Empalme ',
+        author: 'director90',
+    },
+    {
+        img: '/static/media/cct.jpg',
+        title: 'cct',
+        author: 'Danson67',
+    },
+
+*/
 export default tileData;
