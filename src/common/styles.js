@@ -61,7 +61,7 @@ const styles = theme => ({
     },
     menuSubLinkText: {
         textDecoration: 'none',
-        fontSize: '14px',
+        fontSize: '12px',
         fontWeight: "bold"
     },
     /* Nav Bar Custom */
