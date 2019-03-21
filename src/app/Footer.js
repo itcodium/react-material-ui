@@ -47,7 +47,7 @@ class Footer extends React.Component {
                 onChange={this.handleChange}
                 showLabels
                 className={classNames(classes.footer, classes.layout)}>
-                <Grid container spacing={32} justify="space-evenly">
+                <Grid container spacing={0} justify="space-evenly">
                     {AplicationText.footers.map(footer => (
                         <Grid item xs key={footer.title}>
                             <Typography variant="h6" color="textPrimary" gutterBottom>

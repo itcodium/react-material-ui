@@ -26,39 +26,39 @@ class CustomCard extends React.Component {
     handleClick = () => {
 
     };
-    render () {
+    render() {
         const { classes } = this.props;
         return (
-            <div><br></br>
-                <Card className={ classes.card }>
-                    <CardActionArea>
-                        <CardMedia
-                            component="img"
-                            alt="Contemplative Reptile"
-                            className={ classes.media }
-                            height="140"
-                            image={ this.props.image }
-                            title="Contemplative Reptile"
-                        />
-                        <CardContent>
-                            <Typography gutterBottom variant="h5" component="h2">
-                                { this.props.title }
-                            </Typography>
-                            <Typography component="p">
-                                { this.props.description }
-                            </Typography>
-                        </CardContent>
-                    </CardActionArea>
-                    <CardActions>
-                        <Button size="small" color="primary">
-                            Share
+
+            <Card className={classes.card}>
+                <CardActionArea>
+                    <CardMedia
+                        component="img"
+                        alt="Contemplative Reptile"
+                        className={classes.media}
+                        height="140"
+                        image={this.props.image}
+                        title="Contemplative Reptile"
+                    />
+                    <CardContent>
+                        <Typography gutterBottom variant="h5" component="h2">
+                            {this.props.title}
+                        </Typography>
+                        <Typography component="p">
+                            {this.props.description}
+                        </Typography>
+                    </CardContent>
+                </CardActionArea>
+                <CardActions>
+                    <Button size="small" color="primary">
+                        Share
               </Button>
-                        <Button size="small" color="primary">
-                            Learn More
+                    <Button size="small" color="primary">
+                        Learn More
               </Button>
-                    </CardActions>
-                </Card>
-            </div>
+                </CardActions>
+            </Card>
+
         );
     }
 }
