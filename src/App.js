@@ -40,6 +40,12 @@ class App extends Component {
 }
 
 /*
+
+Agregar Galeria:
+
+  https://codepen.io/suez/pen/OjGQza
+
+
 https://github.com/mui-org/material-ui/blob/master/docs/src/pages/getting-started/page-layout-examples/blog/Blog.js
 https://material-ui.com/getting-started/page-layout-examples/blog/
   <h1>{ this.props.width }</h1>
