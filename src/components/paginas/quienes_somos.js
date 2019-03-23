@@ -12,7 +12,7 @@ import tileData from './data/tileData'
 
 import styles from '../../common/styles';
 import CustomCard from '../../common/custom_card';
-
+import Hidden from '@material-ui/core/Hidden';
 
 const tiers = [
     {
@@ -55,37 +55,48 @@ const posts = [blog1]
 
 class QuienesSomos extends React.Component {
 
-    render () {
+    render() {
         const { classes } = this.props;
         const mark = posts.map(post => (
-            <Markdown className={ classes.markdown } key={ post.substring(0, 40) }>
-                { post }
+            <Markdown className={classes.markdown} key={post.substring(0, 40)}>
+                {post}
             </Markdown>
         ))
+
+        const tiers_list = tiers.map(tier => (
+            <Grid item lg={4} md={4} sm={12} xs={12}  >
+                <CustomCard title={tier.title} description={tier.description} image={tier.image} ></CustomCard>
+                <br></br>
+            </Grid>
+
+        ))
+
         return (
             <div>
 
-                <GridList cellHeight={ 200 } spacing={ 1 } className={ classes.gridList }>
-                    { tileData.map(tile => (
-                        <GridListTile key={ tile.img } cols={ tile.featured ? 2 : 1 } rows={ tile.featured ? 2 : 1 }>
-                            <img src={ tile.img } alt={ tile.title } />
+
+
+                <GridList cellHeight={200} className={classes.gridList}>
+                    {tileData.map(tile => (
+                        <GridListTile key={tile.img} cols={tile.featured ? 2 : 1} rows={tile.featured ? 2 : 1}>
+                            <img src={tile.img} alt={tile.title} />
 
                         </GridListTile>
-                    )) }
+                    ))}
                 </GridList>
                 <br></br>
+                {mark}
 
-                { mark }
-                <Grid container spacing={ 40 } alignItems="flex-end">
-                    { tiers.map(tier => (
-                        // Enterprise card is full width at sm breakpoint
-                        <Grid item xs={ 12 } sm={ tier.title === 'Enterprise' ? 12 : 6 } md={ 4 }>
-                            <CustomCard title={ tier.title } description={ tier.description } image={ tier.image } ></CustomCard>
-                        </Grid>
-                    )) }
-                </Grid>
-
-
+                <Hidden mdUp>
+                    <Grid container spacing={0} >
+                        {tiers_list}
+                    </Grid>
+                </Hidden>
+                <Hidden smDown>
+                    <Grid container spacing={40}>
+                        {tiers_list}
+                    </Grid>
+                </Hidden>
 
             </div>
         );

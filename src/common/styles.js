@@ -30,16 +30,18 @@ const styles = theme => ({
 
     /* Quienes somos */
     markdown: {
-        padding: `${ theme.spacing.unit * 3 }px 0`,
+        padding: `${theme.spacing.unit * 3}px 0`,
     },
     gridList: {
         width: 'auto',
         height: 'auto',
         transform: 'translateZ(0)',
     },
+
     titleBar: {
-        /* background:
-             'linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)',*/
+        background:
+            'linear-gradient(to bottom, rgba(0,0,0,0.9) 90%, rgba(0,0,0,0.9) 100%, rgba(0,0.9,0,0.9) 100%)',
+        color: 'red',
     },
     icon: {
         color: 'white',
@@ -73,8 +75,8 @@ const styles = theme => ({
     /* Footer */
     footer: {
         marginTop: theme.spacing.unit * 8,
-        borderTop: `1px solid ${ theme.palette.divider }`,
-        padding: `${ theme.spacing.unit * 6 }px 0`,
+        borderTop: `1px solid ${theme.palette.divider}`,
+        padding: `${theme.spacing.unit * 6}px 0`,
     },
     /* Menu */
     toolbarMain: {
