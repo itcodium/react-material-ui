@@ -51,13 +51,13 @@ class QuienesSomos extends React.Component {
                     { mark }
                     <Typography variant="h4" gutterBottom>Catalogo de productos</Typography>
                     <br></br>
-                    <Hidden only={ ['xl', 'lg', 'md'] }>
+                    <Hidden only={ ['xl', 'lg', 'md', 'sm'] }>
                         <Grid container spacing={ 0 } >
                             { rubros_list }
                         </Grid>
                     </Hidden>
 
-                    <Hidden only={ ['xs', 'sm'] }>
+                    <Hidden only={ ['xs'] }>
                         <Grid container spacing={ 40 } >
                             { rubros_list_lg }
                         </Grid>
@@ -68,7 +68,3 @@ class QuienesSomos extends React.Component {
     }
 }
 export default (withStyles(styles)(QuienesSomos))
-
-/*
-title={ tier.title } description={ tier.description } image={ tier.image }
-*/

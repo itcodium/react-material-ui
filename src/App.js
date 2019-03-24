@@ -16,25 +16,45 @@ import Header from './components/layout/Header'
 import Footer from './components/layout/Footer'
 import Index from './components/pages/home/index'
 import ProductList from './components/pages/products/ProductList'
+import Gestion from './components/pages/gestion'
+import Proveedores from './components/pages/proveedores'
+import Trabajo from './components/pages/trabajo'
+import Servicios from './components/pages/servicios'
+import Contacto from './components/pages/contacto'
 
-import Paper from '@material-ui/core/Paper';
+import CivilPDF from './components/pages/rubros.pdf/civil'
+import ElectricoPDF from './components/pages/rubros.pdf/electrico'
+import InstrumentacionPDF from './components/pages/rubros.pdf/instrumentacion'
+import MecanicoPDF from './components/pages/rubros.pdf/mecanico'
+
+
 class App extends Component {
   render () {
     const { classes } = this.props;
     return (
       <HashRouter>
-        <div className={ classes.root }>
+        <div>
           <div className={ classes.container }>
             <Header ></Header>
           </div>
-
-          <Grid container spacing={ 0 }>
-            <Grid item xs={ 12 } sm={ 24 }>
-              <Route exact path="/" component={ Index } />
-              <Route path="/ProductList" component={ ProductList } />
-              <Route path="/index" component={ Index } />
+          <main className={ classes.layout }>
+            <Grid container    >
+              <Grid item xs={ 12 } md={ 12 }>
+                <Route exact path="/" component={ Index } />
+                <Route path="/ProductList" component={ ProductList } />
+                <Route path="/Gestion" component={ Gestion } />
+                <Route path="/Proveedores" component={ Proveedores } />
+                <Route path="/Trabajo" component={ Trabajo } />
+                <Route path="/Servicios" component={ Servicios } />
+                <Route path="/Contactenos" component={ Contacto } />
+                <Route path="/products/Civil" component={ CivilPDF } />
+                <Route path="/products/Electrico" component={ ElectricoPDF } />
+                <Route path="/products/Instrumentacion" component={ InstrumentacionPDF } />
+                <Route path="/products/Mecanico" component={ MecanicoPDF } />
+                <Route path="/index" component={ Index } />
+              </Grid>
             </Grid>
-          </Grid>
+          </main>
           <Footer></Footer>
         </div>
       </HashRouter>

@@ -8,8 +8,9 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import classNames from 'classnames';
-
 import Typography from '@material-ui/core/Typography';
+
+import Grid from '@material-ui/core/Grid';
 const styles = {
     card: {
     },
@@ -18,12 +19,8 @@ const styles = {
     },
 };
 
+
 class Rubro extends React.Component {
-    id = null;
-    constructor(props) {
-        super(props);
-    }
-    handleClick = () => { };
     render () {
         const { classes } = this.props;
         return (
@@ -46,14 +43,14 @@ class Rubro extends React.Component {
                         </Typography>
                     </CardContent>
                 </CardActionArea>
-                <CardActions>
-                    <Button size="small" color="primary">
-                        { this.props.item.buttonText }
-                    </Button>
-                    <Button size="small" color="primary">
-                        { this.props.item.buttonVariant }
-                    </Button>
+                <CardActions  >
+                    <Grid container justify="center" >
+                        <Button variant="outlined" href={ this.props.item.link } target="_blank" color="primary" >
+                            { this.props.item.buttonText }
+                        </Button>
+                    </Grid>
                 </CardActions>
+
             </Card>
         );
     }

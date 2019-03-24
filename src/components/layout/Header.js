@@ -30,7 +30,8 @@ class Header extends React.Component {
             align={ align }
             noWrap
             className={ classes.toolbarTitle }>
-            <img width='140' alt="" flex='1' align="center" src={ mainLogo }></img>
+            <a href="/#">
+                <img width='140' alt="" flex='1' align="center" src={ mainLogo }></img></a>
         </Typography>
     }
     render () {

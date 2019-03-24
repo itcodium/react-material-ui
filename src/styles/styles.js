@@ -1,21 +1,20 @@
 
-import grey from '@material-ui/core/colors/grey';
-
 const styles = theme => ({
     layout: {
         width: 'auto',
         marginLeft: theme.spacing.unit * 0,
         marginRight: theme.spacing.unit * 0,
-        [theme.breakpoints.up(1100 + theme.spacing.unit * 0 * 2)]: {
+        [theme.breakpoints.up(1100 + theme.spacing.unit * 0 * 0)]: {
             marginLeft: 'auto',
             marginRight: 'auto',
         },
     },
     container: {
-        marginLeft: theme.spacing.unit * 1,
-        marginRight: theme.spacing.unit * 1,
-        [theme.breakpoints.up(1100 + theme.spacing.unit * 0 * 2)]: {
-            width: 1024,
+        width: 'auto',
+        marginLeft: theme.spacing.unit * 3,
+        marginRight: theme.spacing.unit * 3,
+        [theme.breakpoints.up(1000 + theme.spacing.unit * 3 * 2)]: {
+            width: 1000,
             marginLeft: 'auto',
             marginRight: 'auto',
         },
@@ -62,7 +61,6 @@ const styles = theme => ({
         width: 250,
     },
     menuLink: {
-        color: grey[900],
         textDecoration: 'none',
         margin: 0,
         paddingLeft: 0,
@@ -105,6 +103,9 @@ const styles = theme => ({
     noMargin: {
         margin: 0,
         padding: 0
+    },
+    p5: {
+        paddingBottom: "10px"
     },
 
 });

@@ -2,7 +2,6 @@ import React from 'react';
 import './slider.scss'
 import classNames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
 
 const styles = theme => ({
     close: {
@@ -14,7 +13,7 @@ class Slider extends React.Component {
     constructor(props) {
         super(props);
 
-        this.IMAGE_PARTS = 4;
+        this.IMAGE_PARTS = 5;
 
         this.changeTO = null;
         this.AUTOCHANGE_TIME = 4000;

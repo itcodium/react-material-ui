@@ -9,7 +9,7 @@ body {
  }
 
 
-  $numOfParts: 4;
+  $numOfParts: 5;
   $animTime: 1s;
   $stagger: 0.08s;
   $sliderReadyTrans: all $animTime/2 $animTime;
@@ -41,6 +41,7 @@ body {
       transition: $sliderReadyTrans;
       transform: translateY(-30px);
       opacity: 0;
+
 
       @include sliderReady {
         transform: translateY(0);
@@ -110,12 +111,11 @@ body {
       }
 
       &-heading {
-        $fontSize: 30px;
-
+        $fontSize: 26px;
         display: flex;
         margin-bottom: 20px;
         font-size: $fontSize;
-        letter-spacing: 6px;
+        letter-spacing: 4px;
 
         span {
           display: block;
