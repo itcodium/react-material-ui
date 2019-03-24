@@ -12,6 +12,8 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
               use: 'raw-loader'
               },
 
+- Se cambia icono
+- Color pagina: 2d496e
 
 ## Available Scripts
 

@@ -2,12 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
-import AplicationText from './AplicationText'
+import AplicationText from './app.text'
 import Grid from '@material-ui/core/Grid';
 import classNames from 'classnames';
 import BottomNavigation from '@material-ui/core/BottomNavigation';
 
-import styles from '../common/styles';
+import styles from '../../styles/styles';
 
 /*
 const styles = theme => ({
@@ -46,7 +46,7 @@ class Footer extends React.Component {
                 value={value}
                 onChange={this.handleChange}
                 showLabels
-                className={classNames(classes.footer, classes.layout)}>
+                className={classNames(classes.footer, classes.container)}>
                 <Grid container spacing={0} justify="space-evenly">
                     {AplicationText.footers.map(footer => (
                         <Grid item xs key={footer.title}>
