@@ -24,7 +24,6 @@ class EnConstruccion extends React.Component {
         const { classes } = this.props;
         return (
             <Paper className={ classes.container } elevation={ 1 } >
-
                 <div className={ classes.heroUnit } spacing={ 40 } >
                     <div className={ classes.heroContent }>
                         <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>

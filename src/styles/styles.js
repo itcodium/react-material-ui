@@ -46,11 +46,13 @@ const styles = theme => ({
         height: 'auto',
         transform: 'translateZ(0)',
     },
-
-    titleBar: {
+    testBar: {
         background:
             'linear-gradient(to bottom, rgba(0,0,0,0.9) 90%, rgba(0,0,0,0.9) 100%, rgba(0,0.9,0,0.9) 100%)',
-        color: 'red',
+    },
+    titleBar: {
+        height: "100%",
+        paddingTop: "10px"
 
     },
     icon: {
