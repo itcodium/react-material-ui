@@ -107,8 +107,19 @@ const styles = theme => ({
         padding: 0
     },
     p5: {
-        paddingBottom: "10px"
+        paddingBottom: "40px"
     },
+
+    ul: {
+        margin: 0,
+        padding: 0,
+    },
+    li: {
+        listStyle: 'none',
+    },
+    link: {
+        margin: 0,
+    }
 
 });
 export default styles;
