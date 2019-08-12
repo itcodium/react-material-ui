@@ -27,28 +27,23 @@ class QuienesSomos extends React.Component {
                 { post }
             </Markdown>
         ))
-
         const rubros_list_lg = rubros.map(tier => (
-            // xs={ 3 }
             <Grid item xl={ 6 } lg={ 6 } md={ 6 } sm={ 6 }>
                 <Rubro item={ tier }></Rubro>
                 <br></br>
             </Grid>
         ))
         const rubros_list = rubros.map(tier => (
-            // lg={ 6 }
             <Grid item xs={ 12 } sm={ 12 } >
                 <Rubro item={ tier }></Rubro>
                 <br></br>
             </Grid>
         ))
-
-
         return (
             <div className={ classes.layout }>
                 <Slider slides={ slides } />
                 <div className={ classes.container }>
-                    { mark }
+                    <br></br>
                     <Typography variant="h4" gutterBottom>Catalogo de productos</Typography>
                     <br></br>
                     <Hidden only={ ['xl', 'lg', 'md', 'sm'] }>

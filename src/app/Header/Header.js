@@ -8,11 +8,12 @@ import { withStyles } from '@material-ui/core/styles';
 
 import Hidden from '@material-ui/core/Hidden';
 import Drawer from '@material-ui/core/Drawer';
-import AplicationText from './app.text';
 import { NavLink } from "react-router-dom";
-import mainLogo from '../../assets/logo.png';
-import AppMenuCustom from './app.leftMenu';
+
+import Menu from '../Menu/Menu';
 import styles from '../../styles/styles';
+import mainLogo from '../../assets/logo.png';
+import AplicationText from '../app.text';
 
 class Header extends React.Component {
     state = {
@@ -45,7 +46,7 @@ class Header extends React.Component {
                             role="button"
                             onClick={ this.toggleDrawer('left', false) }
                             onKeyDown={ this.toggleDrawer('left', false) }>
-                            <AppMenuCustom></AppMenuCustom>
+                            <Menu></Menu>
                         </div>
                     </Drawer>
                 </Hidden>

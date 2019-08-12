@@ -7,11 +7,11 @@ import ListItem from '@material-ui/core/ListItem';
 import Typography from '@material-ui/core/Typography';
 import { NavLink } from "react-router-dom";
 
-import AplicationText from './app.text';
+import AplicationText from '../app.text';
 import styles from '../../styles/styles';
 
 
-class AppMenuCustom extends React.Component {
+class Menu extends React.Component {
     render () {
         const { classes } = this.props;
         const productComponents = AplicationText.menu.map((item) => (
@@ -38,8 +38,8 @@ class AppMenuCustom extends React.Component {
         );
     }
 }
-AppMenuCustom.propTypes = {
+Menu.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(AppMenuCustom);
+export default withStyles(styles)(Menu);

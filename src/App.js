@@ -12,8 +12,9 @@ import compose from 'recompose/compose';
 import { Route, HashRouter } from "react-router-dom";
 import styles from './styles/styles';
 
-import Header from './components/layout/Header'
-import Footer from './components/layout/Footer'
+import Header from './app/Header/Header'
+import Footer from './app/Footer/Footer'
+
 import Index from './components/pages/home/index'
 import ProductList from './components/pages/products/ProductList'
 import Gestion from './components/pages/gestion'
@@ -34,9 +35,9 @@ class App extends Component {
     return (
       <HashRouter>
         <div>
-          <div className={ classes.container }>
-            <Header ></Header>
-          </div>
+          <header className={ classes.container }>
+            <Header></Header>
+          </header>
           <main className={ classes.layout }>
             <Grid container    >
               <Grid item xs={ 12 } md={ 12 }>
@@ -55,7 +56,9 @@ class App extends Component {
               </Grid>
             </Grid>
           </main>
-          <Footer></Footer>
+          <footer className={ classes.container }>
+            <Footer></Footer>
+          </footer>
         </div>
       </HashRouter>
     );

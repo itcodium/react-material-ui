@@ -91,13 +91,13 @@ const styles = theme => ({
 
     },
 
-    /* Footer */
+    /* Footer
     footer: {
         marginTop: theme.spacing.unit * 8,
         borderTop: `1px solid ${ theme.palette.divider }`,
         padding: `${ theme.spacing.unit * 6 }px 0`,
     },
-
+*/
     toolbarTitle: {
         flex: 1,
     },
@@ -110,6 +110,7 @@ const styles = theme => ({
         paddingBottom: "40px"
     },
 
+    /*
     ul: {
         margin: 0,
         padding: 0,
@@ -119,7 +120,7 @@ const styles = theme => ({
     },
     link: {
         margin: 0,
-    }
+    }*/
 
 });
 export default styles;
