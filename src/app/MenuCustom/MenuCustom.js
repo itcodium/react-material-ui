@@ -18,7 +18,7 @@ class MenuCustom extends React.Component {
             <div >
                 <ListItem key={ item.text }>
                     <NavLink className={ classes.menuLink } to={ item.url }>
-                        <Typography className={ classes.menuSubLinkText } > { item.text }</Typography> </NavLink>
+                       *** <Typography className={ classes.menuSubLinkText } > { item.text }</Typography> </NavLink>
                 </ListItem>
                 { item.items.map((sub) => (
                     <ListItem key={ item.text }>

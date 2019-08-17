@@ -10,7 +10,7 @@ import Hidden from '@material-ui/core/Hidden';
 import Drawer from '@material-ui/core/Drawer';
 import { NavLink } from "react-router-dom";
 
-import Menu from '../Menu/Menu';
+import MenuCustom from '../MenuCustom/MenuCustom';
 import styles from '../../styles/styles';
 import mainLogo from '../../assets/logo.png';
 import AplicationText from '../app.text';
@@ -46,7 +46,7 @@ class Header extends React.Component {
                             role="button"
                             onClick={ this.toggleDrawer('left', false) }
                             onKeyDown={ this.toggleDrawer('left', false) }>
-                            <Menu></Menu>
+                            <MenuCustom></MenuCustom>
                         </div>
                     </Drawer>
                 </Hidden>
@@ -65,7 +65,7 @@ class Header extends React.Component {
                         </Toolbar>
                     </Hidden>
                     <Hidden mdUp>
-                        <IconButton onClick={ this.toggleDrawer('left', true) } color="inherit" aria-label="Menu">
+                        <IconButton onClick={ this.toggleDrawer('left', true) } color="inherit" aria-label="MenuCustom">
                             <MenuIcon />
                         </IconButton>
                     </Hidden>
