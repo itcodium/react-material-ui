@@ -8,12 +8,12 @@ import { withStyles } from '@material-ui/core/styles';
 
 import Hidden from '@material-ui/core/Hidden';
 import Drawer from '@material-ui/core/Drawer';
-import { NavLink } from "react-router-dom";
 
 import MenuCustom from '../MenuCustom/MenuCustom';
-import styles from '../../styles/styles';
+import MenuToolbar from '../MenuToolbar/MenuToolbar';
+
+import styles from './header.style';
 import mainLogo from '../../assets/logo.png';
-import AplicationText from '../app.text';
 
 class Header extends React.Component {
     state = {
@@ -50,19 +50,13 @@ class Header extends React.Component {
                         </div>
                     </Drawer>
                 </Hidden>
-                <Toolbar className={ classes.toolbarMain }>
+                <Toolbar className={ classes.toolbarHeader }>
                     <Hidden mdUp>
                         { this.getLogo("left", classes) }
                     </Hidden>
                     <Hidden smDown>
                         { this.getLogo("left", classes) }
-                        <Toolbar className={ classes.toolbarSecondary } >
-                            { AplicationText.navBar.map(item => (
-                                <NavLink className={ classes.menuSubLink } to={ item.url }>
-                                    <Typography className={ classes.menuSubLinkText } variant="button" gutterBottom>{ item.text.toUpperCase() } </Typography>
-                                </NavLink>
-                            )) }
-                        </Toolbar>
+                        <MenuToolbar></MenuToolbar>
                     </Hidden>
                     <Hidden mdUp>
                         <IconButton onClick={ this.toggleDrawer('left', true) } color="inherit" aria-label="MenuCustom">

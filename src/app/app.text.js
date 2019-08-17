@@ -1,7 +1,7 @@
 const AplicationText =
 {
     title: "Test",
-    menu: [
+    _menu: [
         {
             text: "Home",
             url: "/",
@@ -38,33 +38,37 @@ const AplicationText =
 
 
     ],
-    navBar: [
+    menu: [
         {
             text: "Home",
             url: "/",
+            items: []
         },
         {
             text: "Gestion",
             url: "/Gestion",
+            items: []
         },
         {
             text: "Proveedores",
             url: "/Proveedores",
+            items: []
         }
         ,
         {
             text: "Trabajo",
             url: "/Trabajo",
-        }
-        ,
-        {
-            text: "Servicios",
-            url: "/Servicios",
+            items: [{
+                text: "Servicios",
+                url: "/Servicios",
+                items: []
+            }]
         }
         ,
         {
             text: "Contactenos",
             url: "/Contactenos",
+            items: []
         }
     ],
     footers: [

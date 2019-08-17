@@ -59,48 +59,6 @@ const styles = theme => ({
         color: 'white',
     },
     /* App Menu custom */
-    fullList: {
-        width: 250,
-    },
-    menuLink: {
-        textDecoration: 'none',
-        margin: 0,
-        paddingLeft: 0,
-        color: '#2d496e'
-    },
-    menuSubLink: {
-        textDecoration: 'none',
-        margin: 0,
-        paddingLeft: 30,
-        color: '#2d496e'
-    },
-    menuSubLinkText: {
-        textDecoration: 'none',
-        fontSize: '12px',
-        fontWeight: "bold",
-        color: '#2d496e'
-    },
-    /* Menu */
-    toolbarMain: {
-        margin: 0,
-        padding: 0
-    },
-    /* Nav Bar Custom */
-    toolbarSecondary: {
-        justifyContent: 'center',
-
-    },
-
-    /* Footer
-    footer: {
-        marginTop: theme.spacing.unit * 8,
-        borderTop: `1px solid ${ theme.palette.divider }`,
-        padding: `${ theme.spacing.unit * 6 }px 0`,
-    },
-*/
-    toolbarTitle: {
-        flex: 1,
-    },
 
     noMargin: {
         margin: 0,
@@ -109,18 +67,6 @@ const styles = theme => ({
     p5: {
         paddingBottom: "40px"
     },
-
-    /*
-    ul: {
-        margin: 0,
-        padding: 0,
-    },
-    li: {
-        listStyle: 'none',
-    },
-    link: {
-        margin: 0,
-    }*/
 
 });
 export default styles;

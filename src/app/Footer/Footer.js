@@ -20,26 +20,6 @@ function getAlign (width) {
     }
 }
 
-/*
-function FooterSiteLink (prop) {
-    const social = ['GitHub', 'Twitter', 'Facebook'];
-    return (
-        <div>
-            <Typography variant="h7" gutterBottom>
-                { prop.title }
-            </Typography>
-            <ul className={ prop.styles.ul } >
-                { social.map(url => (
-                    <li className={ prop.styles.li } key={ url }>
-                        <Link href="#" variant="body1" color="textSecondary">
-                            { url }
-                        </Link>
-                    </li>
-                )) }
-            </ul>
-        </div>
-    )
-} */
 
 class Footer extends React.Component {
     state = {
