@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Toolbar from '@material-ui/core/Toolbar';
+import { NavLink } from "react-router-dom";
+
 /*
 import { NavLink } from "react-router-dom";
 
@@ -13,9 +15,11 @@ import styles from './MenuToggle.style';
 import Link from '@material-ui/core/Link';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
-import Typography from '@material-ui/core/Typography';
+
 
 */
+
+import Typography from '@material-ui/core/Typography';
 
 import Button from '@material-ui/core/Button';
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
@@ -39,6 +43,12 @@ class MenuToggle extends React.Component {
         }));
     }
 
+    onValidateLink = (event) => {
+        if (event.target.getAttribute('value') != "0") {
+            event.preventDefault();
+        }
+    }
+
     handleClose = (event) => {
         if (this.anchorRef.current && this.anchorRef.current.contains(event.target)) {
             return;
@@ -54,13 +64,16 @@ class MenuToggle extends React.Component {
 
                     <div>
                         <Button
-                            className={ classes.menuSubLink }
+                            className={ classes.menuLink }
                             ref={ (anchor) => { this.anchorRef = anchor } }
                             aria-controls="menu-list-grow"
                             aria-haspopup="true"
                             onClick={ this.handleToggle }
                         >
-                            { this.props.menu.text }
+                            <NavLink onClick={ this.onValidateLink } className={ classes.menuLink } to={ this.props.menu.url }
+                                value={ this.props.menu.items.length }>
+                                { this.props.menu.text }
+                            </NavLink>
                         </Button>
                         <Popper open={ this.state.open } anchorEl={ this.anchorRef.current } keepMounted transition disablePortal>
                             { ({ TransitionProps, placement }) => (
@@ -72,7 +85,12 @@ class MenuToggle extends React.Component {
                                         <ClickAwayListener onClickAway={ this.handleClose }>
                                             <MenuList>
                                                 { this.props.menu.items.map((subItem, subIndex) => (
-                                                    <MenuItem key={ subIndex } onClick={ this.handleClose }>{ subItem.text }</MenuItem>
+                                                    <MenuItem onClick={ this.handleClose }>
+                                                        <NavLink className={ classes.menuLink } to={ subItem.url }>
+                                                            { subItem.text }
+                                                        </NavLink>
+                                                    </MenuItem>
+
                                                 )) }
                                             </MenuList>
                                         </ClickAwayListener>
@@ -88,7 +106,7 @@ class MenuToggle extends React.Component {
     }
 }
 MenuToggle.propTypes = {
-    classes: PropTypes.object.isRequired,
+
 };
 
 /*

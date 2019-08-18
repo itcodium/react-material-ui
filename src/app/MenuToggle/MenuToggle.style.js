@@ -4,12 +4,11 @@ const styles = theme => ({
 
     },
     menuLink: {
-        margin: theme.spacing.unit * 1,
+        margin: theme.spacing.unit * 0,
         textDecoration: 'none',
-        color: '#2d496e',
-        fontSize: '13px',
-        fontWeight: "600",
-        paddingLeft: 15,
+        fontSize: '12px',
+        fontWeight: "bold",
+        color: '#2d496e'
     },
 });
 export default styles;

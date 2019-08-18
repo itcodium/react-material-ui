@@ -5,7 +5,8 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import Typography from '@material-ui/core/Typography';
 import { NavLink } from "react-router-dom";
-
+import { withStyles } from '@material-ui/core/styles';
+import styles from './MenuCustom.style';
 
 
 class MenuCustom extends React.Component {
@@ -38,4 +39,4 @@ MenuCustom.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
-export default MenuCustom;
+export default withStyles(styles)(MenuCustom);
