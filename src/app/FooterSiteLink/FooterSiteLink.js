@@ -12,7 +12,7 @@ class FooterSiteLink extends React.Component {
         const social = ['GitHub', 'Twitter', 'Facebook'];
         return (
             <div>
-                <Typography variant="h7" gutterBottom>
+                <Typography variant="h6" gutterBottom>
                     { this.props.title }
                 </Typography>
                 <ul className={ classes.ul } >

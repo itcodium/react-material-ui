@@ -25,10 +25,10 @@ class SimpleSnackbar extends React.Component {
                 }
             });
     };
-    render() {
+    render () {
         return (
             <div>
-                <Button onClick={this.handleClick}>Simple Snackbar Open</Button>
+                <Button onClick={ this.handleClick }>Simple Snackbar Open</Button>
             </div>
         );
     }

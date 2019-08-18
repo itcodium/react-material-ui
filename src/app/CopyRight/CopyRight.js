@@ -1,13 +1,12 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
-import { withStyles } from '@material-ui/core/styles';
 import Link from '@material-ui/core/Link';
+/*
+import { withStyles } from '@material-ui/core/styles';
 import compose from 'recompose/compose';
-
+*/
 class CopyRight extends React.Component {
     render () {
-        const { classes } = this.props;
         return (
             <Typography variant="body2" color="textSecondary" align="center">
                 { 'Copyright © ' }
@@ -23,9 +22,5 @@ class CopyRight extends React.Component {
         );
     }
 }
-
-CopyRight.propTypes = {
-    classes: PropTypes.object.isRequired
-};
 
 export default CopyRight;

@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
-import Link from '@material-ui/core/Link';
 import withWidth from '@material-ui/core/withWidth';
 import compose from 'recompose/compose';
 import mainLogo from '../../assets/logo.png';
@@ -13,7 +12,7 @@ import styles from './Footer.style.js';
 
 
 function getAlign (width) {
-    if (width == "xs" || width == "sm") {
+    if (width === "xs" || width === "sm") {
         return "center"
     } else {
         return "left"
@@ -42,7 +41,7 @@ class Footer extends React.Component {
                     </Grid>
 
                     <Grid item xs={ 12 } md={ 5 } className={ classes.p5 }>
-                        <Typography variant="h7" align={ getAlign(width) } gutterBottom>
+                        <Typography variant="h6" align={ getAlign(width) } gutterBottom>
                             FOOTER CONTENT
                         </Typography>
                         <Typography align={ getAlign(width) }>

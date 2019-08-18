@@ -1,11 +1,14 @@
 const styles = theme => ({
     fullList: {
         width: 250,
+        margin: 0,
+        padding: 0,
     },
     menuLink: {
         textDecoration: 'none',
         margin: 0,
-        paddingLeft: 0,
+        margin: 0,
+        padding: 0,
         color: '#2d496e'
     },
     menuSubLink: {

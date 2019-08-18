@@ -62,7 +62,7 @@ class Slider extends React.Component {
                         >
                             <div className="slider__slide-content">
                                 <h3 className="slider__slide-subheading">{ slide.country || slide.city }</h3>
-                                <h2 className="slider__slide-heading">  { slide.city.split('').map(l => <span>{ l }</span>) } </h2>
+                                <h2 className="slider__slide-heading">  { slide.city.split('').map((l, index) => <span key={ index }>{ l }</span>) } </h2>
                                 <p hidden className="slider__slide-readmore">read more</p>
                             </div>
                             <div className="slider__slide-parts">

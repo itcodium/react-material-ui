@@ -14,28 +14,26 @@ import styles from './MenuCustom.style';
 class MenuCustom extends React.Component {
     render () {
         const { classes } = this.props;
-        const productComponents = AplicationText.menu.map((item) => (
-            <div >
-                <ListItem key={ item.text }>
-                    <NavLink className={ classes.menuLink } to={ item.url }>
-                        <Typography className={ classes.menuSubLinkText } > { item.text }</Typography> </NavLink>
-                </ListItem>
-                {
-                    item.items.map((sub) => (
-                        <ListItem key={ item.text }>
+        return (
+            <div className={ classes.fullList }>
+                <List >
+                    <ListItem>
+                        <NavLink className={ classes.menuLink } to={ this.props.menu.url }>
+                            <Typography className={ classes.menuSubLinkText } > { this.props.menu.text }</Typography>
+                        </NavLink>
+                    </ListItem>
+                </List>
+                <List className={ classes.fullList }>{
+                    this.props.menu.items.map((sub, indexSub) => (
+                        <ListItem key={ indexSub }>
                             <NavLink className={ classes.menuSubLink } to={ sub.url }>
                                 <Typography className={ classes.menuSubLinkText } >{ sub.text }</Typography>
                             </NavLink>
                         </ListItem>
                     )) }
-            </div>
-        ));
-        return (
-            <div className={ classes.fullList }>
-                <List>
-                    { productComponents }
                 </List>
             </div>
+
         );
     }
 }
@@ -44,3 +42,15 @@ MenuCustom.propTypes = {
 };
 
 export default withStyles(styles)(MenuCustom);
+
+
+/*
+
+ <ListItem>
+                <NavLink className={ classes.menuLink } to={ item.url }>
+                    <Typography className={ classes.menuSubLinkText } > { item.text }</Typography>
+                </NavLink>
+            </ListItem>
+
+
+*/

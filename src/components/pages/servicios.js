@@ -1,14 +1,18 @@
 
 import React from 'react';
-import EnConstruccion from './en.construccion';
 import { withStyles } from '@material-ui/core/styles';
 import styles from '../../styles/styles';
 import HexagonalGrid from '../grid/hexagonal'
 import Grid from '@material-ui/core/Grid';
-import Paper from '@material-ui/core/Paper';
+
 import Typography from '@material-ui/core/Typography';
 import classNames from 'classnames';
 import Magazine from '../magazine/magazine';
+/*
+import Paper from '@material-ui/core/Paper';
+import EnConstruccion from './en.construccion';
+*/
+
 class Servicios extends React.Component {
 
     render () {

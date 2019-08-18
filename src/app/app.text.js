@@ -1,43 +1,6 @@
 const AplicationText =
 {
     title: "Test",
-    _menu: [
-        {
-            text: "Home",
-            url: "/",
-            items: []
-        },
-        {
-            text: "Gestion",
-            url: "/Gestion",
-            items: []
-        },
-        {
-            text: "Proveedores",
-            url: "/Proveedores",
-            items: []
-        }
-        ,
-        {
-            text: "Trabajo",
-            url: "/Trabajo",
-            items: []
-        }
-        ,
-        {
-            text: "Servicios",
-            url: "/Servicios",
-            items: []
-        }
-        ,
-        {
-            text: "Contactenos",
-            url: "/Contactenos",
-            items: []
-        }
-
-
-    ],
     menu: [
         {
             text: "Home",
@@ -56,10 +19,15 @@ const AplicationText =
         }
         ,
         {
-            text: "Trabajo",
-            url: "/Trabajo",
+            text: "Tienda",
+            url: "",
             items: [{
-                text: "Servicios",
+                text: "Productos",
+                url: "/Trabajo",
+                items: []
+            },
+            {
+                text: "Carrito",
                 url: "/Servicios",
                 items: []
             }]

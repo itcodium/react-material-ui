@@ -7,10 +7,13 @@ import MenuIcon from '@material-ui/icons/Menu';
 import { withStyles } from '@material-ui/core/styles';
 
 import Hidden from '@material-ui/core/Hidden';
+
 import Drawer from '@material-ui/core/Drawer';
 
 import MenuCustom from '../MenuCustom/MenuCustom';
-import MenuToolbar from '../MenuToolbar/MenuToolbar';
+
+import MenuToggle from '../MenuToggle/MenuToggle';
+import AplicationText from '../app.text';
 
 import styles from './header.style';
 import mainLogo from '../../assets/logo.png';
@@ -46,7 +49,11 @@ class Header extends React.Component {
                             role="button"
                             onClick={ this.toggleDrawer('left', false) }
                             onKeyDown={ this.toggleDrawer('left', false) }>
-                            <MenuCustom></MenuCustom>
+                            {
+                                AplicationText.menu.map((item, i) => (
+                                    <MenuCustom menu={ item } key={ i }></MenuCustom>
+                                ))
+                            }
                         </div>
                     </Drawer>
                 </Hidden>
@@ -56,7 +63,12 @@ class Header extends React.Component {
                     </Hidden>
                     <Hidden smDown>
                         { this.getLogo("left", classes) }
-                        <MenuToolbar></MenuToolbar>
+                        {
+                            AplicationText.menu.map((item, i) => (
+                                <MenuToggle key={ i } menu={ item }></MenuToggle>
+                            ))
+                        }
+
                     </Hidden>
                     <Hidden mdUp>
                         <IconButton onClick={ this.toggleDrawer('left', true) } color="inherit" aria-label="MenuCustom">

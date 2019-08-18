@@ -41,18 +41,18 @@ class App extends Component {
           <main className={ classes.layout }>
             <Grid container    >
               <Grid item xs={ 12 } md={ 12 }>
-                <Route exact path="/" component={ Index } />
-                <Route path="/ProductList" component={ ProductList } />
-                <Route path="/Gestion" component={ Gestion } />
-                <Route path="/Proveedores" component={ Proveedores } />
-                <Route path="/Trabajo" component={ Trabajo } />
-                <Route path="/Servicios" component={ Servicios } />
-                <Route path="/Contactenos" component={ Contacto } />
-                <Route path="/products/Civil" component={ CivilPDF } />
-                <Route path="/products/Electrico" component={ ElectricoPDF } />
-                <Route path="/products/Instrumentacion" component={ InstrumentacionPDF } />
-                <Route path="/products/Mecanico" component={ MecanicoPDF } />
-                <Route path="/index" component={ Index } />
+                <Route key="1" exact path="/" component={ Index } />
+                <Route key="2" path="/ProductList" component={ ProductList } />
+                <Route key="3" path="/Gestion" component={ Gestion } />
+                <Route key="4"  path="/Proveedores" component={ Proveedores } />
+                <Route key="5" path="/Trabajo" component={ Trabajo } />
+                <Route key="6" path="/Servicios" component={ Servicios } />
+                <Route key="7" path="/Contactenos" component={ Contacto } />
+                <Route key="8" path="/products/Civil" component={ CivilPDF } />
+                <Route key="9" path="/products/Electrico" component={ ElectricoPDF } />
+                <Route key="10" path="/products/Instrumentacion" component={ InstrumentacionPDF } />
+                <Route key="11" path="/products/Mecanico" component={ MecanicoPDF } />
+                <Route key="12" path="/index" component={ Index } />
               </Grid>
             </Grid>
           </main>

@@ -5,8 +5,8 @@ import Hidden from '@material-ui/core/Hidden';
 import Grid from '@material-ui/core/Grid';
 
 
-import Markdown from '../Markdown';
-import blog1 from './index.txt';
+
+
 
 import styles from '../../../styles/styles';
 import Rubro from './index.rubro'
@@ -14,27 +14,29 @@ import Slider from '../../slider/slider'
 import slides from './slider.data.js'
 import rubros from './rubros.data.js'
 
+// import blog1 from './index.txt';
+// import Markdown from '../Markdown';
+// const posts = [blog1]
 
-
-const posts = [blog1]
-
-class QuienesSomos extends React.Component {
+class Index extends React.Component {
 
     render () {
         const { classes } = this.props;
+        /*
         const mark = posts.map(post => (
             <Markdown className={ classes.markdown } key={ post.substring(0, 40) }>
                 { post }
             </Markdown>
         ))
-        const rubros_list_lg = rubros.map(tier => (
-            <Grid item xl={ 6 } lg={ 6 } md={ 6 } sm={ 6 }>
+        */
+        const rubros_list_lg = rubros.map((tier, index) => (
+            <Grid key={ index } item xl={ 6 } lg={ 6 } md={ 6 } sm={ 6 }>
                 <Rubro item={ tier }></Rubro>
                 <br></br>
             </Grid>
         ))
-        const rubros_list = rubros.map(tier => (
-            <Grid item xs={ 12 } sm={ 12 } >
+        const rubros_list = rubros.map((tier, index) => (
+            <Grid key={ index } item xs={ 12 } sm={ 12 } >
                 <Rubro item={ tier }></Rubro>
                 <br></br>
             </Grid>
@@ -62,4 +64,4 @@ class QuienesSomos extends React.Component {
         );
     }
 }
-export default (withStyles(styles)(QuienesSomos))
+export default (withStyles(styles)(Index))

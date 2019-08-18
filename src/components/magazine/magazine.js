@@ -1,16 +1,15 @@
 import React from 'react';
+/*
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-
-
 import styles from './styles.scss';
-
+*/
 class Magazine extends React.Component {
     id = null;
+    /*
     constructor(props) {
         super(props);
-
-    }
+    }*/
 
     render () {
         return (
@@ -24,7 +23,7 @@ class Magazine extends React.Component {
                         <div class="meta">
                             <span class="meta-border"></span>
                             <span class="author">by <span class="author-avatar">
-                                <img src="http://gravatar.com/avatar/6fafd1e5977a3d9fdccb7207bb1175ba"></img> </span><span class="author-name">Jimmy Wafflehoff</span></span>
+                                <img alt="" src="http://gravatar.com/avatar/6fafd1e5977a3d9fdccb7207bb1175ba"></img> </span><span class="author-name">Jimmy Wafflehoff</span></span>
                             <span class="pub-date">Posted Sept. 22, 2015</span>
                         </div>
                     </header>
