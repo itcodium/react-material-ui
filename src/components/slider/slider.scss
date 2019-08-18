@@ -191,7 +191,7 @@ body {
         display: flex;
         width: 100%;
         height: 100%;
-
+        z-index: -800;
         &:after {
           content: '';
           z-index: $numOfParts + 1;
