@@ -1,8 +1,9 @@
 
+
 import React from 'react';
 import EnConstruccion from './en.construccion';
 
-class Proveedores extends React.Component {
+class Nosotros extends React.Component {
 
     render () {
         return (
@@ -11,4 +12,4 @@ class Proveedores extends React.Component {
     }
 }
 
-export default Proveedores
+export default Nosotros

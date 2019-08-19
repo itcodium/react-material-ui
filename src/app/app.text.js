@@ -8,8 +8,8 @@ const AplicationText =
             items: []
         },
         {
-            text: "Gestion",
-            url: "/Gestion",
+            text: "Nosotros",
+            url: "/Nosotros",
             items: []
         },
         {
@@ -23,19 +23,19 @@ const AplicationText =
             url: "",
             items: [{
                 text: "Productos",
-                url: "/Trabajo",
+                url: "/ProductList",
                 items: []
             },
             {
-                text: "Carrito",
-                url: "/Servicios",
+                text: "Civil",
+                url: "/products/Civil",
                 items: []
             }]
         }
         ,
         {
-            text: "Contactenos",
-            url: "/Contactenos",
+            text: "Contacto",
+            url: "/Contacto",
             items: []
         }
     ],

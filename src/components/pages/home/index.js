@@ -42,11 +42,13 @@ class Index extends React.Component {
             </Grid>
         ))
         return (
-            <div className={ classes.layout }>
+            <div >
                 <Slider slides={ slides } />
-                <div className={ classes.container }>
+                <br></br>
+                <div className={ classes.container }  >
                     <br></br>
                     <Typography variant="h4" gutterBottom>Catalogo de productos</Typography>
+                    <br></br>
                     <br></br>
                     <Hidden only={ ['xl', 'lg', 'md', 'sm'] }>
                         <Grid container spacing={ 0 } >

@@ -17,10 +17,8 @@ import Footer from './app/Footer/Footer'
 
 import Index from './components/pages/home/index'
 import ProductList from './components/pages/products/ProductList'
-import Gestion from './components/pages/gestion'
+import Nosotros from './components/pages/nosotros'
 import Proveedores from './components/pages/proveedores'
-import Trabajo from './components/pages/trabajo'
-import Servicios from './components/pages/servicios'
 import Contacto from './components/pages/contacto'
 
 import CivilPDF from './components/pages/rubros.pdf/civil'
@@ -39,20 +37,23 @@ class App extends Component {
             <Header></Header>
           </header>
           <main className={ classes.layout }>
-            <Grid container    >
+
+            <Grid container>
               <Grid item xs={ 12 } md={ 12 }>
                 <Route key="1" exact path="/" component={ Index } />
-                <Route key="2" path="/ProductList" component={ ProductList } />
-                <Route key="3" path="/Gestion" component={ Gestion } />
-                <Route key="4"  path="/Proveedores" component={ Proveedores } />
-                <Route key="5" path="/Trabajo" component={ Trabajo } />
-                <Route key="6" path="/Servicios" component={ Servicios } />
-                <Route key="7" path="/Contactenos" component={ Contacto } />
-                <Route key="8" path="/products/Civil" component={ CivilPDF } />
-                <Route key="9" path="/products/Electrico" component={ ElectricoPDF } />
-                <Route key="10" path="/products/Instrumentacion" component={ InstrumentacionPDF } />
-                <Route key="11" path="/products/Mecanico" component={ MecanicoPDF } />
                 <Route key="12" path="/index" component={ Index } />
+              </Grid>
+              <Grid item xs={ 12 } md={ 12 } >
+                <div className={ classes.container } >
+                  <Route key="3" path="/Nosotros" component={ Nosotros } />
+                  <Route key="2" path="/ProductList" component={ ProductList } />
+                  <Route key="4" path="/Proveedores" component={ Proveedores } />
+                  <Route key="7" path="/Contacto" component={ Contacto } />
+                  <Route key="8" path="/products/Civil" component={ CivilPDF } />
+                  <Route key="9" path="/products/Electrico" component={ ElectricoPDF } />
+                  <Route key="10" path="/products/Instrumentacion" component={ InstrumentacionPDF } />
+                  <Route key="11" path="/products/Mecanico" component={ MecanicoPDF } />
+                </div>
               </Grid>
             </Grid>
           </main>
@@ -60,7 +61,7 @@ class App extends Component {
             <Footer></Footer>
           </footer>
         </div>
-      </HashRouter>
+      </HashRouter >
     );
   }
 }
