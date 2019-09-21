@@ -9,6 +9,7 @@ const styles = theme => ({
             marginRight: 'auto',
         },
 
+
     },
     layout: {
         width: 'auto',
@@ -18,6 +19,7 @@ const styles = theme => ({
             marginLeft: 'auto',
             marginRight: 'auto',
         },
+
     },
 
     /* Quienes somos */

@@ -1,25 +1,9 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Toolbar from '@material-ui/core/Toolbar';
 import { NavLink } from "react-router-dom";
-
-/*
-import { NavLink } from "react-router-dom";
-
-
-import AplicationText from '../app.text';
-*/
 import styles from './MenuToggle.style';
-/*
-import Link from '@material-ui/core/Link';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
 
-
-*/
-
-import Typography from '@material-ui/core/Typography';
 
 import Button from '@material-ui/core/Button';
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
@@ -108,44 +92,5 @@ class MenuToggle extends React.Component {
 MenuToggle.propTypes = {
 
 };
-
-/*
-
- <Button
-                            ref={ this.anchorRef }
-                            to={ item.url }
-                            aria-controls="menu-list-grow"
-                            aria-haspopup="true"
-                            onClick={ this.handleToggle }
-                        >
-                            { item.text }
-                        </Button>
-
-
-
-
-                        <div>
-                            <ListItem key={ item.text }>
-                                <NavLink className={ classes.menuLink } to={ item.url }>
-                                    <Typography className={ classes.menuSubLinkText } > { item.text }</Typography> </NavLink>
-                            </ListItem>
-                            {
-                                item.items.map((sub) => (
-                                    <ListItem key={ item.text }>
-                                        <NavLink className={ classes.menuSubLink } to={ sub.url }>
-                                            <Typography className={ classes.menuSubLinkText } >{ sub.text }</Typography>
-                                        </NavLink>
-                                    </ListItem>
-                                )) }
-                        </div>
-
-*/
-
-/*
-                { AplicationText.menu.map(item => (
-                    <NavLink className={ classes.menuSubLink } to={ item.url }>
-                        (T) <Typography className={ classes.menuSubLinkText } variant="button" gutterBottom>{ item.text.toUpperCase() } </Typography>
-                    </NavLink>
-                )) }*/
 
 export default withStyles(styles)(MenuToggle);

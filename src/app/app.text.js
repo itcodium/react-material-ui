@@ -39,24 +39,19 @@ const AplicationText =
             items: []
         }
     ],
-    footers: [
-        {
-            title: 'Company',
-            description: ['Team', 'History', 'Contact us', 'Locations'],
-        },
-        {
-            title: 'Features',
-            description: ['Cool stuff', 'Random feature', 'Team feature', 'Developer stuff', 'Another one'],
-        },
-        {
-            title: 'Resources',
-            description: ['Resource', 'Resource name', 'Another resource', 'Final resource'],
-        },
-        {
-            title: 'Legal',
-            description: ['Privacy policy', 'Terms of use'],
-        },
-    ]
+    footer: {
+        links: [
+            {
+                title: 'Company',
+                urls: [{ text: 'Team', href: "/#" }, { text: 'History', href: "/#" }, { text: 'Contact us', href: "/#" }, { text: 'Locations', href: "/#" }],
+            },
+            {
+                title: 'Features',
+                urls: [{ text: 'Cool stuff', href: "/#" }, { text: 'Random feature', href: "/#" }, { text: 'Team feature', href: "/#" }, { text: 'Developer stuff', href: "/#" }]
+            }
+
+        ]
+    }
 }
 
 export default AplicationText;

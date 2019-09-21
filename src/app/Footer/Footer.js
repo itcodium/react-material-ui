@@ -9,7 +9,11 @@ import mainLogo from '../../assets/logo.png';
 import CopyRight from '../CopyRight/CopyRight.js';
 import FooterSiteLink from '../FooterSiteLink/FooterSiteLink.js';
 import styles from './Footer.style.js';
+import AplicationText from '../app.text';
 
+/*  npm install material-design-icons
+    npm install material-ui-icons: https://google.github.io/material-design-icons/
+*/
 
 function getAlign (width) {
     if (width === "xs" || width === "sm") {
@@ -42,7 +46,7 @@ class Footer extends React.Component {
 
                     <Grid item xs={ 12 } md={ 5 } className={ classes.p5 }>
                         <Typography variant="h6" align={ getAlign(width) } gutterBottom>
-                            FOOTER CONTENT
+                            FOOTER CONTENT INFO
                         </Typography>
                         <Typography align={ getAlign(width) }>
                             Here you can use rows and columns here to organize your footer
@@ -51,14 +55,14 @@ class Footer extends React.Component {
                     </Grid>
 
                     <Grid item xs={ 12 } md={ 5 }>
-                        <Grid container>
-                            <Grid item xs={ 12 } md={ 6 } align="center" className={ classes.p5 }>
-                                <FooterSiteLink styles={ classes } title={ "Link 1" } ></FooterSiteLink>
-                            </Grid>
-                            <Grid item xs={ 12 } md={ 6 } align="center" className={ classes.p5 }>
-                                <FooterSiteLink styles={ classes } title={ "Link 2" } spacing={ 2 }></FooterSiteLink>
-                            </Grid>
+                        <Grid container>{
+                            AplicationText.footer.links.map((linkItem, i) => (
+                                <Grid item xs={ 12 } md={ 6 } align="center" className={ classes.p5 }>
+                                    <FooterSiteLink urls={ linkItem.urls } styles={ classes } title={ linkItem.title } ></FooterSiteLink>
+                                </Grid>
+                            )) }
                         </Grid>
+
                     </Grid>
 
                     <Grid container align="center">

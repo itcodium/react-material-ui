@@ -16,10 +16,10 @@ class FooterSiteLink extends React.Component {
                     { this.props.title }
                 </Typography>
                 <ul className={ classes.ul } >
-                    { social.map(url => (
+                    { this.props.urls.map(url => (
                         <li className={ classes.li } key={ url }>
-                            <Link href="#" variant="body1" color="textSecondary">
-                                { url }
+                            <Link href={ url.href } variant="body1" color="textSecondary">
+                                { url.text }
                             </Link>
                         </li>
                     )) }
