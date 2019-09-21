@@ -1,22 +1,21 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
 import Link from '@material-ui/core/Link';
-/*
-import { withStyles } from '@material-ui/core/styles';
-import compose from 'recompose/compose';
-*/
+
 class CopyRight extends React.Component {
     render () {
         return (
             <Typography variant="body2" color="textSecondary" align="center">
                 { 'Copyright © ' }
-                <Link color="inherit" href="https://google.com/">
-                    Your Website
-            </Link>{ ' ' }
+                <Link color="inherit" href={ this.props.data.link }>
+                    { this.props.data.website }
+                </Link>{ ' ' }
                 { new Date().getFullYear() }
-                { '. Built with ' }
-                <Link color="inherit" href="https://google.com/">
-                    app ok.
+                <br></br>
+                { this.props.data.createdby.text }
+                <Link color="inherit" href={ this.props.data.createdby.link }>
+                { this.props.data.createdby.name }
             </Link>
             </Typography>
         );

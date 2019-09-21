@@ -74,6 +74,12 @@ class App extends Component {
   https://github.com/mui-org/material-ui/blob/master/docs/src/pages/getting-started/page-layout-examples/blog/Blog.js
   https://material-ui.com/getting-started/page-layout-examples/blog/
 
+
+  Esta ok:
+
+  https://reactjsexample.com/responsive-and-flexible-carousel-component-with-thumbnail-support/
+
+
 */
 
 App.propTypes = {
