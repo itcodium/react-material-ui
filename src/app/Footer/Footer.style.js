@@ -7,7 +7,9 @@ const styles = theme => ({
     },
     p5: {
         paddingBottom: theme.spacing.unit * 4,
+    },
+    logo: {
+        marginTop: 5 + 'px'
     }
-
 });
 export default styles;

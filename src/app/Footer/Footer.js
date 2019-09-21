@@ -37,7 +37,7 @@ class Footer extends React.Component {
                 <Grid container className={ classes.footer }>
                     <Grid item xs={ 12 } md={ 2 } align={ getAlign(width) } className={ classes.p5 }>
                         <a href="/#">
-                            <img width='140' alt="" flex='1' src={ mainLogo }></img></a>
+                            <img className={ classes.logo } width='140' alt="" flex='1' src={ mainLogo }></img></a>
                     </Grid>
 
                     <Grid item xs={ 12 } md={ 5 } className={ classes.p5 }>
