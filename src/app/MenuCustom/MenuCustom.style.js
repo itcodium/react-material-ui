@@ -7,7 +7,6 @@ const styles = theme => ({
     menuLink: {
         textDecoration: 'none',
         margin: 0,
-        margin: 0,
         padding: 0,
         color: '#2d496e'
     },

@@ -9,7 +9,6 @@ import styles from './FooterSiteLink.style.js';
 class FooterSiteLink extends React.Component {
     render () {
         const { classes } = this.props;
-        const social = ['GitHub', 'Twitter', 'Facebook'];
         return (
             <div>
                 <Typography variant="h6" gutterBottom>

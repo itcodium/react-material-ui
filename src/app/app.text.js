@@ -48,17 +48,38 @@ const AplicationText =
             {
                 title: 'Features',
                 urls: [{ text: 'Cool stuff', href: "/#" }, { text: 'Random feature', href: "/#" }, { text: 'Team feature', href: "/#" }, { text: 'Developer stuff', href: "/#" }]
+            },
+            {
+                title: 'Features',
+                urls: [{ text: 'Cool stuff', href: "/#" }, { text: 'Random feature', href: "/#" }, { text: 'Team feature', href: "/#" }, { text: 'Developer stuff', href: "/#" }]
+            },
+            {
+                title: 'Features',
+                urls: [{ text: 'Cool stuff', href: "/#" }, { text: 'Random feature', href: "/#" }, { text: 'Team feature', href: "/#" }, { text: 'Developer stuff', href: "/#" }]
+            },
+            {
+                title: 'Features',
+                urls: [{ text: 'Cool stuff', href: "/#" }, { text: 'Random feature', href: "/#" }, { text: 'Team feature', href: "/#" }, { text: 'Developer stuff', href: "/#" }]
+            },
+            {
+                title: 'Features',
+                urls: [{ text: 'Cool stuff', href: "/#" }, { text: 'Random feature', href: "/#" }, { text: 'Team feature', href: "/#" }, { text: 'Developer stuff', href: "/#" }]
+            }
+            ,
+            {
+                title: 'Features',
+                urls: [{ text: 'Cool stuff', href: "/#" }, { text: 'Random feature', href: "/#" }, { text: 'Team feature', href: "/#" }, { text: 'Developer stuff', href: "/#" }]
             }
 
         ]
     },
     copyright: {
         website: "Your Website",
-        link: "https://google.com/",
+        url: "https://google.com/",
         createdby: {
-            text: "Creado por ",
+            text: "Created by ",
             name: "Someone",
-            link: "https://someone.com/"
+            url: "https://someone.com/"
         }
     },
     contact: {

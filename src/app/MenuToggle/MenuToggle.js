@@ -28,7 +28,7 @@ class MenuToggle extends React.Component {
     }
 
     onValidateLink = (event) => {
-        if (event.target.getAttribute('value') != "0") {
+        if (event.target.getAttribute('value') !== "0") {
             event.preventDefault();
         }
     }

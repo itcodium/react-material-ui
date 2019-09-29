@@ -7,21 +7,13 @@ import withWidth from '@material-ui/core/withWidth';
 import compose from 'recompose/compose';
 import mainLogo from '../../assets/logo.png';
 import CopyRight from '../CopyRight/CopyRight.js';
+import Social from '../Social/Social.js';
 import FooterSiteLink from '../FooterSiteLink/FooterSiteLink.js';
 import styles from './Footer.style.js';
 import AplicationText from '../app.text';
 
-/*  npm install material-design-icons
-    npm install material-ui-icons: https://google.github.io/material-design-icons/
-*/
 
-function getAlign (width) {
-    if (width === "xs" || width === "sm") {
-        return "center"
-    } else {
-        return "left"
-    }
-}
+// npm i @material-ui/icons@latest
 
 
 class Footer extends React.Component {
@@ -33,43 +25,92 @@ class Footer extends React.Component {
         this.setState({ value });
     };
 
+    getFeatureWith = (data) => {
+
+        if (data.length === 1) {
+            return 12
+        }
+
+        if (this.props.width === "xs") {
+            return 12;
+        }
+        if (this.props.width === "sm") {
+            if (data.length === 2) {
+                return 6;
+            }
+            if (data.length === 3) {
+                return 4;
+            }
+            if (data.length > 3) {
+                return 4;
+            }
+        }
+        if (this.props.width === "md" || this.props.width === "lg") {
+            if (data.length === 2) {
+                return 6;
+            }
+            if (data.length === 3) {
+                return 4;
+            }
+            if (data.length === 5 || data.length === 6) {
+                return 4;
+            }
+
+        }
+        return 3;
+    };
+
+    getWith = (size, data) => {
+        return this.props.width;
+    };
+
+
     render () {
         const { classes } = this.props;
-        const { width } = this.props;
+        let features;
+        if (AplicationText.footer.links.length <= 20) {
+            features = (
+                AplicationText.footer.links.map((linkItem, i, data) => (
+                    <Grid item xs={ this.getFeatureWith(data) } md={ this.getFeatureWith(data) } align="center" className={ classes.p5 }>
+                        <FooterSiteLink urls={ linkItem.urls } styles={ classes } title={ linkItem.title } ></FooterSiteLink>
+                    </Grid>
+                ))
+            )
+        }
         return (
             <footer>
                 <Grid container className={ classes.footer }>
-                    <Grid item xs={ 12 } md={ 5 } className={ classes.p5 }>
-                        <Typography variant="h6" align={ getAlign(width) } gutterBottom>
+                    <Grid item xs={ 12 } sm={ 12 } md={ 4 } align="center" className={ classes.p5 }>
+                        <a href="/#">
+                            <img className={ classes.logo } width='140' alt="" flex='1' src={ mainLogo }></img></a>
+                    </Grid>
+
+                    <Grid item xs={ 12 } sm={ 12 } md={ 8 } className={ classes.p5 }>
+                        <Typography variant="h6" align="center" gutterBottom>
                             FOOTER CONTENT INFO
                         </Typography>
-                        <Typography align={ getAlign(width) }>
+                        <Typography align="center">
                             Here you can use rows and columns here to organize your footer
                             content.
                         </Typography>
                     </Grid>
 
-                    <Grid item xs={ 12 } md={ 2 } align={ getAlign(width) } className={ classes.p5 }>
-                        <a href="/#">
-                            <img className={ classes.logo } width='140' alt="" flex='1' src={ mainLogo }></img></a>
-                    </Grid>
-
-                    <Grid item xs={ 12 } md={ 5 }>
+                    <Grid item xs={ 12 }>
                         <Grid container>{
-                            AplicationText.footer.links.map((linkItem, i) => (
-                                <Grid item xs={ 12 } md={ 6 } align="center" className={ classes.p5 }>
-                                    <FooterSiteLink urls={ linkItem.urls } styles={ classes } title={ linkItem.title } ></FooterSiteLink>
-                                </Grid>
-                            )) }
+                            features
+                        }
                         </Grid>
 
                     </Grid>
+
+                    <Social social={ AplicationText.social }></Social>
 
                     <Grid container align="center">
                         <Grid item xs={ 12 }>
                             <CopyRight data={ AplicationText.copyright } />
                         </Grid>
                     </Grid>
+
                 </Grid>
             </footer >
         );

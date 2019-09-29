@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
 import Link from '@material-ui/core/Link';
 
@@ -15,8 +14,8 @@ class CopyRight extends React.Component {
                 <br></br>
                 { this.props.data.createdby.text }
                 <Link color="inherit" href={ this.props.data.createdby.link }>
-                { this.props.data.createdby.name }
-            </Link>
+                    { this.props.data.createdby.name }
+                </Link>
             </Typography>
         );
     }
