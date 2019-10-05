@@ -13,7 +13,7 @@ class Robots
 	// https://www.php.net/manual/es/mysqli-result.fetch-object.php
 
 	public function getAll(){
-		$result=$this->con->query("CALL robots_getAll(2)");
+		$result=$this->con->query("CALL robotsGetAll(2)");
 		if (!$result) {
 			throw new Exception($this->con->error);
 		}
@@ -29,9 +29,7 @@ class Robots
     }
 
 	public function getById($id){
-
-
-		$result=$this->con->query("CALL robots_getById({$id})");
+		$result=$this->con->query("CALL robotsGetById({$id})");
 		if (!$result) {
 			throw new Exception($this->con->error);
 		}
@@ -44,26 +42,23 @@ class Robots
 		$result->close();
 		$this->con->close();
 		return $rawdata;
+    }
 
+/*
+    https://www.codewall.co.uk/php-mysqli-examples-the-ultimate-tutorial/
+    i (entero), d (double), s (string), b	(blob) y se envía en paquetes
+*/
 
-
-
-		/*
-		$result=$this->con->query("CALL robots_getAll(1)");
-		if (!$result) {
-			throw new Exception($this->con->error);
-		}
-		$rawdata = array();
-		$i=0;
-		while($row = $result->fetch_object()){
-			$rawdata[$i] = $row;
-			$i++;
-		}
-		$result->close();
-		$this->con->close();
-		return $rawdata;
-
-		*/
+	public function insert($data){
+        try {
+            $statement = $this->con->prepare("call new_procedure22 (?, ?, ?)");
+            $statement->bind_param("ssi", $data->name, $data->type, $data->year);
+            $statement->execute();
+        } catch (mysqli_sql_exception $e){
+            throw new Exception($e->getMessage());
+        }finally{
+            $this->con->close();
+        }
     }
 
 
