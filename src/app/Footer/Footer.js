@@ -42,7 +42,7 @@ class Footer extends React.Component {
                 return 4;
             }
             if (data.length > 3) {
-                return 4;
+                return 6;
             }
         }
         if (this.props.width === "md" || this.props.width === "lg") {
@@ -80,12 +80,12 @@ class Footer extends React.Component {
         return (
             <footer>
                 <Grid container className={ classes.footer }>
-                    <Grid item xs={ 12 } sm={ 12 } md={ 4 } align="center" className={ classes.p5 }>
+                    <Grid item xs={ 12 } sm={ 12 } md={ 12 } align="center" className={ classes.p5 }>
                         <a href="/#">
                             <img className={ classes.logo } width='140' alt="" flex='1' src={ mainLogo }></img></a>
                     </Grid>
 
-                    <Grid item xs={ 12 } sm={ 12 } md={ 8 } className={ classes.p5 }>
+                    <Grid item xs={ 12 } sm={ 12 } md={ 12 } className={ classes.p5 }>
                         <Typography variant="h6" align="center" gutterBottom>
                             FOOTER CONTENT INFO
                         </Typography>

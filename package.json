@@ -18,7 +18,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "mocha tests/server/coadys/robots.js --reporter mochawesome --autoOpen true",
+    "test": "mocha api/tests/server/coadys/robots.js --reporter mochawesome --reporter-options overwrite=true,reportDir=api/test.report",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
