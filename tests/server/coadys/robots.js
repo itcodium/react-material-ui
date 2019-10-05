@@ -32,6 +32,7 @@ describe('Robots', function () {
         done();
       });
   });
+
   it("List", function (done) {
     chai.request(URL)
       .get("/robots")
