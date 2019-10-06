@@ -71,14 +71,14 @@ class Footer extends React.Component {
         if (AplicationText.footer.links.length <= 20) {
             features = (
                 AplicationText.footer.links.map((linkItem, i, data) => (
-                    <Grid item xs={ this.getFeatureWith(data) } md={ this.getFeatureWith(data) } align="center" className={ classes.p5 }>
+                    <Grid key={ i } item xs={ this.getFeatureWith(data) } md={ this.getFeatureWith(data) } align="center" className={ classes.p5 }>
                         <FooterSiteLink urls={ linkItem.urls } styles={ classes } title={ linkItem.title } ></FooterSiteLink>
                     </Grid>
                 ))
             )
         }
         return (
-            <footer>
+            <div>
                 <Grid container className={ classes.footer }>
                     <Grid item xs={ 12 } sm={ 12 } md={ 12 } align="center" className={ classes.p5 }>
                         <a href="/#">
@@ -100,7 +100,6 @@ class Footer extends React.Component {
                             features
                         }
                         </Grid>
-
                     </Grid>
 
                     <Social social={ AplicationText.social }></Social>
@@ -112,7 +111,7 @@ class Footer extends React.Component {
                     </Grid>
 
                 </Grid>
-            </footer >
+            </div>
         );
     }
 }

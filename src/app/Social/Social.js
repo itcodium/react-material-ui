@@ -25,7 +25,7 @@ class Social extends React.Component {
                 <Grid item xs={ 12 } className={ classes.social } container justify="center" alignItems="center">
                     {
                         this.props.social.map((socialItem, indexSub) => (
-                            <SocialLink type={ socialItem.name } url={ socialItem.url } ></SocialLink>
+                            <SocialLink key={ socialItem.name } type={ socialItem.name } url={ socialItem.url } ></SocialLink>
                         ))
                     }
                 </Grid>

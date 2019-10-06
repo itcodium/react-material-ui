@@ -6,6 +6,7 @@ import styles from './MenuToggle.style';
 
 
 import Button from '@material-ui/core/Button';
+import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 import Grow from '@material-ui/core/Grow';
 import Paper from '@material-ui/core/Paper';
@@ -39,6 +40,12 @@ class MenuToggle extends React.Component {
         }
         this.setState({ open: false });
     }
+    getArrowIcon = (size) => {
+        if (size) {
+            return <ArrowForwardIosIcon style={ { fontSize: 10 } }></ArrowForwardIosIcon>;
+        }
+
+    }
 
     render () {
         const { classes } = this.props;
@@ -56,6 +63,7 @@ class MenuToggle extends React.Component {
                         >
                             <NavLink onClick={ this.onValidateLink } className={ classes.menuLink } to={ this.props.menu.url }
                                 value={ this.props.menu.items.length }>
+                                { this.getArrowIcon(this.props.menu.items.length) }
                                 { this.props.menu.text }
                             </NavLink>
                         </Button>
@@ -69,7 +77,7 @@ class MenuToggle extends React.Component {
                                         <ClickAwayListener onClickAway={ this.handleClose }>
                                             <MenuList>
                                                 { this.props.menu.items.map((subItem, subIndex) => (
-                                                    <MenuItem onClick={ this.handleClose }>
+                                                    <MenuItem key={ subItem.text } onClick={ this.handleClose }>
                                                         <NavLink className={ classes.menuLink } to={ subItem.url }>
                                                             { subItem.text }
                                                         </NavLink>

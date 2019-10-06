@@ -1,6 +1,7 @@
 const AplicationText =
 {
     title: "Test",
+    lang: ["es", "en"],
     menu: [
         {
             text: "Home",
@@ -50,12 +51,12 @@ const AplicationText =
                 urls: [{ text: 'Cool stuff', href: "/#" }, { text: 'Random feature', href: "/#" }, { text: 'Team feature', href: "/#" }, { text: 'Developer stuff', href: "/#" }]
             },
             {
-                title: 'Features',
-                urls: [{ text: 'Cool stuff', href: "/#" }, { text: 'Random feature', href: "/#" }, { text: 'Team feature', href: "/#" }, { text: 'Developer stuff', href: "/#" }]
+                title: 'Features 2',
+                urls: [{ text: 'Cool stuff 2', href: "/#" }, { text: 'Random feature 2', href: "/#" }, { text: 'Team feature2', href: "/#" }, { text: 'Developer stuff 2', href: "/#" }]
             },
             {
-                title: 'Features',
-                urls: [{ text: 'Cool stuff', href: "/#" }, { text: 'Random feature', href: "/#" }, { text: 'Team feature', href: "/#" }, { text: 'Developer stuff', href: "/#" }]
+                title: 'Features 3',
+                urls: [{ text: 'Cool stuff 3', href: "/#" }, { text: 'Random feature3', href: "/#" }, { text: 'Team feature 3', href: "/#" }, { text: 'Developer stuff 3', href: "/#" }]
             }
 
         ]
@@ -79,11 +80,6 @@ const AplicationText =
     { name: "instagram", url: "https://www.instagram.com/test/" },
     { name: "twitter", url: "https://twitter.com/test" },
     { name: "youtube", url: "https://www.youtube.com/user/test" }]
-
 }
-
-
-
-
 
 export default AplicationText;

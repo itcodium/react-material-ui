@@ -6,13 +6,13 @@ import ListItem from '@material-ui/core/ListItem';
 import Typography from '@material-ui/core/Typography';
 import { NavLink } from "react-router-dom";
 import { withStyles } from '@material-ui/core/styles';
-import styles from './MenuCustom.style';
+import styles from './SideBarMenu.style';
 
-
-class MenuCustom extends React.Component {
+class SideBarMenu extends React.Component {
     render () {
         const { classes } = this.props;
         return (
+
             <div className={ classes.fullList }>
                 <List >
                     <ListItem>
@@ -35,8 +35,8 @@ class MenuCustom extends React.Component {
         );
     }
 }
-MenuCustom.propTypes = {
+SideBarMenu.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(MenuCustom);
+export default withStyles(styles)(SideBarMenu);

@@ -5,14 +5,16 @@ import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import { withStyles } from '@material-ui/core/styles';
-
+import Grid from '@material-ui/core/Grid';
 import Hidden from '@material-ui/core/Hidden';
 
 import Drawer from '@material-ui/core/Drawer';
 
-import MenuCustom from '../MenuCustom/MenuCustom';
+import SideBarMenu from '../SideBarMenu/SideBarMenu';
+import LanguageSelector from '../LanguageSelector/LanguageSelector';
 
 import MenuToggle from '../MenuToggle/MenuToggle';
+
 import AplicationText from '../app.text';
 
 import styles from './header.style';
@@ -43,7 +45,24 @@ class Header extends React.Component {
         return (
             <div >
                 <Hidden mdUp>
+
                     <Drawer open={ this.state.left } onClose={ this.toggleDrawer('left', false) }>
+                        <Grid>
+                            <Grid className={ classes.TopHeader } item xs={ 12 } container justify="center" alignItems="center">
+                                <Typography component="h2"
+                                    variant="h5"
+                                    color="inherit"
+                                    align="left"
+                                    noWrap
+                                    className={ classes.IconHeader }
+                                >
+                                    <a href="/#">
+                                        <img width='140' alt="" flex='1' align="center" src={ mainLogo }></img></a>
+                                </Typography>
+                                <LanguageSelector></LanguageSelector>
+
+                            </Grid>
+                        </Grid>
                         <div
                             tabIndex={ 0 }
                             role="button"
@@ -51,7 +70,7 @@ class Header extends React.Component {
                             onKeyDown={ this.toggleDrawer('left', false) }>
                             {
                                 AplicationText.menu.map((item, i) => (
-                                    <MenuCustom menu={ item } key={ i }></MenuCustom>
+                                    <SideBarMenu menu={ item } key={ i }></SideBarMenu>
                                 ))
                             }
                         </div>
@@ -68,10 +87,10 @@ class Header extends React.Component {
                                 <MenuToggle key={ i } menu={ item }></MenuToggle>
                             ))
                         }
-
+                        <LanguageSelector></LanguageSelector>
                     </Hidden>
                     <Hidden mdUp>
-                        <IconButton onClick={ this.toggleDrawer('left', true) } color="inherit" aria-label="MenuCustom">
+                        <IconButton onClick={ this.toggleDrawer('left', true) } color="inherit" aria-label="SideBarMenu">
                             <MenuIcon />
                         </IconButton>
                     </Hidden>
