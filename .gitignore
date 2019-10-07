@@ -7,7 +7,7 @@
 
 # testing
 /coverage
-/api/test.report
+/api/tests/reports
 # production
 /build
 

@@ -4,9 +4,10 @@ use Phalcon\Http\Response;
 
 class ResponseFormat{
 
-    private $response;
-    function __construct(){
+  private $response;
+  function __construct(){
 		$this->response = new  Response();
+		//$this->response->setContentType('application/json', 'utf-8');
 	}
 
 	public function get(){
@@ -14,11 +15,11 @@ class ResponseFormat{
 	}
 
 	public  function error($message){
-		$this->response->setStatusCode(400, 'Bad Request');
+		$this->response->setStatusCode('400', 'Bad Request');
 		return  $this->response->setJsonContent(
 					[  'status' => 'error',
 						'message'   =>  $message ]
-						);
+		);
 	}
 
 	public function data($data){

@@ -1,8 +1,10 @@
 module.exports = {
-  robot: {
-    "name": "Test 0000",
-    "type": "Test 0",
-    "year": "2020"
+  cliente: {
+    "nombre": "Test 0000",
+    "codigo": "TEST",
+    "habilitado": true,
+    "creado_por": "test",
+    "fecha_modificacion": new Date().now,
   },
   robotList:
     [

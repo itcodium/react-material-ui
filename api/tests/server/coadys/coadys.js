@@ -7,7 +7,7 @@ var FileHelper = require('../../helpers/Files.js');
 var DataTest = require('./data.test.js');
 
 var ENV = {
-  dev: "http://localhost:4444/react-material-ui/api/v1",
+  dev: "http://localhost:4444/react-material-ui/api",
   test: ""
 };
 var URL = ENV["dev"];
@@ -21,26 +21,42 @@ Login.FileHelper = FileHelper;
 Login.path = __dirname + '/token';
 
 
-describe('Robots', function () {
+describe('Cliente', function () {
 
-  it("Save", function (done) {
+  it("Post", function (done) {
     chai.request(URL)
-      .post("/robots")
-      .send(DataTest.robot)
+      .post("/cliente")
+      .send(DataTest.cliente)
       .end(function (err, res) {
-        FileHelper.saveToFile(__dirname + '/data/robots.post.json', JSON.stringify(res.body));
+        console.log("res", res)
+        FileHelper.saveToFile(__dirname + '/data/cliente.post.json', JSON.stringify(res));
         done();
       });
   });
 
+  /*
   it("List", function (done) {
     chai.request(URL)
-      .get("/robots")
+      .get("/cliente")
       .end(function (err, res) {
-        FileHelper.saveToFile(__dirname + '/data/robots.json', JSON.stringify(res.body));
+        FileHelper.saveToFile(__dirname + '/data/cliente.json', res.text);
         done();
       });
   });
+
+  it("List By Id", function (done) {
+    chai.request(URL)
+      .get("/cliente/153")
+      .end(function (err, res) {
+        FileHelper.saveToFile(__dirname + '/data/clienteById.json', res.text);
+        done();
+      });
+  });*/
+
+
+
+  /*
+  */
 
   after(function (done) {
     done();
