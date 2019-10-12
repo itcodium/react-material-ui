@@ -1,4 +1,5 @@
 <?php
+
 class Cliente
 {
     private $con;
@@ -27,7 +28,6 @@ class Cliente
                 $i++;
             }
             $result->close();
-            $this->con->close();
             return $rawdata;
         } catch (mysqli_sql_exception $e){
             throw new Exception($e->getMessage());
@@ -37,15 +37,42 @@ class Cliente
     }
 
 	public function getById($id){
-		$result=$this->con->query("CALL clienteGetById({$id})");
-		if (!$result) {
-			throw new Exception($this->con->error);
+        try {
+            $result=$this->con->query("CALL clienteGetById({$id})");
+            if (!$result) {
+                throw new Exception($this->con->error);
+            }
+            $rawdata = $result->fetch_object();
+            $result->close();
+            return $rawdata;
+        } catch (Exception $e){
+            throw new Exception($e->getMessage());
+        }finally{
+            $this->con->close();
         }
-		$rawdata = $result->fetch_object();
-		$result->close();
-		$this->con->close();
-		return $rawdata;
     }
+    public function clienteGetByName($name){
+
+        try {
+            $result=$this->con->query("CALL clienteGetByName('{$name}')");
+            if (!$result) {
+                throw new Exception($this->con->error);
+            }
+            $rawdata = array();
+            $i=0;
+            while($row = $result->fetch_object()){
+                $rawdata[$i] = $row;
+                $i++;
+            }
+            $result->close();
+            return $rawdata;
+        } catch (Exception $e){
+            throw new Exception($e->getMessage());
+        }finally{
+            $this->con->close();
+        }
+    }
+
 
 /*
     https://www.codewall.co.uk/php-mysqli-examples-the-ultimate-tutorial/
@@ -54,22 +81,45 @@ class Cliente
 
 	public function insert($data){
         try {
-            echo("0");
             $statement = $this->con->prepare("call clienteInsert (?, ?, ?, ?, ?)");
-            echo("1");
             $statement->bind_param("ssiss", $data->nombre, $data->codigo, $data->habilitado, $data->creado_por ,$data->fecha_modificacion);
-            echo("2");
             $statement->execute();
-            echo("3");
-
-        } catch (mysqli_sql_exception $e){
-            echo("4");
+            $result = $statement->get_result();
+            return $result->fetch_object();
+        } catch (Exception $e){
             throw new Exception($e->getMessage());
         }finally{
-            echo("5");
             $this->con->close();
         }
     }
+
+	public function deleteByCode($code){
+        try {
+            $statement = $this->con->prepare("call clienteDeleteByCode (?)");
+            $statement->bind_param("s", $code);
+            $statement->execute();
+            $result = $statement->get_result();
+            return $result->fetch_object();
+        } catch (Exception $e){
+            throw new Exception($e->getMessage());
+        }finally{
+            $this->con->close();
+        }
+    }
+	public function delete($id){
+        try {
+            $statement = $this->con->prepare("call clienteDelete(?)");
+            $statement->bind_param("i", $id);
+            $statement->execute();
+            $result = $statement->get_result();
+            return $result->fetch_object();
+        } catch (Exception $e){
+            throw new Exception($e->getMessage());
+        }finally{
+            $this->con->close();
+        }
+    }
+
 
 
 	/*
@@ -100,45 +150,6 @@ class Cliente
         $num_rows = $stmt->num_rows;
         $stmt->close();
         return $num_rows>0;
-    }
-
-    public function getStudent($username){
-        $stmt = $this->con->prepare("SELECT * FROM students WHERE username=?");
-        $stmt->bind_param("s",$username);
-        $stmt->execute();
-        $student = $stmt->get_result()->fetch_assoc();
-        $stmt->close();
-        return $student;
-    }
-
-    private function isStudentExists($username) {
-        $stmt = $this->con->prepare("SELECT id from students WHERE username = ?");
-        $stmt->bind_param("s", $username);
-        $stmt->execute();
-        $stmt->store_result();
-        $num_rows = $stmt->num_rows;
-        $stmt->close();
-        return $num_rows > 0;
-    }
-
-    private function getAssignments($id){
-        $stmt = $this->con->prepare("SELECT * FFROM assignments WHERE students_id=?");
-        $stmt->bind_param("i",$id);
-        $stmt->execute();
-        $assignments = $stmt->get_result()->fetch_assoc();
-        return $assignments;
-    }
-
-
-    public function isValidStudent($api_key) {
-        $stmt = $this->con->prepare("SELECT id from students WHERE api_key = ?");
-
-        $stmt->bind_param("s", $api_key);
-        $stmt->execute();
-        $stmt->store_result();
-        $num_rows = $stmt->num_rows;
-        $stmt->close();
-        return $num_rows > 0;
     }
 
     private function generateApiKey(){

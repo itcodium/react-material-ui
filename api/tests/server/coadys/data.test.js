@@ -1,11 +1,19 @@
 module.exports = {
-  cliente: {
-    "nombre": "Test 0000",
-    "codigo": "TEST",
+  cliente: [{
+    "id_cliente": "",
+    "nombre": "Test 0001",
+    "codigo": "TEST_0001",
     "habilitado": true,
-    "creado_por": "test",
+    "creado_por": "test1",
     "fecha_modificacion": new Date().now,
-  },
+  }, {
+    "id_cliente": "",
+    "nombre": "Test 0002",
+    "codigo": "TEST_0002",
+    "habilitado": false,
+    "creado_por": "test2",
+    "fecha_modificacion": new Date().now,
+  }],
   robotList:
     [
       {

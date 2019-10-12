@@ -1,8 +1,7 @@
 <?php
-
-require_once dirname(__FILE__).'/../data/Cliente.php';
 require_once dirname(__FILE__).'/../common/ResponseFormat.php';
-use Phalcon\Http\Response;
+require_once dirname(__FILE__).'/../data/Cliente.php';
+
 
 class ClienteBus
 {
@@ -26,7 +25,7 @@ class ClienteBus
             $data=self::$item->getAll();
             self::$response->data($data);
 		}catch(exception $e) {
-            return self::$response->error($e->getMessage());
+            self::$response->error($e->getMessage());
 		}
         return self::$response->get();
 
@@ -37,55 +36,52 @@ class ClienteBus
             $data=self::$item->getById($id);
             self::$response->data($data);
         }catch(exception $e) {
-            return self::$response->error($e->getMessage());
+            self::$response->error($e->getMessage());
+        }
+        return self::$response->get();
+    }
+	public static function getByName($name){
+        try{
+            $data=self::$item->clienteGetByName($name);
+            self::$response->data($data);
+        }catch(exception $e) {
+            self::$response->error($e->getMessage());
+        }
+        return self::$response->get();
+    }
+
+
+
+    public static function delete($id){
+        try{
+            $data=self::$item->delete($id);
+            self::$response->data($data);
+        }catch(exception $e) {
+            self::$response->error($e->getMessage());
         }
         return self::$response->get();
     }
 
     public static function insert(){
+         try{
+             $data =self::$app->request->getJsonRawBody();
+             $res=self::$item->insert($data);
+             self::$response->data($res);
+         }catch(exception $e) {
+            self::$response->error($e->getMessage());
+         }
+         return self::$response->get();
+     }
+
+     public static function deleteByCode($code){
         try{
-            //$data =self::$app->request->getJsonRawBody();
-            //$res=self::$item->insert($data);
-            throw new Exception("TEst error??");
-            //print_r($res);
-            /*
-            self::$response->data($res);*/
-
-
-
+            $res=self::$item->deleteByCode($code);
+            self::$response->data($res);
         }catch(exception $e) {
-             //echo("----:".$e->getMessage());
-            echo("A1");
-            //return self::$response->data($e->getMessage());
-        }
-
-        $response = new  Response();
-        return  $response->setJsonContent(
-            [
-                'status'   => 'ERROR',
-                'messages' => ["545454545"]
-            ]
-        );
-
-        //return self::$response->get();
-    }
-
-/*
-	public static function getByName($name){
-        try{
-            $myObj = new stdClass;
-            $myObj->name = $name;
-            $myObj->age = 33;
-            $myObj->city = "Test";
-            self::$response->data($myObj);
-        }catch(exception $e) {
-            return self::$response->error($e->errorMessage());
+            self::$response->error($e->errorMessage());
         }
         return self::$response->get();
     }
-
-
-    */
 }
 
 ?>
