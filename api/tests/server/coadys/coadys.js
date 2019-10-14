@@ -8,9 +8,9 @@ var DataTest = require('./data.test.js');
 
 var ENV = {
   dev: "http://localhost:4444/react-material-ui/api",
-  test: ""
+  prod: "http://itcodium.tech/api"
 };
-var URL = ENV["dev"];
+var URL = ENV["prod"];
 
 FileHelper.status.folderPath = __dirname + '\\data';
 FileHelper.status.credencialPath = __dirname + '/../../credenciales.txt';
@@ -23,7 +23,7 @@ Login.path = __dirname + '/token';
 
 describe('Cliente', function () {
 
-  it("Save[0]", function (done) {
+  it("Save Cliente[0]", function (done) {
     chai.request(URL)
       .post("/cliente")
       .send(DataTest.cliente[0])
@@ -39,7 +39,7 @@ describe('Cliente', function () {
       });
   });
 
-  it("Save[1]", function (done) {
+  it("Save Cliente[1]", function (done) {
     chai.request(URL)
       .post("/cliente")
       .send(DataTest.cliente[1])
