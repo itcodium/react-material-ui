@@ -40,6 +40,7 @@ class ClienteBus
         }
         return self::$response->get();
     }
+
 	public static function getByName($name){
         try{
             $data=self::$item->clienteGetByName($name);
@@ -49,8 +50,6 @@ class ClienteBus
         }
         return self::$response->get();
     }
-
-
 
     public static function delete($id){
         try{
@@ -72,6 +71,18 @@ class ClienteBus
          }
          return self::$response->get();
      }
+
+     public static function update($id){
+        try{
+            $data =self::$app->request->getJsonRawBody();
+            $data->id=$id;
+            $res=self::$item->update($data);
+            self::$response->data($res);
+        }catch(exception $e) {
+           self::$response->error($e->getMessage());
+        }
+        return self::$response->get();
+    }
 
      public static function deleteByCode($code){
         try{

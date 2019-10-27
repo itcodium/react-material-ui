@@ -11,7 +11,7 @@ class Cliente
             $db = new DbConnect();
 		    $this->con = $db->connect();
         } catch (mysqli_sql_exception $e){
-            echo('{status:"error",message:"'.$e->getMessage().'"}');
+            echo('{"status":"error","message":"'.utf8_encode($e->getMessage()).'"}');
         }
     }
 
@@ -83,6 +83,20 @@ class Cliente
         try {
             $statement = $this->con->prepare("call clienteInsert (?, ?, ?, ?, ?)");
             $statement->bind_param("ssiss", $data->nombre, $data->codigo, $data->habilitado, $data->creado_por ,$data->fecha_modificacion);
+            $statement->execute();
+            $result = $statement->get_result();
+            return $result->fetch_object();
+        } catch (Exception $e){
+            throw new Exception($e->getMessage());
+        }finally{
+            $this->con->close();
+        }
+    }
+
+    public function update($data){
+        try {
+            $statement = $this->con->prepare("call clienteUpdate (?, ?, ?, ?, ?)");
+            $statement->bind_param("issis",$data->id, $data->nombre, $data->codigo, $data->habilitado, $data->modificado_por);
             $statement->execute();
             $result = $statement->get_result();
             return $result->fetch_object();

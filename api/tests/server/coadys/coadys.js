@@ -10,7 +10,7 @@ var ENV = {
   dev: "http://localhost:4444/react-material-ui/api",
   prod: "http://itcodium.tech/api"
 };
-var URL = ENV["prod"];
+var URL = ENV["dev"];
 
 FileHelper.status.folderPath = __dirname + '\\data';
 FileHelper.status.credencialPath = __dirname + '/../../credenciales.txt';
@@ -55,16 +55,18 @@ describe('Cliente', function () {
       });
   });
 
-
-  it("List By Id", function (done) {
-    var id = DataTest.cliente[0].id_cliente;
+  it("Update Cliente", function (done) {
+    var cliente = DataTest.getClientOneUpdate();
     chai.request(URL)
-      .get("/cliente/" + id)
+      .put("/cliente/" + cliente.id_cliente)
+      .send(cliente)
       .end(function (err, res) {
-        FileHelper.saveToFile(__dirname + '/data/clienteById.' + id + '.json', JSON.stringify(res.body));
+        FileHelper.saveToFile(__dirname + '/data/cliente.updated.id.' + cliente.id_cliente + '.json', JSON.stringify(res.body));
         chai.expect(res.body).to.have.property('status');
-        chai.expect(res.body).to.have.property('data');
         chai.expect(res.body.status).to.equal("ok");
+        chai.expect(res.body).to.have.property('data');
+        chai.expect(res.body.data).to.have.property('row_count');
+        chai.expect(res.body.data.row_count).to.equal(1);
         done();
       });
   });
@@ -82,6 +84,18 @@ describe('Cliente', function () {
       });
   });
 
+  it("List By Id", function (done) {
+    var id = DataTest.cliente[0].id_cliente;
+    chai.request(URL)
+      .get("/cliente/" + id)
+      .end(function (err, res) {
+        FileHelper.saveToFile(__dirname + '/data/clienteById.' + id + '.json', JSON.stringify(res.body));
+        chai.expect(res.body).to.have.property('status');
+        chai.expect(res.body).to.have.property('data');
+        chai.expect(res.body.status).to.equal("ok");
+        done();
+      });
+  });
 
   it("List", function (done) {
     chai.request(URL)
@@ -91,7 +105,6 @@ describe('Cliente', function () {
         done();
       });
   });
-
 
   it("Delete By Id", function (done) {
     var id = DataTest.cliente[0].id_cliente;
@@ -124,9 +137,6 @@ describe('Cliente', function () {
         done();
       });
   });
-
-
-
 
   after(function (done) {
     done();
