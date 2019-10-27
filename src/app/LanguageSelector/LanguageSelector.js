@@ -7,22 +7,21 @@ import AplicationText from '../app.text';
 import es from './es.svg';
 import en from './en.svg';
 
-const DEFAULT_LANGUAGE = "es";
+const default_language = "es";
 const LANGUAGES = { "es": es, "en": en };
-const options = [];
+const customLang = [];
 const appLanguages = [];
 var alterIndex = 0;
 
 function LanguageSelector () {
     const [anchorEl, setAnchorEl] = React.useState(null);
-    //const [selectedIndex, setSelectedIndex] = React.useState(0);
-    // setSelectedIndex(index);
 
     const handleMenuItemClick = (event, index) => {
         alterIndex = index;
         localStorage.setItem("lang", appLanguages[alterIndex])
         setAnchorEl(null);
     };
+
     const handleClick = event => {
         setAnchorEl(event.currentTarget);
     };
@@ -41,7 +40,7 @@ function LanguageSelector () {
             open={ Boolean(anchorEl) }
             onClose={ handleClose }
         >
-            { options.map((option, index) => (
+            { customLang.map((option, index) => (
                 <MenuItem
                     key={ option }
                     disabled={ index === alterIndex }
@@ -56,17 +55,23 @@ function LanguageSelector () {
 
     const setLang = (lang) => {
         if (appLanguages.indexOf(lang) < 0) {
-            options.push(LANGUAGES[lang]);
+            customLang.push(LANGUAGES[lang]);
             appLanguages.push(lang)
         }
     };
 
+
+
     if (AplicationText.lang) {
-        AplicationText.lang.map((lang) => {
+        AplicationText.lang.forEach((lang) => {
             setLang(lang);
-        })
+        });
     } else {
-        setLang(DEFAULT_LANGUAGE);
+        setLang(default_language);
+    }
+
+    if (localStorage.getItem("lang")) {
+        alterIndex = appLanguages.indexOf(localStorage.getItem("lang"))
     }
 
     return (
@@ -78,7 +83,7 @@ function LanguageSelector () {
                 variant="contained"
                 onClick={ handleClick }
             >
-                <img width="24" alt="" src={ options[alterIndex] }></img>
+                <img width="24" alt="" src={ customLang[alterIndex] }></img>
             </IconButton>
 
             { getLanguageList() }
