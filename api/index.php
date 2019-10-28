@@ -2,18 +2,33 @@
 use Phalcon\Loader;
 use Phalcon\Mvc\Micro;
 
-require_once 'business/Cliente.php';
+require_once 'business/Client.php';
+require_once 'business/User.php';
 
 $app = new Micro();
-ClienteBus::init($app);
+ClientBus::init($app);
+UserBus::init($app);
 
-$app->get('/cliente', 'ClienteBus::getAll');
-$app->get('/cliente/{name}','ClienteBus::getByName');
-$app->get('/cliente/{id:[0-9]+}','ClienteBus::getById');
-$app->post('/cliente','ClienteBus::insert');
-$app->put('/cliente/{id:[0-9]+}','ClienteBus::update');
-$app->delete('/cliente/{id:[0-9]+}','ClienteBus::delete');
-$app->delete('/cliente/code/{code}','ClienteBus::deleteByCode');
+$app->get('/client', 'ClientBus::getAll');
+$app->get('/client/{name}','ClientBus::getByName');
+$app->get('/client/{id:[0-9]+}','ClientBus::getById');
+$app->post('/client','ClientBus::insert');
+$app->put('/client/{id:[0-9]+}','ClientBus::update');
+$app->delete('/client/{id:[0-9]+}','ClientBus::delete');
+$app->delete('/client/code/{code}','ClientBus::deleteByCode');
+
+
+$app->post('/user','UserBus::insert');
+$app->get('/user', 'UserBus::getAll');
+
+/*
+
+$app->get('/user/{id:[0-9]+}','UserBus::getById');
+
+$app->put('/user/{id:[0-9]+}','UserBus::update');
+$app->delete('/user/{id:[0-9]+}','UserBus::delete');*/
+
+
 
 $app->notFound(
     function () use ($app) {

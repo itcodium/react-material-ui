@@ -1,6 +1,6 @@
 <?php
 
-class Cliente
+class Client
 {
     private $con;
 
@@ -17,7 +17,7 @@ class Cliente
 
 	public function getAll(){
         try {
-            $result=$this->con->query("CALL clienteGetAll()");
+            $result=$this->con->query("CALL clientGetAll()");
             if (!$result) {
                 throw new Exception($this->con->error);
             }
@@ -38,7 +38,7 @@ class Cliente
 
 	public function getById($id){
         try {
-            $result=$this->con->query("CALL clienteGetById({$id})");
+            $result=$this->con->query("CALL clientGetById({$id})");
             if (!$result) {
                 throw new Exception($this->con->error);
             }
@@ -51,10 +51,10 @@ class Cliente
             $this->con->close();
         }
     }
-    public function clienteGetByName($name){
+    public function clientGetByName($name){
 
         try {
-            $result=$this->con->query("CALL clienteGetByName('{$name}')");
+            $result=$this->con->query("CALL clientGetByName('{$name}')");
             if (!$result) {
                 throw new Exception($this->con->error);
             }
@@ -81,7 +81,7 @@ class Cliente
 
 	public function insert($data){
         try {
-            $statement = $this->con->prepare("call clienteInsert (?, ?, ?, ?, ?)");
+            $statement = $this->con->prepare("call clientInsert (?, ?, ?, ?, ?)");
             $statement->bind_param("ssiss", $data->nombre, $data->codigo, $data->habilitado, $data->creado_por ,$data->fecha_modificacion);
             $statement->execute();
             $result = $statement->get_result();
@@ -95,7 +95,7 @@ class Cliente
 
     public function update($data){
         try {
-            $statement = $this->con->prepare("call clienteUpdate (?, ?, ?, ?, ?)");
+            $statement = $this->con->prepare("call clientUpdate (?, ?, ?, ?, ?)");
             $statement->bind_param("issis",$data->id, $data->nombre, $data->codigo, $data->habilitado, $data->modificado_por);
             $statement->execute();
             $result = $statement->get_result();
@@ -109,7 +109,7 @@ class Cliente
 
 	public function deleteByCode($code){
         try {
-            $statement = $this->con->prepare("call clienteDeleteByCode (?)");
+            $statement = $this->con->prepare("call clientDeleteByCode (?)");
             $statement->bind_param("s", $code);
             $statement->execute();
             $result = $statement->get_result();
@@ -122,7 +122,7 @@ class Cliente
     }
 	public function delete($id){
         try {
-            $statement = $this->con->prepare("call clienteDelete(?)");
+            $statement = $this->con->prepare("call clientDelete(?)");
             $statement->bind_param("i", $id);
             $statement->execute();
             $result = $statement->get_result();

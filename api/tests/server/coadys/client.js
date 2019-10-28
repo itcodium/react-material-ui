@@ -4,7 +4,7 @@ chai.use(chaiHttp);
 
 var Login = require('../../helpers/Login.js');
 var FileHelper = require('../../helpers/Files.js');
-var DataTest = require('./data.test.js');
+var DataTest = require('./client.test.js');
 
 var ENV = {
   dev: "http://localhost:4444/react-material-ui/api",
@@ -21,47 +21,47 @@ Login.FileHelper = FileHelper;
 Login.path = __dirname + '/token';
 
 
-describe('Cliente', function () {
+describe('client', function () {
 
-  it("Save Cliente[0]", function (done) {
+  it("Save client[0]", function (done) {
     chai.request(URL)
-      .post("/cliente")
-      .send(DataTest.cliente[0])
+      .post("/client")
+      .send(DataTest.client[0])
       .end(function (err, res) {
-        FileHelper.saveToFile(__dirname + '/data/cliente_0.post.json', JSON.stringify(res.body));
+        FileHelper.saveToFile(__dirname + '/data/client_0.post.json', JSON.stringify(res));
         chai.expect(res.body).to.have.property('status');
         chai.expect(res.body).to.have.property('data');
         chai.expect(res.body.data).to.have.property('id');
         chai.expect(res.body.data).to.have.property('row_count');
         chai.expect(res.body.data.row_count).to.equal(1);
-        DataTest.cliente[0].id_cliente = res.body.data.id;
+        DataTest.client[0].id_cliente = res.body.data.id;
         done();
       });
   });
 
-  it("Save Cliente[1]", function (done) {
+  it("Save client[1]", function (done) {
     chai.request(URL)
-      .post("/cliente")
-      .send(DataTest.cliente[1])
+      .post("/client")
+      .send(DataTest.client[1])
       .end(function (err, res) {
-        FileHelper.saveToFile(__dirname + '/data/cliente_1.post.json', JSON.stringify(res.body));
+        FileHelper.saveToFile(__dirname + '/data/client_1.post.json', JSON.stringify(res));
         chai.expect(res.body).to.have.property('status');
         chai.expect(res.body).to.have.property('data');
         chai.expect(res.body.data).to.have.property('id');
         chai.expect(res.body.data).to.have.property('row_count');
         chai.expect(res.body.data.row_count).to.equal(1);
-        DataTest.cliente[1].id_cliente = res.body.data.id;
+        DataTest.client[1].id_cliente = res.body.data.id;
         done();
       });
   });
 
-  it("Update Cliente", function (done) {
-    var cliente = DataTest.getClientOneUpdate();
+  it("Update client", function (done) {
+    var client = DataTest.getClientOneUpdate();
     chai.request(URL)
-      .put("/cliente/" + cliente.id_cliente)
-      .send(cliente)
+      .put("/client/" + client.id_cliente)
+      .send(client)
       .end(function (err, res) {
-        FileHelper.saveToFile(__dirname + '/data/cliente.updated.id.' + cliente.id_cliente + '.json', JSON.stringify(res.body));
+        FileHelper.saveToFile(__dirname + '/data/client.updated.id.' + client.id_cliente + '.json', JSON.stringify(res));
         chai.expect(res.body).to.have.property('status');
         chai.expect(res.body.status).to.equal("ok");
         chai.expect(res.body).to.have.property('data');
@@ -72,11 +72,11 @@ describe('Cliente', function () {
   });
 
   it("List By Name", function (done) {
-    var name = DataTest.cliente[0].nombre;
+    var name = DataTest.client[0].nombre;
     chai.request(URL)
-      .get("/cliente/" + name)
+      .get("/client/" + name)
       .end(function (err, res) {
-        FileHelper.saveToFile(__dirname + '/data/clienteByName.' + name + '.json', JSON.stringify(res.body));
+        FileHelper.saveToFile(__dirname + '/data/clientByName.' + name + '.json', JSON.stringify(res));
         chai.expect(res.body).to.have.property('status');
         chai.expect(res.body).to.have.property('data');
         chai.expect(res.body.status).to.equal("ok");
@@ -85,11 +85,11 @@ describe('Cliente', function () {
   });
 
   it("List By Id", function (done) {
-    var id = DataTest.cliente[0].id_cliente;
+    var id = DataTest.client[0].id_cliente;
     chai.request(URL)
-      .get("/cliente/" + id)
+      .get("/client/" + id)
       .end(function (err, res) {
-        FileHelper.saveToFile(__dirname + '/data/clienteById.' + id + '.json', JSON.stringify(res.body));
+        FileHelper.saveToFile(__dirname + '/data/clientById.' + id + '.json', JSON.stringify(res));
         chai.expect(res.body).to.have.property('status');
         chai.expect(res.body).to.have.property('data');
         chai.expect(res.body.status).to.equal("ok");
@@ -99,19 +99,19 @@ describe('Cliente', function () {
 
   it("List", function (done) {
     chai.request(URL)
-      .get("/cliente")
+      .get("/client")
       .end(function (err, res) {
-        FileHelper.saveToFile(__dirname + '/data/cliente.json', JSON.stringify(res.body));
+        FileHelper.saveToFile(__dirname + '/data/client.json', JSON.stringify(res));
         done();
       });
   });
 
   it("Delete By Id", function (done) {
-    var id = DataTest.cliente[0].id_cliente;
+    var id = DataTest.client[0].id_cliente;
     chai.request(URL)
-      .delete("/cliente/" + id)
+      .delete("/client/" + id)
       .end(function (err, res) {
-        FileHelper.saveToFile(__dirname + '/data/cliente.delete.id.' + id + '.json', JSON.stringify(res.body));
+        FileHelper.saveToFile(__dirname + '/data/client.delete.id.' + id + '.json', JSON.stringify(res));
         chai.expect(res.body).to.have.property('status');
         chai.expect(res.body.status).to.equal("ok");
 
@@ -123,11 +123,11 @@ describe('Cliente', function () {
   });
 
   it("Delete By Code", function (done) {
-    var codigo = DataTest.cliente[1].codigo;
+    var codigo = DataTest.client[1].codigo;
     chai.request(URL)
-      .delete("/cliente/code/" + codigo)
+      .delete("/client/code/" + codigo)
       .end(function (err, res) {
-        FileHelper.saveToFile(__dirname + '/data/cliente.delete.code.' + codigo + '.json', JSON.stringify(res.body));
+        FileHelper.saveToFile(__dirname + '/data/client.delete.code.' + codigo + '.json', JSON.stringify(res));
         chai.expect(res.body).to.have.property('status');
         chai.expect(res.body.status).to.equal("ok");
 

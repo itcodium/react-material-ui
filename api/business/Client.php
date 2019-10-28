@@ -1,19 +1,18 @@
 <?php
 require_once dirname(__FILE__).'/../common/ResponseFormat.php';
-require_once dirname(__FILE__).'/../data/Cliente.php';
+require_once dirname(__FILE__).'/../data/Client.php';
 
 
-class ClienteBus
+class ClientBus
 {
     private static $response;
     private static $item;
     private static $app;
 
-
     public static function init($app){
         self::$response= new  ResponseFormat();
         self::$app=$app;
-        self::$item=new Cliente();
+        self::$item=new Client();
     }
 
     function __construct(){
@@ -43,7 +42,7 @@ class ClienteBus
 
 	public static function getByName($name){
         try{
-            $data=self::$item->clienteGetByName($name);
+            $data=self::$item->clientGetByName($name);
             self::$response->data($data);
         }catch(exception $e) {
             self::$response->error($e->getMessage());

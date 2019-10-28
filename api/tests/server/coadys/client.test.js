@@ -1,5 +1,5 @@
 module.exports = {
-  cliente: [{
+  client: [{
     "id_cliente": "",
     "nombre": "Test 0001",
     "codigo": "TEST_0001",
@@ -15,11 +15,11 @@ module.exports = {
   updated: false,
   getClientOneUpdate: function () {
     if (!this.updated) {
-      this.cliente[0].nombre = this.cliente[0].nombre + "_UPDATED";
-      this.cliente[0].codigo = this.cliente[0].codigo + "_UPDATED";
-      this.cliente[0].habilitado = !this.cliente[0].habilitado;
-      this.cliente[0].modificado_por = "UPDATED";
+      this.client[0].nombre = this.client[0].nombre + "_UPDATED";
+      this.client[0].codigo = this.client[0].codigo + "_UPDATED";
+      this.client[0].habilitado = !this.client[0].habilitado;
+      this.client[0].modificado_por = "UPDATED";
     }
-    return this.cliente[0];
+    return this.client[0];
   }
 };

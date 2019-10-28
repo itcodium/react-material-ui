@@ -1,5 +1,12 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+$password = md5($pass);
+
+private function generateApiKey(){
+        return md5(uniqid(rand(), true));
+}
+
+
 1. npm install @material-ui/core
 2. npm install @material-ui/icons
 3. Editar webpack config: react-material-ui\node_modules\react-scripts\config\webpack.config.js
