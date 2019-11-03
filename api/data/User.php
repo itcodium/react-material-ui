@@ -15,7 +15,7 @@ class User
         }
     }
 
-	public function getAll(){
+  	public function getAll(){
         try {
             $result=$this->con->query("CALL usuarioGetAll()");
             if (!$result) {

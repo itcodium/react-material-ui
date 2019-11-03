@@ -1,6 +1,7 @@
 <?php
 require_once dirname(__FILE__).'/../common/ResponseFormat.php';
 require_once dirname(__FILE__).'/../data/User.php';
+require_once dirname(__FILE__).'/../jwt/Auth.php';
 
 class UserBus
 {
@@ -17,12 +18,14 @@ class UserBus
     function __construct(){
         self::init();
     }
-
     public static function login(){
         try{
-            $data =self::$app->request->getJsonRawBody();
-            $res=self::$item->login($data);
-            self::$response->data($res);
+            $parameters =self::$app->request->getJsonRawBody();
+            $data=self::$item->login($parameters);
+            $token=Auth::SignIn($data);
+            $user->user= $data;
+            $user->token=$token;
+            self::$response->data($user);
         }catch(exception $e) {
            self::$response->error($e->getMessage());
         }
@@ -71,9 +74,9 @@ class UserBus
 
      public static function update($id){
         try{
-            $data =self::$app->request->getJsonRawBody();
-            $data->id=$id;
-            $res=self::$item->update($data);
+            $parameters =self::$app->request->getJsonRawBody();
+            $parameters->id=$id;
+            $res=self::$item->update($parameters);
             self::$response->data($res);
         }catch(exception $e) {
            self::$response->error($e->getMessage());
@@ -83,11 +86,13 @@ class UserBus
 
     public static function insert(){
         try{
-            $data =self::$app->request->getJsonRawBody();
-            $res=self::$item->insert($data);
-            self::$response->data($res);
+            $headers = apache_request_headers();
+            $valid=Auth::Check($headers['Authorization']);
+            $parameters =self::$app->request->getJsonRawBody();
+            $data=self::$item->insert($parameters);
+            self::$response->data($data);
         }catch(exception $e) {
-           self::$response->error($e->getMessage());
+            self::$response->error($e->getMessage());
         }
         return self::$response->get();
     }

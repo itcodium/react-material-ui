@@ -31,7 +31,9 @@ describe('user', function () {
         FileHelper.saveToFile(__dirname + '/data/user_login.json', res.text);
         chai.expect(res.body).to.have.property('status');
         chai.expect(res.body).to.have.property('data');
-        chai.expect(res.body.data).to.have.property('uuid');
+        chai.expect(res.body.data).to.have.property('user');
+        chai.expect(res.body.data).to.have.property('token');
+        DataTest.token = res.body.data.token;
         done();
       });
   });
@@ -54,6 +56,7 @@ describe('user', function () {
     chai.request(URL)
       .post("/user")
       .send(DataTest.user[0])
+      .set('Authorization', 'Bearer ' + DataTest.token)
       .end(function (err, res) {
         FileHelper.saveToFile(__dirname + '/data/user_0.post.json', res.text);
         chai.expect(res.body).to.have.property('status');
