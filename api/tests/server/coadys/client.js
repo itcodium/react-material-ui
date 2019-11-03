@@ -4,7 +4,7 @@ chai.use(chaiHttp);
 
 var Login = require('../../helpers/Login.js');
 var FileHelper = require('../../helpers/Files.js');
-var DataTest = require('./client.test.js');
+var DataTest = require('./client.data.js');
 
 var ENV = {
   dev: "http://localhost:4444/react-material-ui/api",

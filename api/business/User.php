@@ -2,7 +2,6 @@
 require_once dirname(__FILE__).'/../common/ResponseFormat.php';
 require_once dirname(__FILE__).'/../data/User.php';
 
-
 class UserBus
 {
     private static $response;
@@ -18,6 +17,18 @@ class UserBus
     function __construct(){
         self::init();
     }
+
+    public static function login(){
+        try{
+            $data =self::$app->request->getJsonRawBody();
+            $res=self::$item->login($data);
+            self::$response->data($res);
+        }catch(exception $e) {
+           self::$response->error($e->getMessage());
+        }
+        return self::$response->get();
+    }
+
     public static function getAll(){
         try{
             $data=self::$item->getAll();

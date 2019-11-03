@@ -17,18 +17,12 @@ $app->put('/client/{id:[0-9]+}','ClientBus::update');
 $app->delete('/client/{id:[0-9]+}','ClientBus::delete');
 $app->delete('/client/code/{code}','ClientBus::deleteByCode');
 
-
-$app->post('/user','UserBus::insert');
+$app->post('/login','UserBus::login');
 $app->get('/user', 'UserBus::getAll');
-
-/*
-
 $app->get('/user/{id:[0-9]+}','UserBus::getById');
-
+$app->post('/user','UserBus::insert');
 $app->put('/user/{id:[0-9]+}','UserBus::update');
-$app->delete('/user/{id:[0-9]+}','UserBus::delete');*/
-
-
+$app->delete('/user/{id:[0-9]+}','UserBus::delete');
 
 $app->notFound(
     function () use ($app) {

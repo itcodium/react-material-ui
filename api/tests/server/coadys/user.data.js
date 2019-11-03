@@ -1,4 +1,6 @@
 module.exports = {
+  login: { user_name: "admin", password: "123123" },
+  login_not_valid: { user_name: "admin_", password: "123WW123", lang: "ES" },
   user: [{
     "id_usuario": "",
     "usuario": "test_user_name",
@@ -22,7 +24,7 @@ module.exports = {
       this.user[0].lang = "us";
       this.user[0].vigencia_desde = "2016-01-01";;
       this.user[0].vigencia_hasta = "2017-12-31";
-      this.user[0].modificadoPor = "Modif User";
+      this.user[0].modificado_por = "Modif User";
     }
     return this.user[0];
   }

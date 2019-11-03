@@ -1,5 +1,5 @@
 <?php
-
+ini_set('default_charset', 'utf-8');
 use Phalcon\Http\Response;
 
 class ResponseFormat{
@@ -11,13 +11,13 @@ class ResponseFormat{
 	}
 
 	public function get(){
-		 return  $this->response ;
+		return  $this->response ;
 	}
 
 	public  function error($message){
 		$this->response->setStatusCode('500', 'Internal Server Error');
 		$this->response->setJsonContent(
-			['status'=>'error','message'=> $message ]
+			['status'=>'error','message'=>  $message ]
 		);
 	}
 

@@ -16,3 +16,7 @@ BEGIN
 	WHERE id_cliente=pId_Cliente;
 	SELECT  ROW_COUNT() row_count;
 END
+
+
+ALTER TABLE `u159062377_news`.`hr_app_usuario`
+ADD UNIQUE INDEX `usuario_UNIQUE` (`usuario` ASC);

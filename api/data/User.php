@@ -35,7 +35,22 @@ class User
             $this->con->close();
         }
     }
-/*
+
+    public function login($data){
+        try {
+            $statement = $this->con->prepare("call getSessionKeyByUser (?,?,?)");
+            $statement->bind_param("sss",$data->user_name, md5($data->password), $data->lang);
+            $statement->execute();
+            $result = $statement->get_result();
+            return $result->fetch_object();
+        } catch (Exception $e){
+            throw new Exception($e->getMessage());
+        }finally{
+            $this->con->close();
+        }
+    }
+
+
 	public function getById($id){
         try {
             $result=$this->con->query("CALL usuarioGetById({$id})");
@@ -52,11 +67,19 @@ class User
         }
     }
 
-
     public function update($data){
         try {
-            $statement = $this->con->prepare("call usuarioUpdate (?, ?, ?, ?, ?)");
-            $statement->bind_param("issis",$data->id, $data->nombre, $data->codigo, $data->habilitado, $data->modificado_por);
+            $statement = $this->con->prepare("call usuarioUpdate (?,?,?,?,?,?,?,?,?,?)");
+            $statement->bind_param("isssssisss",$data->id,
+                                                $data->usuario,
+                                                $data->nombre,
+                                                $data->apellido,
+                                                $data->email,
+                                                md5($data->password),
+                                                $data->id_perfil,
+                                                $data->vigencia_desde,
+                                                $data->vigencia_hasta,
+                                                $data->modificado_por);
             $statement->execute();
             $result = $statement->get_result();
             return $result->fetch_object();
@@ -80,8 +103,6 @@ class User
             $this->con->close();
         }
     }
-*/
-
 
 	public function insert($data){
         try {
@@ -89,8 +110,8 @@ class User
             $statement->bind_param("sssssisss", $data->usuario,
                                                 $data->nombre,
                                                 $data->apellido,
-                                                md5($data->password),
                                                 $data->email,
+                                                md5($data->password),
                                                 $data->id_perfil,
                                                 $data->vigencia_desde,
                                                 $data->vigencia_hasta,
