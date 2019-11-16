@@ -1,3 +1,15 @@
+drop table hr_app_modulo
+drop table hr_app_perfil_modulo
+drop table hr_app_profile_menu
+drop table hr_app_session_keys
+drop table hr_cliente
+drop table hr_cliente_configuracion
+drop table hr_error
+drop table hr_menu
+drop table hr_menu_perfil
+drop table hr_menu_text
+drop table hr_param;
+
 CREATE DEFINER=`u159062377_user`@`127.0.0.1` PROCEDURE `clienteUpdate`(
 	pId_Cliente int,
 	pNombre varchar(500),

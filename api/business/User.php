@@ -34,6 +34,7 @@ class UserBus
 
     public static function getAll(){
         try{
+            $valid=Auth::Check(apache_request_headers()['Authorization']);
             $data=self::$item->getAll();
             self::$response->data($data);
 		}catch(exception $e) {
@@ -44,6 +45,7 @@ class UserBus
 
 	public static function getById($id){
         try{
+            $valid=Auth::Check(apache_request_headers()['Authorization']);
             $data=self::$item->getById($id);
             self::$response->data($data);
         }catch(exception $e) {
@@ -54,6 +56,7 @@ class UserBus
 
 	public static function getByName($name){
         try{
+            $valid=Auth::Check(apache_request_headers()['Authorization']);
             $data=self::$item->GetByName($name);
             self::$response->data($data);
         }catch(exception $e) {
@@ -64,6 +67,7 @@ class UserBus
 
     public static function delete($id){
         try{
+            $valid=Auth::Check(apache_request_headers()['Authorization']);
             $data=self::$item->delete($id);
             self::$response->data($data);
         }catch(exception $e) {
@@ -74,6 +78,8 @@ class UserBus
 
      public static function update($id){
         try{
+            $valid=Auth::Check(apache_request_headers()['Authorization']);
+
             $parameters =self::$app->request->getJsonRawBody();
             $parameters->id=$id;
             $res=self::$item->update($parameters);
@@ -86,8 +92,7 @@ class UserBus
 
     public static function insert(){
         try{
-            $headers = apache_request_headers();
-            $valid=Auth::Check($headers['Authorization']);
+            $valid=Auth::Check(apache_request_headers()['Authorization']);
             $parameters =self::$app->request->getJsonRawBody();
             $data=self::$item->insert($parameters);
             self::$response->data($data);

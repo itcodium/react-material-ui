@@ -2,6 +2,7 @@
 
 use Phalcon\Loader;
 use Phalcon\Mvc\Micro;
+use Phalcon\Http\Response;
 
 require_once 'business/Client.php';
 require_once 'business/User.php';
@@ -35,7 +36,9 @@ $app->delete('/perfil/{id:[0-9]+}','PerfilBus::delete');
 
 $app->notFound(
     function () use ($app) {
-        echo "not found";
+      $app->response->setContentType('application/json', 'utf-8');
+      $app->response->setStatusCode(404, "Not Found")->sendHeaders();
+      echo '{ "status":"error","message":"Url not found."}';
     }
   );
 

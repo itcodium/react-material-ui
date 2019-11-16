@@ -547,18 +547,18 @@ CREATE DEFINER=`u159062377_user`@`127.0.0.1` FUNCTION `getErrorMessage`(pLang va
 BEGIN
 	DECLARE  vMessage varchar(1024);
     DECLARE vLanguage varchar(500);
-    
+
     IF pLang='' OR pLang is NULL THEN
     	SET vLanguage =(select getParamValue('DEFAULT_LANGUAGE'));
-    ELSE 
+    ELSE
 		SET vLanguage=pLang;
     END IF;
-  
-	SET vMessage =(	SELECT  message	
+
+	SET vMessage =(	SELECT  message
 					FROM hr_error
 					WHERE lang=vLanguage AND value=pValue);
-                    
-	IF  IFNULL(vMessage ,'') =''THEN 
+
+	IF  IFNULL(vMessage ,'') =''THEN
 		SET vLanguage =(select getParamValue('DEFAULT_LANGUAGE'));
     	SET vMessage =( SELECT  message
 						FROM hr_error
@@ -566,7 +566,7 @@ BEGIN
 		RETURN replace(vMessage,'@param0',pValue);
     END IF;
     return vMessage ;
-   
+
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -587,11 +587,11 @@ CREATE DEFINER=`u159062377_user`@`127.0.0.1` FUNCTION `getMenuId`(pName varchar(
 BEGIN
 		DECLARE  vId INT;
         SELECT a.id_menu
-			INTO vId 
+			INTO vId
 		FROM hr_menu  a
 			inner join hr_menu_text b
 				on a.id_menu=b.id_menu
-        WHERE b.menu_text=pName;        
+        WHERE b.menu_text=pName;
 		RETURN vId;
 	END ;;
 DELIMITER ;
@@ -613,9 +613,9 @@ CREATE DEFINER=`u159062377_user`@`127.0.0.1` FUNCTION `getParamValue`(pParamName
 BEGIN
 
 	DECLARE  vParamValue varchar(1024);
-    
+
 	SELECT  value
-	INTO vParamValue 
+	INTO vParamValue
 	FROM hr_param
 	WHERE param_name=pParamName;
 
@@ -640,14 +640,14 @@ CREATE DEFINER=`u159062377_user`@`127.0.0.1` FUNCTION `raiseError`(pLang varchar
 BEGIN
 
 	DECLARE  vMessage varchar(1024);
-    
+
 	SELECT  message
-	INTO vMessage 
+	INTO vMessage
 	FROM hr_error
 	WHERE lang=pLang AND value=pValue;
-    
+
     /*
-	SIGNAL SQLSTATE VALUE pValue 
+	SIGNAL SQLSTATE VALUE pValue
 	SET MESSAGE_TEXT =vMessage;
     */
 
@@ -689,7 +689,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `clientDeleteByCode`(pCode varchar(20))
+CREATE DEFINER=`u159062377_user`@`127.0.0.1` PROCEDURE `clientDeleteByCode`(pCode varchar(20))
 BEGIN
 	DELETE FROM hr_cliente
     WHERE codigo=pCode ;
@@ -732,7 +732,7 @@ DELIMITER ;
 DELIMITER ;;
 CREATE DEFINER=`u159062377_user`@`127.0.0.1` PROCEDURE `clientGetById`(pk int)
 BEGIN
-    select id_cliente,nombre,codigo,habilitado,creado_por,fecha_modificacion,modificado_por,fecha_creacion 
+    select id_cliente,nombre,codigo,habilitado,creado_por,fecha_modificacion,modificado_por,fecha_creacion
     from hr_cliente
     where id_cliente=pk;
 END ;;
@@ -753,7 +753,7 @@ DELIMITER ;
 DELIMITER ;;
 CREATE DEFINER=`u159062377_user`@`127.0.0.1` PROCEDURE `clientGetByName`(pname varchar(128))
 BEGIN
-    select id_cliente,nombre,codigo,habilitado,creado_por,fecha_modificacion,modificado_por,fecha_creacion 
+    select id_cliente,nombre,codigo,habilitado,creado_por,fecha_modificacion,modificado_por,fecha_creacion
     from hr_cliente;
     -- where nombre LIKE  CONCAT(pname,'%');
 END ;;
@@ -778,12 +778,12 @@ CREATE DEFINER=`u159062377_user`@`127.0.0.1` PROCEDURE `clientInsert`(
 	pCodigo varchar(25),
 	pHabilitado tinyint ,
 	pCreado_Por varchar(20),
-	pFecha_Modificacion timestamp 
+	pFecha_Modificacion timestamp
 )
 BEGIN
     INSERT INTO hr_cliente(nombre,codigo,habilitado,creado_por,fecha_modificacion)
        VALUES(pNombre,pCodigo,pHabilitado,pCreado_Por,pFecha_Modificacion);
-     SELECT  LAST_INSERT_ID() id,ROW_COUNT() row_count;    
+     SELECT  LAST_INSERT_ID() id,ROW_COUNT() row_count;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -809,7 +809,7 @@ CREATE DEFINER=`u159062377_user`@`127.0.0.1` PROCEDURE `clientUpdate`(
     )
 BEGIN
     UPDATE hr_cliente
-    SET 
+    SET
 		nombre=pNombre,
 		codigo=pCodigo,
 		habilitado=pHabilitado,
@@ -854,9 +854,9 @@ DELIMITER ;
 DELIMITER ;;
 CREATE DEFINER=`u159062377_user`@`127.0.0.1` PROCEDURE `getSessionKeyByUser`(pUserName varchar(20),pPassword varchar(50),pLang varchar(2))
 BEGIN
-	
-    
-    
+
+
+
 	DECLARE  vUUID varchar(64);
 	DECLARE  vExpiration datetime;
 	DECLARE  vId_usuario int;
@@ -864,55 +864,55 @@ BEGIN
     DECLARE vLanguage varchar(500);
     IF pLang='' OR pLang IS NULL  THEN
 		SET vLanguage =(select getParamValue('DEFAULT_LANGUAGE'));
-    ELSE    
+    ELSE
 		SET vLanguage =pLang;
-	END IF;	
-    
+	END IF;
+
     -- https://dev.mysql.com/doc/refman/5.5/en/error-messages-server.html
     /*
      Error: 1437 SQLSTATE: 42000 (ER_TOO_LONG_BODY)
 	 Message: Routine body for '%s' is too long
     */
- 
-    
+
+
      SELECT id_usuario
-		INTO vId_usuario  
+		INTO vId_usuario
     FROM hr_app_usuario
 	WHERE usuario=pUserName and password=pPassword;
-    
-    IF vId_usuario  IS NOT NULL THEN 
-    
+
+    IF vId_usuario  IS NOT NULL THEN
+
     	SELECT a.uuid
 			INTO vUUID
-		FROM hr_app_session_keys a 
+		FROM hr_app_session_keys a
 		WHERE a.id_usuario=vId_usuario and a.expiration>NOW();
-        
-        IF vUUID  IS NULL THEN 
+
+        IF vUUID  IS NULL THEN
 			SET vExpiration= DATE_ADD(NOW(),INTERVAL 30 MINUTE);
 			INSERT hr_app_session_keys( uuid,expiration,id_usuario)
 						values( uuid(),vExpiration,vId_usuario);
         END IF;
-        
+
 		START TRANSACTION;
 			UPDATE hr_app_usuario
-			SET 
+			SET
 				lang=vLanguage
 			WHERE id_usuario=vId_usuario;
 		COMMIT;
-		
-        
+
+
 		SELECT b.id_usuario,b.uuid ,b.expiration,
 				a.id_usuario,a.usuario,a.nombre,a.apellido,a.email,a.lang,a.id_perfil
 		FROM hr_app_usuario a
 			inner join  hr_app_session_keys b
 			on a.id_usuario=b.id_usuario
-		WHERE b.id_usuario=vId_usuario 
+		WHERE b.id_usuario=vId_usuario
 				and b.expiration>NOW();
-    ELSE	
+    ELSE
 		SET vErrorMessage =(SELECT getErrorMessage(vLanguage ,'A0000'));
 		SIGNAL SQLSTATE VALUE 'A0000' SET MESSAGE_TEXT =vErrorMessage;
     END IF;
-    
+
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -931,7 +931,7 @@ DELIMITER ;
 DELIMITER ;;
 CREATE DEFINER=`u159062377_user`@`127.0.0.1` PROCEDURE `getSessionKeys`()
 BEGIN
-   	Select 
+   	Select
 	  uuid,
 	  id_usuario,
       expiration
@@ -982,12 +982,12 @@ BEGIN
 		UPDATE hr_menu SET rgt = rgt + 2 WHERE rgt > myLeft;
 		UPDATE hr_menu SET lft = lft + 2 WHERE lft > myLeft;
 
-		INSERT INTO hr_menu(lft, rgt) 
+		INSERT INTO hr_menu(lft, rgt)
 			VALUES(myLeft + 1, myLeft + 2);
-            
+
         INSERT INTO hr_menu_text(id_menu,menu_text,lang )
-        VALUES(LAST_INSERT_ID(),pName,pLang);    
-        SELECT  ROW_COUNT() row_count;	
+        VALUES(LAST_INSERT_ID(),pName,pLang);
+        SELECT  ROW_COUNT() row_count;
 
 	END ;;
 DELIMITER ;
@@ -1010,43 +1010,43 @@ BEGIN
 		DECLARE vErrorMessage varchar(1024);
         DECLARE myRight INT;
         DECLARE id INT;
-        
-        
-        
+
+
+
         IF pId_menu =0 OR pId_menu IS NULL  THEN
 			IF (SELECT COUNT(*) FROM hr_menu)=0 THEN
 				INSERT INTO hr_menu(lft,rgt)
 					VALUES(1,2);
 				INSERT INTO hr_menu_text(id_menu,menu_text,lang )
 					VALUES(LAST_INSERT_ID(),pName,pLang);
-			ELSE	
-				
+			ELSE
+
 				SET vErrorMessage =(SELECT getErrorMessage(pLang ,'A0011'));
 				SIGNAL SQLSTATE VALUE 'A0011' SET MESSAGE_TEXT =vErrorMessage;
 			END IF;
-			
-		END IF;                
-		
+
+		END IF;
+
         IF pId_menu >0  AND pId_menu IS NOT NULL THEN
 			-- SELECT @myRight := rgt FROM hr_menu WHERE id_menu =pId_menu;
-            SELECT rgt 
-				INTO myRight 
+            SELECT rgt
+				INTO myRight
             FROM hr_menu WHERE id_menu =pId_menu;
-            
-            
+
+
 
 			UPDATE hr_menu SET rgt = rgt + 2 WHERE rgt > myRight;
 			UPDATE hr_menu SET lft = lft + 2 WHERE lft > myRight;
-			
-			INSERT INTO hr_menu(lft, rgt) 
+
+			INSERT INTO hr_menu(lft, rgt)
 				VALUES( myRight + 1, myRight + 2);
-			
+
             SET id=LAST_INSERT_ID();
-        
+
 			INSERT INTO hr_menu_text(id_menu,menu_text,lang )
 			VALUES(id,pName,pLang);
-            
-            SELECT  id as id_menu, ROW_COUNT() row_count;	
+
+            SELECT  id as id_menu, ROW_COUNT() row_count;
 		END IF;
 
 	END ;;
@@ -1079,12 +1079,12 @@ BEGIN
 
 		DELETE FROM hr_menu WHERE lft BETWEEN myLeft AND myRight;
         DELETE FROM hr_menu_text WHERE id_menu= pId_menu;
-        SET  vCount=(SELECT  ROW_COUNT());	
+        SET  vCount=(SELECT  ROW_COUNT());
 
 		UPDATE hr_menu SET rgt = rgt - myWidth WHERE rgt > myRight;
 		UPDATE hr_menu SET lft = lft - myWidth WHERE lft > myRight;
-        
-        SELECT  vCount row_count;	
+
+        SELECT  vCount row_count;
 
  	END ;;
 DELIMITER ;
@@ -1111,7 +1111,7 @@ BEGIN
 
 		DELETE FROM hr_menu WHERE lft = @myLeft;
         DELETE FROM hr_menu_text WHERE id_menu= pId_menu;
-        SELECT  ROW_COUNT() row_count;	
+        SELECT  ROW_COUNT() row_count;
 
 		UPDATE hr_menu SET rgt = rgt - 1, lft = lft - 1 WHERE lft BETWEEN @myLeft AND @myRight;
 		UPDATE hr_menu SET rgt = rgt - 2 WHERE rgt > @myRight;
@@ -1162,7 +1162,7 @@ BEGIN
 		SELECT c.menu_text
 		FROM hr_menu node,hr_menu_text AS c
 		WHERE node.rgt = node.lft + 1
-			AND node.id_menu=c.id_menu 
+			AND node.id_menu=c.id_menu
             AND c.lang=pLang;
 	END ;;
 DELIMITER ;
@@ -1192,18 +1192,18 @@ BEGIN
 				FROM hr_menu AS node,
 				hr_menu AS parent
 				WHERE node.lft BETWEEN parent.lft AND parent.rgt
-				AND node.id_menu = id 
+				AND node.id_menu = id
 				GROUP BY node.id_menu
 				ORDER BY node.lft
 			)AS sub_tree
 		WHERE node.lft BETWEEN parent.lft AND parent.rgt
 			AND node.lft BETWEEN sub_parent.lft AND sub_parent.rgt
 			AND sub_parent.id_menu = sub_tree.id_menu
-            AND node.id_menu=c.id_menu 
+            AND node.id_menu=c.id_menu
 			AND c.lang=pLang
-		GROUP BY c.menu_text 
+		GROUP BY c.menu_text
 		ORDER BY node.lft;
-		 
+
 	END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -1225,8 +1225,8 @@ BEGIN
 		SELECT c.menu_text
 		FROM hr_menu AS node,hr_menu AS parent,hr_menu_text AS c
 		WHERE node.lft BETWEEN parent.lft AND parent.rgt
-				AND node.id_menu=c.id_menu 
-				AND parent.id_menu =id 
+				AND node.id_menu=c.id_menu
+				AND parent.id_menu =id
 				AND c.lang=pLang
 		ORDER BY node.lft;
 	END ;;
@@ -1257,14 +1257,14 @@ BEGIN
 				FROM hr_menu AS node,
 				hr_menu AS parent
 				WHERE node.lft BETWEEN parent.lft AND parent.rgt
-				AND node.id_menu = id 
+				AND node.id_menu = id
 				GROUP BY node.id_menu
 				ORDER BY node.lft
 			)AS sub_tree
 		WHERE node.lft BETWEEN parent.lft AND parent.rgt
 			AND node.lft BETWEEN sub_parent.lft AND sub_parent.rgt
 			AND sub_parent.id_menu = sub_tree.id_menu
-            AND node.id_menu=c.id_menu 
+            AND node.id_menu=c.id_menu
 			AND c.lang=pLang
 		GROUP BY c.menu_text
 		HAVING depth <= 1
@@ -1292,9 +1292,9 @@ BEGIN
 			 hr_menu AS parent,
              hr_menu_text AS c
 		WHERE node.lft BETWEEN parent.lft AND parent.rgt
-				AND node.id_menu=c.id_menu 
+				AND node.id_menu=c.id_menu
 				AND c.lang=pLang
-		GROUP BY node.id_menu 
+		GROUP BY node.id_menu
 		ORDER BY node.lft;
 	END ;;
 DELIMITER ;
@@ -1314,11 +1314,11 @@ DELIMITER ;
 DELIMITER ;;
 CREATE DEFINER=`u159062377_user`@`127.0.0.1` PROCEDURE `menu_getSinglePath`(id int,pLang varchar(2))
 BEGIN
-		SELECT c.menu_text 
+		SELECT c.menu_text
 		FROM hr_menu AS node,hr_menu AS parent,hr_menu_text AS c
 		WHERE node.lft BETWEEN parent.lft AND parent.rgt
-			AND node.id_menu =id 
-            AND parent.id_menu=c.id_menu 
+			AND node.id_menu =id
+            AND parent.id_menu=c.id_menu
              AND c.lang=pLang
 		ORDER BY parent.lft;
 	END ;;
@@ -1365,10 +1365,10 @@ DELIMITER ;;
 CREATE DEFINER=`u159062377_user`@`127.0.0.1` PROCEDURE `menu_updateNode`(pId_menu int,pLang varchar(2),pName varchar(128))
 BEGIN
 		UPDATE hr_menu_text
-		SET 
+		SET
 			menu_text=pName
 		WHERE id_menu= pId_menu and lang=pLang;
-        SELECT  ROW_COUNT() row_count;	
+        SELECT  ROW_COUNT() row_count;
 	END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -1457,7 +1457,7 @@ CREATE DEFINER=`u159062377_user`@`127.0.0.1` PROCEDURE `moduloInsert`(
 BEGIN
     INSERT INTO hr_app_modulo(modulo,vigencia_desde,vigencia_hasta,creado_por,fecha_creacion)
         VALUES(pModulo,pVigencia_Desde,pVigencia_Hasta,pCreado_Por,now());
-	SELECT  ROW_COUNT() row_count;        
+	SELECT  ROW_COUNT() row_count;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -1483,7 +1483,7 @@ CREATE DEFINER=`u159062377_user`@`127.0.0.1` PROCEDURE `moduloUpdate`(
     )
 BEGIN
     UPDATE hr_app_modulo
-    SET 
+    SET
 		modulo=pModulo,
 		vigencia_desde=pVigencia_Desde,
 		vigencia_hasta=pVigencia_Hasta,
@@ -1515,15 +1515,15 @@ BEGIN
 		INTO vCount
     FROM hr_app_perfil_modulo
 	WHERE id_perfil=pk and enabled=1;
-    
+
     IF vCount = 0 THEN
 	    DELETE FROM hr_app_perfil_modulo
         WHERE id_perfil=pk;
     ELSE
     	SET vErrorMessage =(SELECT getErrorMessage('' ,'A0010'));
 		SIGNAL SQLSTATE VALUE 'A0010' SET MESSAGE_TEXT =vErrorMessage;
-    END IF; 
-    
+    END IF;
+
     DELETE FROM hr_app_perfil where id_perfil=pk;
     SELECT  ROW_COUNT() row_count;
 END ;;
@@ -1593,7 +1593,7 @@ CREATE DEFINER=`u159062377_user`@`127.0.0.1` PROCEDURE `perfilInsert`(
 BEGIN
     INSERT INTO hr_app_perfil(perfil,vigencia_desde,vigencia_hasta,fecha_creacion,creado_por)
         VALUES(pPerfil,pVigencia_Desde,pVigencia_Hasta,now(),pCreado_Por);
-    SELECT  LAST_INSERT_ID() id,ROW_COUNT() row_count;    
+    SELECT  LAST_INSERT_ID() id,ROW_COUNT() row_count;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -1653,7 +1653,7 @@ DELIMITER ;
 DELIMITER ;;
 CREATE DEFINER=`u159062377_user`@`127.0.0.1` PROCEDURE `perfilmoduloGetById`(pk int)
 BEGIN
-    select id_perfil_modulo,id_perfil,id_modulo,creado_por,fecha_creacion,modificado_por,fecha_modificacion 
+    select id_perfil_modulo,id_perfil,id_modulo,creado_por,fecha_creacion,modificado_por,fecha_modificacion
     from hr_app_perfil_modulo
     where id_perfil_modulo=pk;
 END ;;
@@ -1674,7 +1674,7 @@ DELIMITER ;
 DELIMITER ;;
 CREATE DEFINER=`u159062377_user`@`127.0.0.1` PROCEDURE `perfilmoduloGetByIdPerfil`(pk int)
 BEGIN
-    select id_perfil_modulo,id_perfil,id_modulo, enabled,creado_por,fecha_creacion,modificado_por,fecha_modificacion 
+    select id_perfil_modulo,id_perfil,id_modulo, enabled,creado_por,fecha_creacion,modificado_por,fecha_modificacion
     from hr_app_perfil_modulo
     where id_perfil=pk;
 END ;;
@@ -1699,7 +1699,7 @@ BEGIN
 	from hr_app_perfil_modulo a
 		inner join hr_app_modulo b on
 		a.id_modulo=b.id_modulo
-        inner join hr_app_usuario c 
+        inner join hr_app_usuario c
 			on c.id_perfil=a.id_perfil
 	where b.modulo=pModulo
 		and c.id_usuario=pIdUsuario;
@@ -1729,18 +1729,18 @@ BEGIN
 	DECLARE  vId_perfil_modulo int;
 
 	SELECT id_perfil_modulo
-		INTO vId_perfil_modulo  
+		INTO vId_perfil_modulo
     FROM hr_app_perfil_modulo
 	WHERE id_perfil=pId_Perfil and id_modulo=pId_Modulo;
 
-	IF vId_perfil_modulo  IS NULL THEN 
+	IF vId_perfil_modulo  IS NULL THEN
 	    INSERT INTO hr_app_perfil_modulo(id_perfil,id_modulo,enabled,creado_por)
 	        VALUES(pId_Perfil,pId_Modulo,pEnabled,pCreado_Por);
-	   	SELECT  ROW_COUNT() row_count;    
-	ELSE	
-		CALL perfilmoduloUpdate(vId_perfil_modulo, pId_Perfil,pId_Modulo,pEnabled,pCreado_Por );	
-    END IF;        
-        
+	   	SELECT  ROW_COUNT() row_count;
+	ELSE
+		CALL perfilmoduloUpdate(vId_perfil_modulo, pId_Perfil,pId_Modulo,pEnabled,pCreado_Por );
+    END IF;
+
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -1766,14 +1766,14 @@ CREATE DEFINER=`u159062377_user`@`127.0.0.1` PROCEDURE `perfilmoduloUpdate`(
     )
 BEGIN
     UPDATE hr_app_perfil_modulo
-    SET 
+    SET
 		id_perfil=pId_Perfil,
 		id_modulo=pId_Modulo,
 		enabled =pEnabled,
 		modificado_por=pModificado_Por,
 		fecha_modificacion=now()
 	WHERE id_perfil_modulo=pId_Perfil_Modulo;
-	SELECT  ROW_COUNT() row_count;    
+	SELECT  ROW_COUNT() row_count;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -1799,7 +1799,7 @@ CREATE DEFINER=`u159062377_user`@`127.0.0.1` PROCEDURE `perfilUpdate`(
     )
 BEGIN
     UPDATE hr_app_perfil
-    SET 
+    SET
 		perfil=pPerfil,
 		vigencia_desde=pVigencia_Desde,
 		vigencia_hasta=pVigencia_Hasta,
@@ -1886,7 +1886,7 @@ DELIMITER ;
 DELIMITER ;;
 CREATE DEFINER=`u159062377_user`@`127.0.0.1` PROCEDURE `usuarioGetById`(pk int)
 BEGIN
-    select id_usuario,usuario,nombre,apellido,email,password,id_perfil,vigencia_desde,vigencia_hasta,creado_por,fecha_creacion,modificado_por,fecha_modificacion 
+    select id_usuario,usuario,nombre,apellido,email,password,id_perfil,vigencia_desde,vigencia_hasta,creado_por,fecha_creacion,modificado_por,fecha_modificacion
     from hr_app_usuario
     where id_usuario=pk;
 END ;;
@@ -1915,12 +1915,12 @@ CREATE DEFINER=`u159062377_user`@`127.0.0.1` PROCEDURE `usuarioInsert`(
 	pVigencia_Desde date ,
 	pVigencia_Hasta date ,
 	pCreado_Por varchar(100)
-	
+
 )
 BEGIN
     INSERT INTO hr_app_usuario(usuario,nombre,apellido,email,password,id_perfil,vigencia_desde,vigencia_hasta,creado_por)
         VALUES(pUsuario,pNombre,pApellido,pEmail,pPassword,pId_Perfil,pVigencia_Desde,pVigencia_Hasta,pCreado_Por);
-	SELECT  LAST_INSERT_ID() id,ROW_COUNT() row_count;    
+	SELECT  LAST_INSERT_ID() id,ROW_COUNT() row_count;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -1951,7 +1951,7 @@ CREATE DEFINER=`u159062377_user`@`127.0.0.1` PROCEDURE `usuarioUpdate`(
     )
 BEGIN
     UPDATE hr_app_usuario
-    SET 
+    SET
 		usuario=pUsuario,
 		nombre=pNombre,
 		apellido=pApellido,
@@ -1963,7 +1963,7 @@ BEGIN
 		modificado_por=pModificado_Por,
 		fecha_modificacion=now()
 	WHERE id_usuario=pId_Usuario;
-    
+
 	SELECT  ROW_COUNT() row_count;
 END ;;
 DELIMITER ;
