@@ -9,6 +9,7 @@
 /coverage
 /api/tests/reports
 /api/tests/server/coadys/data
+/api/tests/server/coadys/token
 # production
 /build
 
