@@ -71,11 +71,11 @@ class PerfilModule
             $this->con->close();
         }
     }
-	public function getByModuloUsuario($id){
+	public function getByModuloUsuario($modulo,$id_usuario){
         try {
             $statement = $this->con->prepare("call perfilmoduleGetByModuloUsuario(?,?)");
-            $statement->bind_param("is",  $data->id_perfil,
-                                            $data->id_usuario);
+            $statement->bind_param("si",  $modulo,
+                                            $id_usuario);
             $statement->execute();
             $result = $statement->get_result();
             return $result->fetch_object();

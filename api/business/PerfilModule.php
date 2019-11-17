@@ -51,10 +51,11 @@ class PerfilModuleBus
         return self::$response->get();
     }
 
-    public static function getByModuloUsuario($id){
+    public static function getByModuloUsuario(){
         try{
+            $params = self::$app->request->getQuery();
             $valid=Auth::Check(apache_request_headers()['Authorization']);
-            $data=self::$item->getByModuloUsuario($id);
+            $data=self::$item->getByModuloUsuario($params["modulo"], $params["id_usuario"]);
             self::$response->data($data);
         }catch(exception $e) {
             self::$response->error($e->getMessage());
@@ -76,6 +77,8 @@ class PerfilModuleBus
 
      public static function update($id){
         try{
+
+
             $valid=Auth::Check(apache_request_headers()['Authorization']);
             $parameters =self::$app->request->getJsonRawBody();
             $parameters->id=$id;

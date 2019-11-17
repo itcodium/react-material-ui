@@ -47,9 +47,7 @@ $app->delete('/module/{id:[0-9]+}','ModuleBus::delete');
 $app->get('/perfilmodule', 'PerfilModuleBus::getAll');
 $app->get('/perfilmodule/{id:[0-9]+}','PerfilModuleBus::getById');
 $app->get('/perfilmodule/perfil/{id:[0-9]+}','PerfilModuleBus::getByIdPerfil');
-
-$app->get('/perfilmodule/module/{id:[0-9]+}','PerfilModuleBus::getByModuloUsuario');
-
+$app->get('/perfilmodule/module','PerfilModuleBus::getByModuloUsuario');
 $app->post('/perfilmodule','PerfilModuleBus::insert');
 $app->put('/perfilmodule/{id:[0-9]+}','PerfilModuleBus::update');
 $app->delete('/perfilmodule/{id:[0-9]+}','PerfilModuleBus::delete');

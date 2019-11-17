@@ -88,6 +88,20 @@ describe('Perfil', function () {
   });
 
 
+  it("List Module By IdUser", function (done) {
+    chai.request(apiUrl)
+      .get("/perfilmodule/module")
+      .query(PerfilModuleData.paramModuleUser)
+      .set('Authorization', 'Bearer ' + Login.token)
+      .end(function (err, res) {
+        FileHelper.saveToFile(__dirname + '/data/moduleByIdUser.json', JSON.stringify(res.body));
+        chai.expect(res.body).to.have.property('status');
+        chai.expect(res.body).to.have.property('data');
+        chai.expect(res.body.status).to.equal("ok");
+        done();
+      });
+  });
+
 
   it("List", function (done) {
     chai.request(apiUrl)

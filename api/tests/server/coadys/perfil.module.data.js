@@ -1,10 +1,14 @@
 module.exports = {
   perfil_module: [{
     "id_perfil": "1",  // Administrador
-    "id_modulo": "27", // Menu
+    "id_modulo": "27", //
     "enabled": 1,
     "creado_por": "test1",
   }],
+  paramModuleUser: {
+    modulo: "Menu",
+    id_usuario: 2
+  },
   updated: false,
   getOneUpdate: function () {
     if (!this.updated) {
