@@ -6,6 +6,8 @@ import styles from './MenuToggle.style';
 
 
 import Button from '@material-ui/core/Button';
+import AccountCircle from '@material-ui/icons/AccountCircle';
+import IconButton from '@material-ui/core/IconButton';
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 import Grow from '@material-ui/core/Grow';
@@ -44,29 +46,52 @@ class MenuToggle extends React.Component {
         if (size) {
             return <ArrowForwardIosIcon style={ { fontSize: 10 } }></ArrowForwardIosIcon>;
         }
-
     }
 
+    getIconMenu = (props, classes) => {
+        if (props.menu.icon) {
+            return <IconButton
+                className={ classes.menuLink }
+                ref={ (anchor) => { this.anchorRef = anchor } }
+
+                aria-label="more"
+                aria-controls="long-menu"
+                aria-haspopup="true"
+                variant="contained"
+                onClick={ this.handleToggle }
+            >
+                <AccountCircle />
+                <NavLink onClick={ this.onValidateLink } className={ classes.menuLink } to={ props.menu.url }
+                    value={ props.menu.items.length }>
+                </NavLink>
+            </IconButton>
+        } else {
+            return <Button
+                className={ classes.menuLink }
+                ref={ (anchor) => { this.anchorRef = anchor } }
+                aria-controls="menu-list-grow"
+                aria-haspopup="true"
+                onClick={ this.handleToggle }
+            >
+                <NavLink onClick={ this.onValidateLink } className={ classes.menuLink } to={ props.menu.url }
+                    value={ props.menu.items.length }>
+                    { this.getArrowIcon(props.menu.items.length) }
+                    { props.menu.text }
+                </NavLink>
+            </Button>
+        }
+    }
     render () {
         const { classes } = this.props;
         return (
             <Toolbar className={ classes.toolbarSecondary } >
                 {
 
+
                     <div>
-                        <Button
-                            className={ classes.menuLink }
-                            ref={ (anchor) => { this.anchorRef = anchor } }
-                            aria-controls="menu-list-grow"
-                            aria-haspopup="true"
-                            onClick={ this.handleToggle }
-                        >
-                            <NavLink onClick={ this.onValidateLink } className={ classes.menuLink } to={ this.props.menu.url }
-                                value={ this.props.menu.items.length }>
-                                { this.getArrowIcon(this.props.menu.items.length) }
-                                { this.props.menu.text }
-                            </NavLink>
-                        </Button>
+                        {
+                            this.getIconMenu(this.props, classes)
+                        }
                         <Popper open={ this.state.open } anchorEl={ this.anchorRef.current } keepMounted transition disablePortal>
                             { ({ TransitionProps, placement }) => (
                                 <Grow

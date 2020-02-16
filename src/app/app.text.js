@@ -16,6 +16,7 @@ const AplicationText =
         {
             text: "Proveedores",
             url: "/Proveedores",
+            hide: true,
             items: []
         }
         ,
@@ -38,7 +39,20 @@ const AplicationText =
             text: "Contacto",
             url: "/Contacto",
             items: []
-        }
+        },
+        {
+            text: "User",
+            url: "",
+            icon: "login",
+            items: [
+                {
+                    text: "Login",
+                    url: "/Login",
+                    items: []
+                }
+            ]
+        },
+
     ],
     footer: {
         links: [

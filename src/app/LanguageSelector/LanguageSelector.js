@@ -83,7 +83,7 @@ function LanguageSelector () {
                 variant="contained"
                 onClick={ handleClick }
             >
-                <img width="24" alt="" src={ customLang[alterIndex] }></img>
+                <img width="20" alt="" src={ customLang[alterIndex] }></img>
             </IconButton>
 
             { getLanguageList() }

@@ -21,6 +21,7 @@ import Nosotros from './components/pages/nosotros'
 import Proveedores from './components/pages/proveedores'
 import Contacto from './components/pages/contacto'
 
+import Login from './components/pages/Login/Login'
 import CivilPDF from './components/pages/rubros.pdf/civil'
 import ElectricoPDF from './components/pages/rubros.pdf/electrico'
 import InstrumentacionPDF from './components/pages/rubros.pdf/instrumentacion'
@@ -53,6 +54,7 @@ class App extends Component {
                   <Route key="9" path="/products/Electrico" component={ ElectricoPDF } />
                   <Route key="10" path="/products/Instrumentacion" component={ InstrumentacionPDF } />
                   <Route key="11" path="/products/Mecanico" component={ MecanicoPDF } />
+                  <Route key="12" path="/Login" component={ Login } />
                 </div>
               </Grid>
             </Grid>
