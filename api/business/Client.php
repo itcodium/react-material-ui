@@ -21,7 +21,7 @@ class ClientBus
 
 	public static function getAll(){
         try{
-            $valid=Auth::Check(apache_request_headers()['Authorization']);
+            //$valid=Auth::Check(apache_request_headers()['Authorization']);
             $data=self::$item->getAll();
             self::$response->data($data);
 		}catch(exception $e) {
