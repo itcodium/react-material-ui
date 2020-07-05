@@ -62,8 +62,15 @@ class PerfilModuleBus
         }
         return self::$response->get();
     }
-
-
+    public static function userIsAllowed($modulo, $id_usuario){
+        try{
+            $data=self::$item->getByModuloUsuario($modulo, $id_usuario);
+            self::$response->data($data);
+        }catch(exception $e) {
+            self::$response->error($e->getMessage());
+        }
+        return self::$response->get();
+    }
     public static function delete($id){
         try{
             $valid=Auth::Check(apache_request_headers()['Authorization']);
@@ -77,8 +84,6 @@ class PerfilModuleBus
 
      public static function update($id){
         try{
-
-
             $valid=Auth::Check(apache_request_headers()['Authorization']);
             $parameters =self::$app->request->getJsonRawBody();
             $parameters->id=$id;

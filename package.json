@@ -18,7 +18,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "mocha api/tests/server/coadys/perfil.module.js --reporter mochawesome --reporter-options overwrite=true,reportDir=api/tests/reports",
+    "test": "mocha api/tests/server/coadys/new.module.js --reporter mochawesome --reporter-options overwrite=true,reportDir=api/tests/reports",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {

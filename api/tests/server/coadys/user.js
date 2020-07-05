@@ -6,12 +6,9 @@ var Login = require('../../helpers/Login.js');
 var FileHelper = require('../../helpers/Files.js');
 var UserData = require('./user.data.js');
 var Hosts = require('../../helpers/Hosts.js');
-
 var apiUrl = Hosts.getUrl();
 
-
 FileHelper.status.folderPath = __dirname + '\\data';
-FileHelper.status.credencialPath = __dirname + '/../../credenciales.txt';
 FileHelper.deleteFolderFiles();
 
 Login.chai = chai;

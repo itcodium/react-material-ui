@@ -1,10 +1,7 @@
 <?php
-
 class PerfilModule
 {
-
     private $con;
-
     function __construct()
     {
         require_once dirname(__FILE__).'/DbConnect.php';

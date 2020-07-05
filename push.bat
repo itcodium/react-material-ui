@@ -1,3 +1,3 @@
 git add .
-git commit -m "2019-11-17 se actualiza module-perfil."
+git commit -m "2020-07-05 Se agrega validacion de perfiles."
 git push

@@ -17,8 +17,9 @@ class Module
 
     public function insert($data){
         try {
-            $statement = $this->con->prepare("call moduleInsert (?,?,?,?)");
-            $statement->bind_param("ssss",  $data->modulo,
+            $statement = $this->con->prepare("call moduleInsert (?,?,?,?,?)");
+            $statement->bind_param("sssss",  $data->modulo,
+                                            $data->codigo,
                                             $data->vigencia_desde,
                                             $data->vigencia_hasta,
                                             $data->creado_por);
@@ -70,9 +71,10 @@ class Module
     }
     public function update($data){
         try {
-            $statement = $this->con->prepare("call moduleUpdate (?,?,?,?,?)");
-            $statement->bind_param("issss",$data->id_modulo,
+            $statement = $this->con->prepare("call moduleUpdate (?,?,?,?,?,?)");
+            $statement->bind_param("isssss",$data->id_modulo,
                                            $data->modulo,
+                                           $data->codigo,
                                            $data->vigencia_desde,
                                            $data->vigencia_hasta,
                                            $data->modificado_por);
@@ -85,7 +87,6 @@ class Module
             $this->con->close();
         }
     }
-
 	public function delete($id){
         try {
             $statement = $this->con->prepare("call moduleDelete(?)");

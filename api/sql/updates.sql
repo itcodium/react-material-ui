@@ -32,3 +32,22 @@ END
 
 ALTER TABLE `u159062377_news`.`hr_app_usuario`
 ADD UNIQUE INDEX `usuario_UNIQUE` (`usuario` ASC);
+
+
+// 2020-07-05
+
+ALTER TABLE `u159062377_news`.`hr_app_modulo`
+ADD COLUMN `codigo` VARCHAR(45) NULL AFTER `id_modulo`,
+ADD UNIQUE INDEX `codigo_UNIQUE` (`codigo` ASC);
+
+UPDATE `u159062377_news`.`hr_app_modulo` SET `codigo`='USER' WHERE `id_modulo`='16';
+UPDATE `u159062377_news`.`hr_app_modulo` SET `codigo`='MODULE' WHERE `id_modulo`='19';
+UPDATE `u159062377_news`.`hr_app_modulo` SET `codigo`='PERFIL' WHERE `id_modulo`='21';
+UPDATE `u159062377_news`.`hr_app_modulo` SET `codigo`='PERFIL_MODULE' WHERE `id_modulo`='22';
+UPDATE `u159062377_news`.`hr_app_modulo` SET `codigo`='MENU' WHERE `id_modulo`='23';
+UPDATE `u159062377_news`.`hr_app_modulo` SET `codigo`='INGLES' WHERE `id_modulo`='27';
+
+ALTER TABLE `u159062377_news`.`hr_app_modulo`
+CHANGE COLUMN `codigo` `codigo` VARCHAR(64) NOT NULL ;
+// * perfilmoduleGetByModuloUsuario
+// * Se modifican todos los procedures de module
