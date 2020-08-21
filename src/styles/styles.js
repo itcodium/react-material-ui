@@ -9,7 +9,6 @@ const styles = theme => ({
             marginRight: 'auto',
         },
 
-
     },
     layout: {
         width: 'auto',
@@ -24,7 +23,7 @@ const styles = theme => ({
 
     /* Quienes somos */
     markdown: {
-        padding: `${ theme.spacing.unit * 3 }px 0`,
+        padding: `${theme.spacing.unit * 3}px 0`,
     },
     gridList: {
         width: 'auto',

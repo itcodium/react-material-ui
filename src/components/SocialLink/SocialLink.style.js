@@ -1,6 +1,5 @@
 import { grey } from '@material-ui/core/colors';
 
-
 const styles = theme => ({
     social: {
         '& > svg': {
