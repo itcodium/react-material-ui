@@ -1,23 +1,36 @@
 import React from 'react';
 import ListItem from '@material-ui/core/ListItem';
-import Divider from '@material-ui/core/Divider';
-
 import ListItemText from '@material-ui/core/ListItemText';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
+import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import Avatar from '@material-ui/core/Avatar';
+import Link from '@material-ui/core/Link';
 import Typography from '@material-ui/core/Typography';
+import IconButton from '@material-ui/core/IconButton';
+import AddIcon from '@material-ui/icons/Add';
 import { withStyles } from '@material-ui/core/styles';
 import styles from './Product.style.js';
 class Product extends React.Component {
+    constructor(props) {
+        super(props);
+        this.handleUpVote = this.handleUpVote.bind(this);
+    }
+
+    handleUpVote = () => (
+        this.props.onVote(this.props.id)
+    );
+
     render() {
         const { classes } = this.props;
         return (
             <ListItem alignItems="flex-start">
-                <ListItemAvatar>
-                    <Avatar alt="Remy Sharp" src="https://material-ui.com/static/images/avatar/3.jpg" />
-                </ListItemAvatar>
+                <Link href={this.props.url} variant="body1" color="textSecondary">
+                    <ListItemAvatar>
+                        <Avatar alt="Remy Sharp" src={this.props.productImageUrl} />
+                    </ListItemAvatar>
+                </Link>
                 <ListItemText
-                    primary="Brunch this weekend?"
+                    primary={this.props.title + " (" + this.props.votes + ")"}
                     secondary={
                         <React.Fragment>
                             <Typography
@@ -26,14 +39,18 @@ class Product extends React.Component {
                                 className={classes.inline}
                                 color="textPrimary"
                             >
-                                Ali Connors
-                        </Typography>
-                            {" — I'll be in your neighborhood doing errands this…"}
+                                {this.props.user}
+                            </Typography>
+                            {' - '} {this.props.description}
                         </React.Fragment>
                     }
                 />
+                <ListItemSecondaryAction onClick={this.handleUpVote}>
+                    <IconButton edge="end" aria-label="add" size="small" >
+                        <AddIcon fontSize="inherit" />
+                    </IconButton>
+                </ListItemSecondaryAction>
             </ListItem>
-
         );
     }
 }
