@@ -108,3 +108,6 @@ We suggest that you begin by typing:
 
   cd test
   npm start
+
+# Context
+https://medium.com/@mweststrate/how-to-safely-use-react-context-b7e343eff076

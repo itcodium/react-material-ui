@@ -29,6 +29,11 @@ const AplicationText =
                 items: []
             },
             {
+                text: "TimeLogging",
+                url: "/TimeLogging",
+                items: []
+            },
+            {
                 text: "Civil",
                 url: "/products/Civil",
                 items: []
