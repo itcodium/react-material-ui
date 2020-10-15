@@ -1,11 +1,11 @@
+import { grey } from '@material-ui/core/colors';
 const styles = theme => ({
+    listItem:{
+        marginBottom: theme.spacing.unit * 1,
+        backgroundColor:  grey[50],
+    },
     inline: {
         display: 'inline',
-    },
-    root: {
-        width: '100%',
-        maxWidth: '36ch',
-        backgroundColor: theme.palette.background.paper,
-    },
+    }
 });
 export default styles;

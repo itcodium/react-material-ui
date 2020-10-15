@@ -1,3 +1,6 @@
 git add .
-git commit -m "2020-08-29 1. We think about and organize our React apps as components 2. Using JSX inside the render method 3. Data flows from parent to children through props 4. Event flows from children to parent through functions 5. Utilizing React lifecycle methods 6. Stateful components and how state is different from props 7. How to manipulate state while treating it as immutable"
+git commit -m "2020-10-15 se cambia el estilo de productos"
 git push
+
+
+git config --global user.email "itcodium"

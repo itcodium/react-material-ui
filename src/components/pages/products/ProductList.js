@@ -47,9 +47,9 @@ class ProductList extends React.Component {
                     Album layout
                 </Typography>
 
-                <List className={classes.root}>
+                <List className={classes.list}>
                     {products.map(product => (
-                        <Product
+                        <Product 
                             key={product.id}
                             id={product.id}
                             title={product.title}

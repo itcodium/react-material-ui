@@ -23,7 +23,7 @@ class Product extends React.Component {
     render() {
         const { classes } = this.props;
         return (
-            <ListItem alignItems="flex-start">
+            <ListItem  className={classes.listItem} alignItems="flex-start">
                 <Link href={this.props.url} variant="body1" color="textSecondary">
                     <ListItemAvatar>
                         <Avatar alt="Remy Sharp" src={this.props.productImageUrl} />
