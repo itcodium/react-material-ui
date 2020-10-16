@@ -8,10 +8,9 @@ class EditableTimerList extends React.Component {
     componentDidMount() {
     }
     render() {
-        const { classes } = this.props;
+        //const { classes } = this.props;
         return (
             <div id='timers'>
-                2. EditableTimerList<br></br>
                 <EditableTimer
                 title='Learn React'
                 project='Web Domination'

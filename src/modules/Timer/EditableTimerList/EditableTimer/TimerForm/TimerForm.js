@@ -1,40 +1,57 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import styles from './TimerForm.style.js';
+import Card from '@material-ui/core/Card';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
+import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
 class TimerForm extends React.Component {
     render() {
-       // const { classes } = this.props;
+         const { classes } = this.props;
         const submitText = this.props.title ? 'Update' : 'Create';
         return (
-            <div className='ui centered card'>
-                     4. TimerForm<br></br>
-                <div className='content'>
-                    <div className='ui form'>
-                        
-                        <div className='ui two bottom attached buttons'>
-                            <button className='ui basic blue button'>
-                                {submitText}
-                            </button>
-                            <button className='ui basic red button'>
-                                Cancel
-                             </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <Card className={classes.card} >
+                 <form className={classes.form} noValidate>
+                  <CardContent>
+                 
+                            <TextField
+                                variant="outlined"
+                                margin="normal"
+                                required
+                                fullWidth
+                                id="title"
+                                label="Title"
+                                name="title"
+                                autoComplete="title"
+                                defaultValue={this.props.title} 
+                                autoFocus
+                            />
+                            <TextField
+                                variant="outlined"
+                                margin="normal"
+                                required
+                                fullWidth
+                                id="project"
+                                label="Project"
+                                name="project"
+                                autoComplete="project"
+                                defaultValue={this.props.project} 
+                                autoFocus
+                            />
+                    </CardContent>
+                    <CardActions className={classes.actions} >
+                    <Button variant="contained" color="primary">
+                        {submitText}
+                    </Button>
+                    <Button variant="contained" color="secondary">
+                         Cancel
+                    </Button>
+                </CardActions>
+                </form>
+            </Card>
         );
     }
 }
-/*
 
-<div className='field'>
-                            <label>Title</label>
-                            <input type='text' defaultValue={this.props.title} />
-                        </div>
-                        <div className='field'>
-                            <label>Project</label>
-                            <input type='text' defaultValue={this.props.project} />
-                        </div>
-                        
-                        */
 export default withStyles(styles)(TimerForm);

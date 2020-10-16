@@ -7,14 +7,10 @@ import styles from './ToggleableTimerForm.style.js';
 
 class ToggleableTimerForm extends React.Component {
     render() {
-        const { classes } = this.props;
+        // const { classes } = this.props;
         if (this.props.isOpen) {
             return (
-                <div>
-                    2. ToggleableTimerForm<br></br>
                     <TimerForm />
-                </div>
-               
             );
         } else {
             return (
