@@ -27,7 +27,7 @@ import ElectricoPDF from './components/pages/rubros.pdf/electrico'
 import InstrumentacionPDF from './components/pages/rubros.pdf/instrumentacion'
 import MecanicoPDF from './components/pages/rubros.pdf/mecanico'
 
-import TimeLogging from './modules/TimeLogging'
+import TimeLogging from './modules/TimerLogging/TimerLogging'
 class App extends Component {
   render () {
     const { classes } = this.props;

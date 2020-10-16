@@ -6,7 +6,6 @@ import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 import styles from './ProductList.style.js';
 import Seed from './Seed.js';
-console.log('Seed: ', Seed);
 
 class ProductList extends React.Component {
 

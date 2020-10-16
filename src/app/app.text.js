@@ -29,7 +29,7 @@ const AplicationText =
                 items: []
             },
             {
-                text: "TimeLogging",
+                text: "Time Logging",
                 url: "/TimeLogging",
                 items: []
             },
