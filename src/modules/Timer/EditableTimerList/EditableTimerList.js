@@ -1,30 +1,31 @@
 
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
-import  EditableTimer from './EditableTimer/EditableTimer';
+import EditableTimer from './EditableTimer/EditableTimer';
 import styles from './EditableTimerList.style.js';
 
 class EditableTimerList extends React.Component {
     componentDidMount() {
     }
     render() {
-        //const { classes } = this.props;
+        const timers = this.props.timers.map((timer) => (
+            <EditableTimer
+                key={timer.id}
+                id={timer.id}
+                title={timer.title}
+                project={timer.project}
+                elapsed={timer.elapsed}
+                runningSince={timer.runningSince}
+                onFormSubmit={this.props.onFormSubmit}
+                onTrashClick={this.props.onTrashClick}
+                onStartClick={this.props.onStartClick}
+                onStopClick={this.props.onStopClick}
+            />
+        ));
+
         return (
             <div id='timers'>
-                <EditableTimer
-                title='Learn React'
-                project='Web Domination'
-                elapsed='8986300'
-                runningSince={null}
-                editFormOpen={false}
-                />
-                <EditableTimer
-                title='Learn extreme ironing'
-                project='World Domination'
-                elapsed='3890985'
-                runningSince={null}
-                editFormOpen={true}
-                />
+                {timers}
             </div>
         )
     }
@@ -33,4 +34,3 @@ class EditableTimerList extends React.Component {
 export default withStyles(styles)(EditableTimerList);
 
 
- 

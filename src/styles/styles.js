@@ -1,16 +1,18 @@
 const styles = theme => ({
+  
     container: {
         width: 'auto',
-        marginTop: theme.spacing.unit * 3,
+        marginBottom: theme.spacing.unit * 3,
         marginLeft: theme.spacing.unit * 3,
         marginRight: theme.spacing.unit * 3,
-        [theme.breakpoints.up(1000 + theme.spacing.unit * 3 * 2)]: {
+        [theme.breakpoints.up(1000 + theme.spacing.unit * 3 * 0)]: {
             width: 1000,
             marginLeft: 'auto',
             marginRight: 'auto',
         },
 
     },
+    
     layout: {
         width: 'auto',
         marginLeft: theme.spacing.unit * 0,
@@ -21,12 +23,10 @@ const styles = theme => ({
         },
 
     },
-
-    /* Quienes somos */
     markdown: {
         padding: `${theme.spacing.unit * 3}px 0`,
     },
-    gridList: {
+  /*  gridList: {
         width: 'auto',
         height: 'auto',
         transform: 'translateZ(0)',
@@ -34,7 +34,7 @@ const styles = theme => ({
     testBar: {
         background:
             'linear-gradient(to bottom, rgba(0,0,0,0.9) 90%, rgba(0,0,0,0.9) 100%, rgba(0,0.9,0,0.9) 100%)',
-    },
+    },*/
     titleBar: {
         height: "100%",
         paddingTop: "10px"

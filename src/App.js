@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import './styles/App.css';
 import PropTypes from 'prop-types';
 
 import { withStyles } from '@material-ui/core/styles';
@@ -27,7 +26,7 @@ import ElectricoPDF from './components/pages/rubros.pdf/electrico'
 import InstrumentacionPDF from './components/pages/rubros.pdf/instrumentacion'
 import MecanicoPDF from './components/pages/rubros.pdf/mecanico'
 
-import TimeLogging from './modules/TimerLogging/TimerLogging'
+import TimersDashboard from './modules/Timer/TimersDashboard'
 class App extends Component {
   render () {
     const { classes } = this.props;
@@ -55,7 +54,7 @@ class App extends Component {
                   <Route key="10" path="/products/Instrumentacion" component={ InstrumentacionPDF } />
                   <Route key="11" path="/products/Mecanico" component={ MecanicoPDF } />
                   <Route key="12" path="/Login" component={ Login } />
-                  <Route key="13" path="/TimeLogging" component={ TimeLogging } />
+                  <Route key="13" path="/TimeLogging" component={ TimersDashboard } />
                 </div>
               </Grid>
             </Grid>
