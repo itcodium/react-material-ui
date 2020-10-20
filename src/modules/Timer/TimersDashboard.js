@@ -2,7 +2,7 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import styles from './TimersDashboard.style.js';
-import timers from './helpers/timers';
+import ClientService from './helpers/timers';
 import helpers from './helpers/helper';
 
 import EditableTimerList from './EditableTimerList/EditableTimerList'
@@ -12,9 +12,17 @@ import Container from '@material-ui/core/Container';
 class TimersDashboard extends React.Component {
     constructor(props) {
         super(props);
+        this.timerService = new ClientService();
+        this.timerService.getAll(this.initTimers);
         this.state = {
-            timers: timers.timers,
+            timers: [],
         };
+    }
+
+    initTimers = (timers) => {
+        this.setState({
+            timers: timers,
+        });
     }
     handleCreateFormSubmit = (timer) => {
         this.createTimer(timer);

@@ -1,21 +1,16 @@
-import uuid from 'react-uuid'
-let timers= [
-    {
-        title: 'Practice squat',
-        project: 'Gym Chores',
-        id: uuid(),
-        elapsed: 5456099,
-        runningSince: Date.now(),
-    },
-    {
-        title: 'Bake squash',
-        project: 'Kitchen Chores',
-        id: uuid(),
-        elapsed: 1273998,
-        runningSince: null,
-    },
-];
+class ClientService {
+    constructor(props) {
+        this.url = "https://localhost:4000/";
+    }
+    getAll(success) {
+        return fetch('api/timer', {
+            headers: {
+                Accept: 'application/json',
+            },
+        }).then(response => response.json())
+        .then(response => response.response.result.Timers)
+        .then(success);
+    }
+}
 
-export default {
-    timers:timers
-};
+export default ClientService;
