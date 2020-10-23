@@ -1,5 +1,5 @@
 git add .
-git commit -m "2020-10-20 Se habilita el proxy. Se agrega la llamada al servidor"
+git commit -m "2020-10-20 Se completa la funcionalidad del timer"
 git push
 
 

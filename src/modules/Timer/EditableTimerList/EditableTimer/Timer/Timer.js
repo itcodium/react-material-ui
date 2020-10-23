@@ -54,14 +54,15 @@ class Timer extends React.Component {
                     </div>
                 </CardContent>
                 <CardActions className={classes.actions} >
-                    <Button variant="contained" color={this.props.runningSince ? "secondary" : "primary"} timerIsRunning={!!this.props.runningSince}
+                    <Button variant="contained" color={this.props.runningSince ? "secondary" : "primary"}
                         onClick={ this.props.runningSince ? this.handleStopClick : this.handleStartClick }>
                         {this.props.runningSince ? "Stop" : "Start"}
                     </Button>
+                    
                 </CardActions>
             </Card>
         );
     }
 }
-
+// timerIsRunning={!!this.props.runningSince} 
 export default withStyles(styles)(Timer);

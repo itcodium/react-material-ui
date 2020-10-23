@@ -2,10 +2,10 @@ const styles = theme => ({
   
     container: {
         width: 'auto',
-        marginBottom: theme.spacing.unit * 3,
-        marginLeft: theme.spacing.unit * 3,
-        marginRight: theme.spacing.unit * 3,
-        [theme.breakpoints.up(1000 + theme.spacing.unit * 3 * 0)]: {
+        marginBottom:theme.spacing(3),
+        marginLeft: theme.spacing(3),
+        marginRight: theme.spacing(3),
+        [theme.breakpoints.up(1000 + theme.spacing(0))]: {
             width: 1000,
             marginLeft: 'auto',
             marginRight: 'auto',
@@ -15,16 +15,16 @@ const styles = theme => ({
     
     layout: {
         width: 'auto',
-        marginLeft: theme.spacing.unit * 0,
-        marginRight: theme.spacing.unit * 0,
-        [theme.breakpoints.up(1100 + theme.spacing.unit * 0 * 0)]: {
+        marginLeft: theme.spacing(0),
+        marginRight: theme.spacing(0),
+        [theme.breakpoints.up(1100 + theme.spacing(0))]: {
             marginLeft: 'auto',
             marginRight: 'auto',
         },
 
     },
     markdown: {
-        padding: `${theme.spacing.unit * 3}px 0`,
+        padding: `${theme.spacing(3)}px 0`,
     },
   /*  gridList: {
         width: 'auto',
