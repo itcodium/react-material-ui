@@ -6,29 +6,25 @@ import { withSnackbar } from 'notistack';
 
 const styles = theme => ({
     close: {
-        padding: theme.spacing.unit / 2,
+        padding: theme.spacing(1) / 2,
     },
 });
 class SimpleSnackbar extends React.Component {
     id = null;
-    constructor(props) {
-        super(props);
-        //  this.id = this.props.enqueueSnackbar('Test OnLoad.', { autoHideDuration: 4000, variant: "warning" });
 
-    }
     handleClick = () => {
         this.id = this.props.enqueueSnackbar(
             'TEST from component.', {
-                autoHideDuration: 3000, anchorOrigin: {
-                    vertical: 'bottom',
-                    horizontal: 'center',
-                }
-            });
+            autoHideDuration: 3000, anchorOrigin: {
+                vertical: 'bottom',
+                horizontal: 'center',
+            }
+        });
     };
-    render () {
+    render() {
         return (
             <div>
-                <Button onClick={ this.handleClick }>Simple Snackbar Open</Button>
+                <Button onClick={this.handleClick}>Simple Snackbar Open</Button>
             </div>
         );
     }

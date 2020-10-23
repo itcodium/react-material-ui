@@ -3,7 +3,7 @@ import { grey } from '@material-ui/core/colors';
 const styles = theme => ({
     social: {
         '& > svg': {
-            margin: theme.spacing.unit * 1,
+            margin: theme.spacing(1),
             color: grey[800],
         },
     },
@@ -12,6 +12,5 @@ const styles = theme => ({
             color: grey[600],
         },
     },
-
 });
 export default styles;

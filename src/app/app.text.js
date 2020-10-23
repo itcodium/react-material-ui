@@ -9,18 +9,6 @@ const AplicationText =
             items: []
         },
         {
-            text: "Nosotros",
-            url: "/Nosotros",
-            items: []
-        },
-        {
-            text: "Proveedores",
-            url: "/Proveedores",
-            hide: true,
-            items: []
-        }
-        ,
-        {
             text: "Tienda",
             url: "",
             items: [{
@@ -46,16 +34,10 @@ const AplicationText =
             items: []
         },
         {
-            text: "User",
-            url: "",
+            text: "Login",
+            url: "/Login",
             icon: "login",
-            items: [
-                {
-                    text: "Login",
-                    url: "/Login",
-                    items: []
-                }
-            ]
+            items: []
         },
 
     ],

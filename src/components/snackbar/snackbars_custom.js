@@ -43,7 +43,7 @@ const styles1 = theme => ({
     },
     iconVariant: {
         opacity: 0.9,
-        marginRight: theme.spacing.unit,
+        marginRight: theme.spacing(1),
     },
     message: {
         display: 'flex',
@@ -52,36 +52,36 @@ const styles1 = theme => ({
 });
 
 
-function MySnackbarContent (props) {
+function MySnackbarContent(props) {
     const { classes, className, message, onClose, variant, ...other } = props;
     const Icon = variantIcon[variant];
 
 
     return (
         <SnackbarContent
-            className={ classNames(classes[variant], className) }
+            className={classNames(classes[variant], className)}
             aria-describedby="client-snackbar"
             message={
-                <span id="client-snackbar" className={ classes.message }>
-                    <Icon className={ classNames(classes.icon, classes.iconVariant) } />
-                    { message }
+                <span id="client-snackbar" className={classes.message}>
+                    <Icon className={classNames(classes.icon, classes.iconVariant)} />
+                    {message}
                 </span>
             }
-            action={ [
-                <Button key="undo" color="red" size="small" onClick={ onClose }>
+            action={[
+                <Button key="undo" color="red" size="small" onClick={onClose}>
                     UNDO
                 </Button>,
                 <IconButton
                     key="close"
                     aria-label="Close"
                     color="inherit"
-                    className={ classes.close }
-                    onClick={ onClose }
+                    className={classes.close}
+                    onClick={onClose}
                 >
-                    <CloseIcon className={ classes.icon } />
+                    <CloseIcon className={classes.icon} />
                 </IconButton>,
-            ] }
-            { ...other }
+            ]}
+            {...other}
         />
     );
 }
@@ -95,12 +95,9 @@ MySnackbarContent.propTypes = {
 };
 
 const MySnackbarContentWrapper = withStyles(styles1)(MySnackbarContent);
-
-
-
 const styles = theme => ({
     close: {
-        padding: theme.spacing.unit / 2,
+        padding: theme.spacing(1) / 2,
     },
 });
 class SimpleSnackbarCustom extends React.Component {
@@ -122,26 +119,26 @@ class SimpleSnackbarCustom extends React.Component {
         this.setState({ open: false });
     };
 
-    render () {
+    render() {
         const { classes } = this.props;
 
         return (
             <div>
-                <Button className={ classes.margin } onClick={ this.handleClick }>
+                <Button className={classes.margin} onClick={this.handleClick}>
                     Open success snackbar (C)
                 </Button>
                 <Snackbar
-                    anchorOrigin={ {
+                    anchorOrigin={{
                         vertical: 'bottom',
                         horizontal: 'left',
-                    } }
-                    open={ this.state.open }
-                    autoHideDuration={ this.props.duration }
-                    onClose={ this.handleClose }>
+                    }}
+                    open={this.state.open}
+                    autoHideDuration={this.props.duration}
+                    onClose={this.handleClose}>
                     <MySnackbarContentWrapper
-                        onClose={ this.handleClose }
-                        variant={ this.props.variant }
-                        message={ this.props.message }
+                        onClose={this.handleClose}
+                        variant={this.props.variant}
+                        message={this.props.message}
 
                     />
                 </Snackbar>

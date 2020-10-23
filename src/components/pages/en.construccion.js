@@ -14,18 +14,18 @@ const styles2 = theme => ({
     heroContent: {
         maxWidth: 600,
         margin: '0 auto',
-        padding: `${ theme.spacing.unit * 8 }px 0 ${ theme.spacing.unit * 6 }px`,
+        padding: `${theme.spacing(8)}px 0 ${theme.spacing(6)}px`,
     },
 
 
 });
 class EnConstruccion extends React.Component {
-    render () {
+    render() {
         const { classes } = this.props;
         return (
-            <Paper className={ classes.container } elevation={ 1 } >
-                <div className={ classes.heroUnit } spacing={ 40 } >
-                    <div className={ classes.heroContent }>
+            <Paper className={classes.container} elevation={1} >
+                <div className={classes.heroUnit} spacing={40} >
+                    <div className={classes.heroContent}>
                         <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
                             En Construcción
                         </Typography>

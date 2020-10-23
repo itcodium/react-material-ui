@@ -2,7 +2,7 @@ import { red } from '@material-ui/core/colors';
 const styles = theme => ({
     social: {
         '& > svg': {
-            margin: theme.spacing.unit * 3,
+            margin: theme.spacing(3),
         },
     },
     iconHover: {

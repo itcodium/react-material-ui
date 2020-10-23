@@ -10,17 +10,17 @@ import Grid from '@material-ui/core/Grid';
 
 const styles = theme => ({
     root: {
-        marginTop: theme.spacing.unit * 2,
-        marginBottom: theme.spacing.unit * 2,
-        padding: theme.spacing.unit * 2,
+        marginTop: theme.spacing(2),
+        marginBottom: theme.spacing(2),
+        padding: theme.spacing(2),
     },
 });
 class NoBrowser extends React.Component {
 
-    render () {
+    render() {
         const { classes } = this.props;
         return (
-            <Paper className={ classes.root } >
+            <Paper className={classes.root} >
                 <Grid container justify="center" >
                     <Typography variant="h5" component="h3">
                         Este browser no soporta pdfs. Por favor decargar archivo.
@@ -28,7 +28,7 @@ class NoBrowser extends React.Component {
                 </Grid>
                 <br></br>
                 <Grid container justify="center" >
-                    <Button variant="outlined" href={ this.props.href } target="_blank" color="primary" >
+                    <Button variant="outlined" href={this.props.href} target="_blank" color="primary" >
                         Download
                     </Button>
                 </Grid>

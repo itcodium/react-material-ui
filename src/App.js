@@ -16,17 +16,13 @@ import Footer from './app/Footer/Footer'
 
 import Index from './components/pages/home/index'
 import ProductList from './components/pages/products/ProductList'
-import Nosotros from './components/pages/nosotros'
-import Proveedores from './components/pages/proveedores'
 import Contacto from './components/pages/contacto'
 
 import Login from './components/pages/Login/Login'
 import CivilPDF from './components/pages/rubros.pdf/civil'
-import ElectricoPDF from './components/pages/rubros.pdf/electrico'
-import InstrumentacionPDF from './components/pages/rubros.pdf/instrumentacion'
-import MecanicoPDF from './components/pages/rubros.pdf/mecanico'
 
 import TimersDashboard from './modules/Timer/TimersDashboard'
+import ReactCourse from './modules/ReactCourse/ReactCourse'
 class App extends Component {
   render () {
     const { classes } = this.props;
@@ -39,20 +35,16 @@ class App extends Component {
           <main className={ classes.layout }>
 
             <Grid container>
-              <Grid item xs={ 12 } md={ 12 }>
+            <Grid item xs={ 12 } md={ 12 }>
                 <Route key="1" exact path="/" component={ Index } />
                 <Route key="12" path="/index" component={ Index } />
               </Grid>
               <Grid item xs={ 12 } md={ 12 } >
                 <div className={ classes.container } >
-                  <Route key="3" path="/Nosotros" component={ Nosotros } />
+                  <Route key="3" path="/React" component={ ReactCourse } />
                   <Route key="2" path="/ProductList" component={ ProductList } />
-                  <Route key="4" path="/Proveedores" component={ Proveedores } />
                   <Route key="7" path="/Contacto" component={ Contacto } />
                   <Route key="8" path="/products/Civil" component={ CivilPDF } />
-                  <Route key="9" path="/products/Electrico" component={ ElectricoPDF } />
-                  <Route key="10" path="/products/Instrumentacion" component={ InstrumentacionPDF } />
-                  <Route key="11" path="/products/Mecanico" component={ MecanicoPDF } />
                   <Route key="12" path="/Login" component={ Login } />
                   <Route key="13" path="/TimeLogging" component={ TimersDashboard } />
                 </div>
@@ -69,6 +61,8 @@ class App extends Component {
 }
 
 /*
+  
+
 
 
   Agregar Galeria:

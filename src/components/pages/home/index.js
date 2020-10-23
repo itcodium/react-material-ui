@@ -57,7 +57,7 @@ class Index extends React.Component {
                     </Hidden>
 
                     <Hidden only={ ['xs'] }>
-                        <Grid container spacing={ 40 } >
+                        <Grid container spacing={ 4 } >
                             { rubros_list_lg }
                         </Grid>
                     </Hidden>
