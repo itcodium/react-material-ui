@@ -32,6 +32,10 @@ const AplicationText =
             text: "Contacto",
             url: "/Contacto",
             items: []
+        },     {
+            text: "ReactJSX",
+            url: "/ReactJSX",
+            items: []
         },
         {
             text: "Login",

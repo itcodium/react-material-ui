@@ -22,7 +22,7 @@ import Login from './components/pages/Login/Login'
 import CivilPDF from './components/pages/rubros.pdf/civil'
 
 import TimersDashboard from './modules/Timer/TimersDashboard'
-import ReactCourse from './modules/ReactCourse/ReactCourse'
+import ReactJSX from './modules/ReactCourse/ReactJSX'
 class App extends Component {
   render () {
     const { classes } = this.props;
@@ -37,16 +37,16 @@ class App extends Component {
             <Grid container>
             <Grid item xs={ 12 } md={ 12 }>
                 <Route key="1" exact path="/" component={ Index } />
-                <Route key="12" path="/index" component={ Index } />
+                <Route key="2" path="/index" component={ Index } />
               </Grid>
               <Grid item xs={ 12 } md={ 12 } >
                 <div className={ classes.container } >
-                  <Route key="3" path="/React" component={ ReactCourse } />
-                  <Route key="2" path="/ProductList" component={ ProductList } />
-                  <Route key="7" path="/Contacto" component={ Contacto } />
-                  <Route key="8" path="/products/Civil" component={ CivilPDF } />
-                  <Route key="12" path="/Login" component={ Login } />
-                  <Route key="13" path="/TimeLogging" component={ TimersDashboard } />
+                  <Route key="3" path="/ReactJSX" component={ ReactJSX } />
+                  <Route key="4" path="/ProductList" component={ ProductList } />
+                  <Route key="5" path="/Contacto" component={ Contacto } />
+                  <Route key="6" path="/products/Civil" component={ CivilPDF } />
+                  <Route key="7" path="/Login" component={ Login } />
+                  <Route key="8" path="/TimeLogging" component={ TimersDashboard } />
                 </div>
               </Grid>
             </Grid>
