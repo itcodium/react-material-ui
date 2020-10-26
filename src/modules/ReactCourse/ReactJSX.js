@@ -9,9 +9,9 @@ import PersonIcon from '@material-ui/icons/Person';
 import MailIcon from '@material-ui/icons/Mail';
 import Badge from '@material-ui/core/Badge';
 import Container from '@material-ui/core/Container';
-import ReactComponent from './ReactComponent/ReactComponent';
+import PropTypesComponent from './PropTypes/PropTypesComponent';
 import Switch from './Switch/Switch'
-import Newspaper from './ChildrenComponent/Newspaper'
+import WelcomeDialog from './ChildrenComponent/WelcomeDialog'
 
 
 class ReactJSX extends React.Component {
@@ -40,12 +40,11 @@ class ReactJSX extends React.Component {
         return (
             <div className={classes.root}>
                 <Container component="main">
-                    <Newspaper title={"TEST 0001"}></Newspaper>
-                    <Newspaper title={"TEST 0002"}></Newspaper>
+                    <WelcomeDialog title={"TEST 0001"}></WelcomeDialog>
                     <Typography className={classes.title} variant="h2" component="h4">Components</Typography>
 
-                    <ReactComponent></ReactComponent>
-                    <ReactComponent headerText={"Hola que tal?"}></ReactComponent>
+                    <PropTypesComponent></PropTypesComponent>
+                    <PropTypesComponent headerText={"Hola que tal?"}></PropTypesComponent>
                     <Switch></Switch>
                     <Typography className={classes.title} variant="h2" component="h4">JavaScript Syntax Extension (JSX)</Typography>
                     {this.boldElement}

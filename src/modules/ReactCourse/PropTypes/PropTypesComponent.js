@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-export class ReactComponent extends React.Component {
+export class PropTypesComponent extends React.Component {
     static propTypes = {
         headerText: PropTypes.string,
         lat: PropTypes.number,
@@ -19,4 +19,4 @@ export class ReactComponent extends React.Component {
     }
 }
 
-export default ReactComponent;
+export default PropTypesComponent;

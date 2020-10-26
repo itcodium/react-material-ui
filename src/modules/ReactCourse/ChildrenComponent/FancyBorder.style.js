@@ -8,10 +8,14 @@ const styles = theme => ({
     }, green: {
         color: "#00ff00"
     },
-    active: {
+    FancyBorder: {
         color: "#ff0000"
-    }, h3: {
-        marginTop: "20px",
+    }, 
+    FancyBorderRed: {
+        color: "#ff0000",
+    }, 
+    FancyBorderBlue: {
+        color: "#0000ff",
     }
 });
 export default styles;

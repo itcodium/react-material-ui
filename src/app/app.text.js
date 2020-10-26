@@ -34,8 +34,17 @@ const AplicationText =
             items: []
         },     {
             text: "ReactJSX",
-            url: "/ReactJSX",
-            items: []
+            url: "",
+            items: [{
+                text: "ReactJSX",
+                url: "/ReactJSX",
+                items: []
+            },
+            {
+                text: "Forms",
+                url: "/Forms",
+                items: []
+            }]
         },
         {
             text: "Login",
