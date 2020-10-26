@@ -5,16 +5,18 @@ import PropTypes from 'prop-types';
 import styles from './FancyBorder.style.js';
 class FancyBorder extends React.Component {
     static propTypes = {
-        //component: PropTypes.element.isRequired,
-        //children: PropTypes.element.isRequired
+        panel: PropTypes.element.isRequired,
     }
     render() {
         const { classes } = this.props;
         return (
-            <div className={classes['FancyBorder' + this.props.color]}>
-                {this.props.children}
-                <div className="FancyBorderBlue">
-                    {this.props.content}
+            <div>
+                <div className={classes['FancyBorder' + this.props.color]}>
+                    {this.props.children}
+
+                </div>
+                <div className={classes['FancyBorderBlue']}>
+                    {this.props.panel}
                 </div>
             </div>
         )
