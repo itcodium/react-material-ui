@@ -1,6 +1,6 @@
 import React from 'react';
 import MultipleFields from './MultipleFields'
-import FormFieldComponent from './FormFieldComponent'
+import FormComponent from './FormComponent'
 
 export class Forms extends React.Component {
 
@@ -64,7 +64,7 @@ export class Forms extends React.Component {
                     </ul>
                 </div>
                 <MultipleFields></MultipleFields>
-                <FormFieldComponent></FormFieldComponent>
+                <FormComponent></FormComponent>
             </div>
         );
     }

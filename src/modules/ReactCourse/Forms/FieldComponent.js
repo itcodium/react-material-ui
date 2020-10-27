@@ -27,7 +27,6 @@ export class FieldComponent extends React.Component {
     
     componentDidUpdate(prevProps, prevState) {
         if (prevProps.value !== this.props.value) {
-           console.log("this.props.someValue",this.props.value);
            this.setState({ value:this.props.value });
         }
     }
@@ -48,7 +47,6 @@ export class FieldComponent extends React.Component {
     render() {
         return (
             <div>
-                <p>{this.state.value}</p>
                 <input
                     placeholder={this.props ? this.props.placeholder : null}
                     value={this.state.value}

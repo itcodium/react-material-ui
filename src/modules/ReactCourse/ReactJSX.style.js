@@ -12,6 +12,6 @@ const styles = theme => ({
         color: "#ff0000"
     }, h3: {
         marginTop: "20px",
-    }
+    },
 });
 export default styles;

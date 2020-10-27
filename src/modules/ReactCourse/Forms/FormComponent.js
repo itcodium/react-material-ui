@@ -2,14 +2,18 @@ import React from 'react';
 import Typography from '@material-ui/core/Typography';
 import isEmail from 'validator/lib/isEmail';
 import FieldComponent from './FieldComponent'
-export class FormFieldComponent extends React.Component {
+import CourseSelect from './CourseSelect'
+
+export class FormComponent extends React.Component {
 
     constructor() {
         super();
         this.state = {
             fields: {
                 name: '',
-                email: ''
+                email: 'department@test.com',
+                department: '',
+                course: ''
             },
             fieldErrors: {},
             people: [],
@@ -19,10 +23,13 @@ export class FormFieldComponent extends React.Component {
         const people = this.state.people;
         const person = this.state.fields;
         evt.preventDefault();
-        console.log("onFormSubmit",1)
         if (this.validate()) return;
-        console.log("onFormSubmit",2)
-        this.setState({ people: people.concat(person), fields: { name: '', email: '' } });
+        this.setState({
+            people: people.concat(person),
+            fields: {
+                name: '', email: '', department: '', course: ''
+            }
+        });
     }
     onInputChange = ({ name, value, error }) => {
         const fields = this.state.fields;
@@ -39,11 +46,11 @@ export class FormFieldComponent extends React.Component {
 
         if (!person.name) return true;
         if (!person.email) return true;
+        if (!person.course) return true;
+        if (!person.department) return true;
         if (errMessages.length) return true;
         return false
     };
-
-    static displayName = "04-basic-input";
 
     render() {
         return (
@@ -52,7 +59,6 @@ export class FormFieldComponent extends React.Component {
                 <Typography variant="h2" component="h4">Multiple Field Component</Typography>
 
                 <form onSubmit={this.onFormSubmit}>
-                   <p> {this.state.fields.name} {this.state.fields.email}</p>
                     <FieldComponent
                         placeholder='Name'
                         name={'name'}
@@ -60,7 +66,6 @@ export class FormFieldComponent extends React.Component {
                         onChange={this.onInputChange}
                         validate={(val) => (val ? false : 'Name Required')}
                     />
-
                     <br />
                     <FieldComponent
                         placeholder='Email'
@@ -70,13 +75,19 @@ export class FormFieldComponent extends React.Component {
                         validate={(val) => (isEmail(val) ? false : 'Invalid Email')}
                     />
                     <br />
+                    <CourseSelect
+                        department={this.state.fields.department}
+                        course={this.state.fields.course}
+                        onChange={this.onInputChange}
+                    />
+                    <br />
                     <input type='submit' disabled={this.validate()} />
                 </form>
                 <div>
                     <h3>People</h3>
                     <ul>
-                        {this.state.people.map(({ name, email }, i) =>
-                            <li key={i}>{name} ({email})</li>
+                        {this.state.people.map(({ name, email, department, course }, i) =>
+                            <li key={i}>{[name, email, department, course].join(' - ')}</li>
                         )}
                     </ul>
                 </div>
@@ -85,7 +96,7 @@ export class FormFieldComponent extends React.Component {
     }
 }
 
-export default FormFieldComponent;
+export default FormComponent;
 
 
 
