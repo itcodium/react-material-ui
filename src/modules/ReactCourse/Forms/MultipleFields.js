@@ -21,7 +21,7 @@ export class MultipleFields extends React.Component {
         this.setState({ fieldErrors });
         evt.preventDefault();
         if (Object.keys(fieldErrors).length) return;
-        this.setState({ people: people, fields: { name: '', email: '' } });
+        this.setState({ people: people.concat(person), fields: { name: '', email: '' } });
     }
     onInputChange = (evt) => {
         const fields = this.state.fields;
@@ -36,8 +36,6 @@ export class MultipleFields extends React.Component {
         if (person.email && !isEmail(person.email)) errors.email = 'Invalid Email';
         return errors;
     };
-
-    static displayName = "04-basic-input";
 
     render() {
         return (

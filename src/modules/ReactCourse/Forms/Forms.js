@@ -1,14 +1,16 @@
 import React from 'react';
 import MultipleFields from './MultipleFields'
+import FormFieldComponent from './FormFieldComponent'
+
 export class Forms extends React.Component {
-  
+
     constructor() {
         super();
         this.state = {
             name: '',
             names: [],
         };
-      }
+    }
     onButtonClick = (evt) => {
         const btn = evt.target;
         console.log(`The user clicked ${btn.name}: ${btn.value}`);
@@ -23,7 +25,7 @@ export class Forms extends React.Component {
     };
 
     static displayName = "04-basic-input";
-   
+
     render() {
         return (
             <div>
@@ -62,6 +64,7 @@ export class Forms extends React.Component {
                     </ul>
                 </div>
                 <MultipleFields></MultipleFields>
+                <FormFieldComponent></FormFieldComponent>
             </div>
         );
     }
