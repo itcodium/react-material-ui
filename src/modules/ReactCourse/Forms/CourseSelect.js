@@ -11,10 +11,11 @@ export class CourseSelect extends React.Component {
         onChange: PropTypes.func.isRequired,
     };
     state = {
-        department: null,
-        course: undefined,
+        department: '',
+        course: '',
         courses: [],
         _loading: false,
+        _saveStatus: 'READY',
     };
     classes = null;
     service = new Service();
@@ -41,6 +42,18 @@ export class CourseSelect extends React.Component {
             });
         }
     }
+
+/*
+    componentDidMount() {
+        this.setState({ _loading: true });
+        this.service.peopleGetAll().then((people) => {
+            console.log("people", people)
+            this.setState({ _loading: false, people: people });
+        });
+    }*/
+    componentWillUnmount() {
+      }
+
     onSelectDepartment = (evt) => {
         const department = evt.target.value;
         const course = null;
@@ -78,7 +91,7 @@ export class CourseSelect extends React.Component {
                 this.state.courses.length ?
                     <select value={this.props.course ? this.props.course : ''} onChange={this.onSelectCourse} >
                         {this.state.courses.map((option) => (
-                            <option key={option.title} value={option._id}>{option.title}</option>
+                            <option key={option.title} value={option.createdAt}>{option.title}</option>
                         ))}
                     </select>
                     : ''}
