@@ -3,7 +3,6 @@ class Service {
     constructor(props) {
         //this.baseUrl = 'https://nodejs-gql.herokuapp.com/api/book?order=1&column=_id&pagesize=5000&start=0';
         this.baseUrl = 'api/book?order=1&column=_id&pagesize=5000&start=0';
-
     }
 
     fetch(callback, api, method, data) {
