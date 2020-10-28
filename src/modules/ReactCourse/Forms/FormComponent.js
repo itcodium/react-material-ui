@@ -10,23 +10,23 @@ export class FormComponent extends React.Component {
     constructor() {
         super();
         this.state = {
-            fields: {
+            people: [],
+            person: {
                 author: '',
                 title: '',
                 email: 'department@test.com',
                 department: '',
                 course: ''
             },
-            _loading: false,
             fieldErrors: {},
-            people: [],
+            _loading: false,
             _saveStatus: 'READY',
         };
 
     }
     service = new Service();
     onFormSubmit = (evt) => {
-        const person = this.state.fields;
+        const person = this.state.person;
         evt.preventDefault();
         if (this.validate()) return;
 
@@ -37,7 +37,7 @@ export class FormComponent extends React.Component {
             .then((response) => {
                 this.setState({
                     people: people,
-                    fields: {
+                    person: {
                         author: '',
                         title: '',
                         email: '',
@@ -53,15 +53,15 @@ export class FormComponent extends React.Component {
     }
 
     onInputChange = ({ name, value, error }) => {
-        const fields = this.state.fields;
+        const person = this.state.person;
         const fieldErrors = this.state.fieldErrors;
-        fields[name] = value;
+        person[name] = value;
         fieldErrors[name] = error;
-        this.setState({ fields, fieldErrors , _saveStatus: 'READY'});
+        this.setState({ person, fieldErrors , _saveStatus: 'READY'});
     };
 
     validate = () => {
-        const person = this.state.fields;
+        const person = this.state.person;
         const fieldErrors = this.state.fieldErrors;
         const errMessages = Object.keys(fieldErrors).filter((k) => fieldErrors[k])
         if (!person.author) return true;
@@ -90,7 +90,7 @@ export class FormComponent extends React.Component {
                     <FieldComponent
                         placeholder='Author'
                         name={'author'}
-                        value={this.state.fields.author}
+                        value={this.state.person.author}
                         onChange={this.onInputChange}
                         validate={(val) => (val ? false : 'Author Required')}
                     />
@@ -98,7 +98,7 @@ export class FormComponent extends React.Component {
                     <FieldComponent
                         placeholder='Title'
                         name={'title'}
-                        value={this.state.fields.title}
+                        value={this.state.person.title}
                         onChange={this.onInputChange}
                         validate={(val) => (val ? false : 'Title Required')}
                     />
@@ -106,14 +106,14 @@ export class FormComponent extends React.Component {
                     <FieldComponent
                         placeholder='Email'
                         name={'email'}
-                        value={this.state.fields.email}
+                        value={this.state.person.email}
                         onChange={this.onInputChange}
                         validate={(val) => (isEmail(val) ? false : 'Invalid Email')}
                     />
                     <br />
                     <CourseSelect
-                        department={this.state.fields.department}
-                        course={this.state.fields.course}
+                        department={this.state.person.department}
+                        course={this.state.person.course}
                         onChange={this.onInputChange}
                     />
                     <br />

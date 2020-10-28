@@ -91,7 +91,7 @@ export class CourseSelect extends React.Component {
                 this.state.courses.length ?
                     <select value={this.props.course ? this.props.course : ''} onChange={this.onSelectCourse} >
                         {this.state.courses.map((option) => (
-                            <option key={option.title} value={option.createdAt}>{option.title}</option>
+                            <option key={option._id} value={option.createdAt}>{option.title}</option>
                         ))}
                     </select>
                     : ''}
