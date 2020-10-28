@@ -1,6 +1,5 @@
 import React from 'react';
 import './slider.scss'
-import classNames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
 
 const styles = theme => ({
