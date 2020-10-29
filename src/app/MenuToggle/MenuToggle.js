@@ -17,18 +17,15 @@ import Popper from '@material-ui/core/Popper';
 import MenuItem from '@material-ui/core/MenuItem';
 import MenuList from '@material-ui/core/MenuList';
 
-
 class MenuToggle extends React.Component {
     constructor(props) {
         super(props);
         this.anchorRef = React.createRef();
         this.state = { open: false };
     }
-
+ 
     handleToggle = () => {
-        this.setState(() => ({
-            open: !this.state.open
-        }));
+        this.setState({open:  !this.state.open });
     }
 
     onValidateLink = (event) => {
@@ -41,7 +38,7 @@ class MenuToggle extends React.Component {
         if (this.anchorRef.current && this.anchorRef.current.contains(event.target)) {
             return;
         }
-        this.setState({ open: false });
+       this.setState({ open: false });
     }
     getArrowIcon = (size, classes) => {
         if (size) {
@@ -115,7 +112,7 @@ class MenuToggle extends React.Component {
                                             {this.props.menu.items.map((subItem, subIndex) => (
                                                 <MenuItem key={subItem.text} onClick={this.handleClose}>
                                                     <NavLink className={classes.menuLink} to={subItem.url}>
-                                                        {subItem.text}
+                                                        {subItem.text} ({this.state.open})
                                                     </NavLink>
                                                 </MenuItem>
                                             ))}

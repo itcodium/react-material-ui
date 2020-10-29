@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 
 import Adapter from 'enzyme-adapter-react-16';
 import { configure } from 'enzyme';
-import { shallow, mount, render } from 'enzyme';
+import { shallow } from 'enzyme';
 import List from './List';
 configure({ adapter: new Adapter() });
 
@@ -38,5 +38,26 @@ describe('<List/>', () => {
         expect(
             wrapper.containsMatchingElement(<input />)
         ).toBe(true);
+    });
+
+    describe('the user populates the input', () => {
+        const item = 'Vancouver';
+        beforeEach(() => {
+            const input = wrapper.find('input').first();
+            input.simulate('change', {
+                target: { value: item }
+            })
+        })
+        it('should update the state property `item`', () => {
+            expect(
+                wrapper.state().item
+            ).toEqual(item);
+        });
+        it('should enable `button`', () => {
+            const button = wrapper.find('button').first();
+            expect(
+                button.props().disabled
+            ).toBe(false);
+        });
     });
 });

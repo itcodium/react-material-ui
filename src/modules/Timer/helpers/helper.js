@@ -39,10 +39,11 @@ function pad(numberString, size) {
     while (padded.length < size) padded = '0' + padded;
     return padded;
 }
- 
-export default {
+const helper={
     millisecondsToHuman: millisecondsToHuman,
     newTimer: newTimer,
     findById: findById,
     renderElapsedString: renderElapsedString
 };
+ 
+export default helper;

@@ -1,2 +1,0 @@
-const ChatHeader = (props, context) => {
-};

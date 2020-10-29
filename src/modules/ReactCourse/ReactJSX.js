@@ -12,7 +12,7 @@ import Container from '@material-ui/core/Container';
 import PropTypesComponent from './PropTypes/PropTypesComponent';
 import Switch from './Switch/Switch'
 import WelcomeDialog from './ChildrenComponent/WelcomeDialog'
-
+import List from './TestUnit/List/List'
 
 class ReactJSX extends React.Component {
     constructor(props) {
@@ -40,6 +40,7 @@ class ReactJSX extends React.Component {
         return (
             <div className={classes.root}>
                 <Container component="main">
+                    <List></List>
                     <WelcomeDialog title={"TEST 0001"}></WelcomeDialog>
                     <Typography className={classes.title} variant="h2" component="h4">Components</Typography>
 

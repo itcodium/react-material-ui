@@ -22,7 +22,7 @@ class Rubro extends React.Component {
     render () {
         const { classes } = this.props;
         return (
-            <Card className={ classNames(classes.card, classes.noMargin) } >
+            <Card>
                 <CardActionArea>
                     <CardMedia
                         component="img"
