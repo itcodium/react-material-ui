@@ -14,41 +14,51 @@ import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 import Grow from '@material-ui/core/Grow';
 import Paper from '@material-ui/core/Paper';
 import Popper from '@material-ui/core/Popper';
+import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import MenuList from '@material-ui/core/MenuList';
 
 class MenuToggle extends React.Component {
     constructor(props) {
         super(props);
-        this.anchorRef = React.createRef();
-        this.state = { open: false };
-    }
- 
-    handleToggle = () => {
-        this.setState({open:  !this.state.open });
-    }
 
-    onValidateLink = (event) => {
-        if (event.target.getAttribute('value') !== "0") {
-            event.preventDefault();
-        }
     }
-
-    handleClose = (event) => {
-        if (this.anchorRef.current && this.anchorRef.current.contains(event.target)) {
+    state = {
+        anchorEl: React.createRef(null),
+        open: false
+    }
+    clickAway = (event) => {
+        if (this.state.anchorEl.contains(event.target)) {
             return;
         }
-       this.setState({ open: false });
+        this.setState({ open: false });
+    }
+    handleClick = (event) => {
+        this.setState({ open: !this.state.open, anchorEl: event.currentTarget });
+    }
+    handleListKeyDown = (event) => {
+        if (event.key === 'Tab') {
+            event.preventDefault();
+            this.handleClose();
+        }
+    }
+    handleClose = (event) => {
+        this.setState({ open: false, anchorEl: null });
     }
     getArrowIcon = (size, classes) => {
         if (size) {
             return <ArrowForwardIosIcon className={classes.arrowIcon} ></ArrowForwardIosIcon>;
         }
     }
-
-    getIconMenu = (props, classes) => {
-        if (props.menu.icon) {
-            if (props.menu.items.length <= 1) {
+    getMenu = (props, classes) => {
+        if (props.menu.items.length) {
+            return <Button className={classes.menuButton} aria-controls={this.state.open ? 'menu-list-grow' : undefined}
+                aria-haspopup="true" onClick={this.handleClick}>
+                {this.getArrowIcon(props.menu.items.length, classes)}
+                {props.menu.text}
+            </Button>
+        } else {
+            if (props.menu.icon) {
                 return <NavLink className={classes.menuLink} to={props.menu.url}>
                     <IconButton
                         className={classes.menuLink}
@@ -56,33 +66,6 @@ class MenuToggle extends React.Component {
                         <AccountCircle />
                     </IconButton>
                 </NavLink>
-            } else {
-                return <IconButton
-                    className={classes.menuLink}
-                    buttonRef={node => {
-                        this.anchorEl = node;
-                    }}
-
-                    onClick={this.handleToggle}
-                    aria-haspopup="true"
-                >
-                    <AccountCircle />
-
-                </IconButton>
-            }
-        } else {
-            if (props.menu.items.length) {
-                return <Button
-                    buttonRef={node => {
-                        this.anchorEl = node;
-                    }}
-                    onClick={this.handleToggle}
-                    className={classes.menuButton}
-                    aria-haspopup="true"
-                >
-                    {this.getArrowIcon(props.menu.items.length, classes)}
-                    {props.menu.text}
-                </Button>
             } else {
                 return <MenuItem key={props.menu.text}>
                     <NavLink className={classes.menuLink} to={props.menu.url}>
@@ -97,32 +80,33 @@ class MenuToggle extends React.Component {
         return (
             <Toolbar className={classes.toolbarSecondary} >
                 <div>
-                    {
-                        this.getIconMenu(this.props, classes)
+                    {this.getMenu(this.props, classes)
                     }
-                    <Popper open={this.state.open} anchorEl={this.anchorEl} transition disablePortal>
+                    <Popper open={this.state.open} anchorEl={this.state.anchorEl} role={undefined} transition disablePortal>
                         {({ TransitionProps, placement }) => (
                             <Grow
                                 {...TransitionProps}
                                 style={{ transformOrigin: placement === 'bottom' ? 'center top' : 'center bottom' }}
                             >
                                 <Paper>
-                                    <ClickAwayListener onClickAway={this.handleClose}>
-                                        <MenuList>
+                                    <ClickAwayListener onClickAway={this.clickAway}>
+                                        <MenuList autoFocusItem={this.state.open} id="menu-list-grow" onKeyDown={this.handleListKeyDown}>
                                             {this.props.menu.items.map((subItem, subIndex) => (
                                                 <MenuItem key={subItem.text} onClick={this.handleClose}>
                                                     <NavLink className={classes.menuLink} to={subItem.url}>
-                                                        {subItem.text} ({this.state.open})
+                                                        {subItem.text}
                                                     </NavLink>
                                                 </MenuItem>
                                             ))}
                                         </MenuList>
+
                                     </ClickAwayListener>
                                 </Paper>
                             </Grow>
                         )}
                     </Popper>
-                </div>
+
+                </div >
             </Toolbar>
         );
     }
@@ -132,3 +116,5 @@ MenuToggle.propTypes = {
 };
 
 export default withStyles(styles)(MenuToggle);
+
+
