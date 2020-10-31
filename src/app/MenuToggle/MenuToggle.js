@@ -14,15 +14,10 @@ import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 import Grow from '@material-ui/core/Grow';
 import Paper from '@material-ui/core/Paper';
 import Popper from '@material-ui/core/Popper';
-import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import MenuList from '@material-ui/core/MenuList';
 
 class MenuToggle extends React.Component {
-    constructor(props) {
-        super(props);
-
-    }
     state = {
         anchorEl: React.createRef(null),
         open: false

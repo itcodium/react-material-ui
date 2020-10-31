@@ -9,26 +9,26 @@ import { withStyles } from '@material-ui/core/styles';
 import styles from './SideBarMenu.style';
 
 class SideBarMenu extends React.Component {
-    render () {
+    render() {
         const { classes } = this.props;
         return (
 
-            <div className={ classes.fullList }>
+            <div className={classes.fullList}>
                 <List >
                     <ListItem>
-                        <NavLink className={ classes.menuLink } to={ this.props.menu.url }>
-                            <Typography className={ classes.menuSubLinkText } > { this.props.menu.text }</Typography>
+                        <NavLink className={classes.menuLink} to={this.props.menu.url}>
+                            <Typography className={classes.menuSubLinkText} > {this.props.menu.text}</Typography>
                         </NavLink>
                     </ListItem>
                 </List>
-                <List className={ classes.fullList }>{
+                <List className={classes.fullList}>{
                     this.props.menu.items.map((sub, indexSub) => (
-                        <ListItem key={ indexSub }>
-                            <NavLink className={ classes.menuSubLink } to={ sub.url }>
-                                <Typography className={ classes.menuSubLinkText } >{ sub.text }</Typography>
+                        <ListItem key={indexSub}>
+                            <NavLink className={classes.menuSubLink} to={sub.url}>
+                                <Typography className={classes.menuSubLinkText} >{sub.text}</Typography>
                             </NavLink>
                         </ListItem>
-                    )) }
+                    ))}
                 </List>
             </div>
 

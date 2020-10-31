@@ -7,66 +7,73 @@ import withWidth from '@material-ui/core/withWidth';
 import Grid from '@material-ui/core/Grid';
 import { SnackbarProvider, withSnackbar } from 'notistack';
 import compose from 'recompose/compose';
-
 import { Route, HashRouter } from "react-router-dom";
 import styles from './styles/styles';
-
 import Header from './app/Header/Header'
 import Footer from './app/Footer/Footer'
-
 import Index from './components/pages/home/index'
 import ProductList from './components/pages/products/ProductList'
 import Contacto from './components/pages/contacto'
-
-import Login from './components/pages/Login/Login'
 import CivilPDF from './components/pages/rubros.pdf/civil'
-
 import TimersDashboard from './modules/Timer/TimersDashboard'
 import ReactJSX from './modules/ReactCourse/ReactJSX'
 import Forms from './modules/ReactCourse/Forms/Forms'
+import PrivateRoute from './Services/PrivateRoute';
+import Login from './components/pages/Login/Login'
+import Oceans from './modules/ReactCourse/Routes/Oceans'
+import OceanDetail from './modules/ReactCourse/Routes/OceanDetail'
 
 class App extends Component {
-  render () {
+
+  render() {
     const { classes } = this.props;
     return (
-      <HashRouter>
+      <HashRouter >
         <div>
-          <header className={ classes.container }>
+          <header className={classes.container}>
             <Header></Header>
           </header>
-          <main className={ classes.layout }>
-
+          <main className={classes.layout}>
             <Grid container>
-            <Grid item xs={ 12 } md={ 12 }>
-                <Route key="1" exact path="/" component={ Index } />
-                <Route key="10" path="/index" component={ Index } />
+              <Grid item xs={12} md={12}>
+                <Route key="1" exact path="/" component={Index} />
+                <Route key="10" path="/index" component={Index} />
               </Grid>
-              <Grid item xs={ 12 } md={ 12 } >
-                <div className={ classes.container } >
-                  <Route key="20" path="/ReactJSX" component={ ReactJSX } />
-                  <Route key="30" path="/Forms" component={ Forms } />
-                  <Route key="40" path="/ProductList" component={ ProductList } />
-                  <Route key="50" path="/Contacto" component={ Contacto } />
-                  <Route key="60" path="/products/Civil" component={ CivilPDF } />
-                  <Route key="70" path="/Login" component={ Login } />
-                  <Route key="80" path="/TimeLogging" component={ TimersDashboard } />
+              <Grid item xs={12} md={12} >
+                <div className={classes.container} >
+                  <Route key="20" path="/ReactJSX" component={ReactJSX} />
+                  <Route key="30" path="/Forms" component={Forms} />
+                  <Route key="40" path="/ProductList" component={ProductList} />
+                  <Route key="50" path="/Contacto" component={Contacto} />
+                  <Route key="60" path="/products/Civil" component={CivilPDF} />
+                  <Route key="80" path="/TimeLogging" component={TimersDashboard} />
+                  <Route key="70" path="/Login" component={Login} />
+                  <PrivateRoute key="90" path="/oceans" component={Oceans} />
+                  <Route
+                    key="100"
+                    path='/oceans/:name'
+                    render={({ match }) => {
+                      return (
+                        <OceanDetail name={match.params.name} />
+                      )
+                    }}
+                  />
                 </div>
               </Grid>
             </Grid>
+
           </main>
-          <footer className={ classes.container }>
+          <footer className={classes.container}>
             <Footer></Footer>
           </footer>
         </div>
-      </HashRouter >
+      </HashRouter>
     );
   }
 }
 
 /*
-  
-
-
+ 
 
   Agregar Galeria:
   https://codepen.io/suez/pen/OjGQza
@@ -98,9 +105,9 @@ const MyApp = withSnackbar(compose(
 )(App));
 
 
-function IntegrationNotistack () {
+function IntegrationNotistack() {
   return (
-    <SnackbarProvider maxSnack={ 3 }>
+    <SnackbarProvider maxSnack={3}>
       <MyApp />
     </SnackbarProvider>
   );
