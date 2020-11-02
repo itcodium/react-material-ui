@@ -48,6 +48,10 @@ const AplicationText =
                 text: "Forms",
                 url: "/Forms",
                 items: []
+            }, {
+                text: "Redux",
+                url: "/Redux",
+                items: []
             }]
         },
         {

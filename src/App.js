@@ -22,6 +22,7 @@ import PrivateRoute from './Services/PrivateRoute';
 import Login from './components/pages/Login/Login'
 import Oceans from './modules/ReactCourse/Routes/Oceans'
 import OceanDetail from './modules/ReactCourse/Routes/OceanDetail'
+import MainCounter from './modules/ReactCourse/Redux/Counter/MainCounter'
 
 class App extends Component {
 
@@ -48,6 +49,7 @@ class App extends Component {
                   <Route key="60" path="/products/Civil" component={CivilPDF} />
                   <Route key="80" path="/TimeLogging" component={TimersDashboard} />
                   <Route key="70" path="/Login" component={Login} />
+                  <Route key="70" path="/Redux" component={MainCounter} />
                   <PrivateRoute key="90" path="/oceans" component={Oceans} />
                   <Route
                     key="100"
