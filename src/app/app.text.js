@@ -37,10 +37,10 @@ const AplicationText =
             url: "/Contacto",
             items: []
         }, {
-            text: "ReactJSX",
+            text: "React Course",
             url: "",
             items: [{
-                text: "ReactJSX",
+                text: "JSX",
                 url: "/ReactJSX",
                 items: []
             },

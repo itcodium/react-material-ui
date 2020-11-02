@@ -6,27 +6,29 @@ import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import styles from './Counter.style.js';
-import { increaseCount, decreaseCount } from '../Actions/Counter'
+import { increment, decrement } from '../Actions/Counter'
 
 class Counter extends Component {
+
     static mapStateToProps = state => {
         return {
-            count: state.count
+            count: state.count,
+            amount: state.amount
         }
     };
     static mapDispatchToProps = dispatch => {
-        return bindActionCreators({ increaseCount, decreaseCount }, dispatch)
+        return bindActionCreators({ increment, decrement }, dispatch)
     }
     render() {
         const { classes } = this.props;
-        const { increaseCount, decreaseCount } = this.props
+        const { increment, decrement } = this.props;
         return (
             <div>
-                <Button variant="contained" onClick={decreaseCount}>-</Button>
+                <Button variant="contained" onClick={decrement}>-</Button>
                 <Typography className={classes.label} variant="h6" display="inline">
                     {this.props.count}
                 </Typography>
-                <Button variant="contained" onClick={increaseCount} >+</Button>
+                <Button variant="contained" onClick={increment} >+</Button>
             </div>)
     }
 }

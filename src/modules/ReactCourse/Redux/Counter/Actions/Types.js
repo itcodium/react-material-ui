@@ -1,5 +1,5 @@
 const CounterTypes = {
-    INCREASE_COUNT: 'INCREASE_COUNT',
-    DECREASE_COUNT: 'DECREASE_COUNT'
+    INCREMENT: 'INCREMENT',
+    DECREMENT: 'DECREMENT'
 }
 export default CounterTypes; 

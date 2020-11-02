@@ -1,8 +1,8 @@
 import ActionTypes from './Types'
 
-export const increaseCount = () => ({
-    type: ActionTypes.INCREASE_COUNT
+export const increment = () => ({
+    type: ActionTypes.INCREMENT
 })
-export const decreaseCount = () => ({
-    type: ActionTypes.DECREASE_COUNT
+export const decrement = () => ({
+    type: ActionTypes.DECREMENT
 })

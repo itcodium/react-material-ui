@@ -1,16 +1,15 @@
 import ActionTypes from '../Actions/Types'
 
-const initialState = { count: 0 }
+const initialState = { count: 0 };
 
-export default function counterReducer(
-    state = initialState,
-    action
-) {
+let counterReducer = function (state = initialState, action) {
     switch (action.type) {
-        case ActionTypes.INCREASE_COUNT:
-            return { count: state.count + 1 }
-        case ActionTypes.DECREASE_COUNT:
-            return { count: state.count - 1 }
+        case ActionTypes.INCREMENT:
+            return { count: state.count + (action.amount ? action.amount : 1) }
+        case ActionTypes.DECREMENT:
+            return { count: state.count - (action.amount ? action.amount : 1) }
         default: return state
     }
 }
+
+export default counterReducer;
