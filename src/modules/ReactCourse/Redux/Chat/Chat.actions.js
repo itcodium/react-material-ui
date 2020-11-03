@@ -6,3 +6,7 @@ export const addMessage = () => ({
 export const deleteMessage = () => ({
     type: ChatTypes.DELETE_MESSAGE
 })
+export const openThread = () => ({
+    type: ChatTypes.OPEN_THREAD
+})
+

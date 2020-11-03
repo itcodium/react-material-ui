@@ -18,11 +18,10 @@ class MessageInput extends Component {
         })
     };
     handleSubmit = () => {
-
-        console.log("this.state.value", this.state.value)
         window.store.dispatch({
             type: 'ADD_MESSAGE',
-            message: this.state.value,
+            text: this.state.value,
+            threadId: this.props.threadId,
         });
         this.setState({ value: '' });
     };
