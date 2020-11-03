@@ -3,8 +3,7 @@ import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 import Counter from './Counter/Counter/Counter'
 import counterReducer from './Counter/reducers/Counter'
-import chatReducer from './Chat/Chat.reducer'
-import chatCreateStore from './Chat/Chat.store'
+import Chat from './Chat/components/Chat'
 
 // Counter 
 const store = createStore(counterReducer);
@@ -23,7 +22,7 @@ class Redux extends React.Component {
                     <Counter />
                 </Provider>
                 <br></br>
-
+                <Chat></Chat>
             </div>
         );
     }
