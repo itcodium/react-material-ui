@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Container from '@material-ui/core/Container';
+
 import uuid from 'uuid'
 import Thread from './Thread';
 import ThreadTabs from './ThreadTabs';
@@ -44,13 +44,15 @@ class Chat extends Component {
             {
                 title: t.title,
                 active: t.id === activeThreadId,
+                id: t.id,
             }
         ));
         return (
-            <Container component="main" maxWidth="xs">
+            <div>
                 <ThreadTabs tabs={tabs} />
+                <br></br>
                 <Thread thread={activeThread} />
-            </Container>
+            </div>
         )
     }
 }

@@ -41,6 +41,8 @@ class ThreadTabs extends Component {
         value: 0
     }
     handleClick = (index, id) => {
+        console.log("index, id", index, id)
+
         this.setState({
             value: index,
         })
@@ -53,7 +55,7 @@ class ThreadTabs extends Component {
         window.store.subscribe(() => this.forceUpdate());
     }
     render() {
-        const { children, value, index } = this.props;
+        //const { children, value, index } = this.props;
         /*active={tab.active ? 'active' : ''}   */
         const tabs = this.props.tabs.map((tab, index) => (
             <Tab key={index} label={tab.title} onClick={() => this.handleClick(index, tab.id)}  {...a11yProps(index)} />
