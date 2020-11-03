@@ -1,41 +1,6 @@
 import React, { Component } from 'react'
 import Paper from '@material-ui/core/Paper';
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
-import Typography from '@material-ui/core/Typography';
-import Box from '@material-ui/core/Box';
-import PropTypes from 'prop-types';
-
-function TabPanel(props) {
-    const { children, value, index, ...other } = props;
-    return (
-        <div
-            role="tabpanel"
-            hidden={value !== index}
-            id={`simple-tabpanel-${index}`}
-            aria-labelledby={`simple-tab-${index}`}
-            {...other}
-        >
-            {value === index && (
-                <Box p={3}>
-                    <Typography>{children}</Typography>
-                </Box>
-            )}
-        </div>
-    );
-}
-TabPanel.propTypes = {
-    children: PropTypes.node,
-    index: PropTypes.any.isRequired,
-    value: PropTypes.any.isRequired,
-};
-function a11yProps(index) {
-    return {
-        id: `simple-tab-${index}`,
-        'aria-controls': `simple-tabpanel-${index}`,
-    };
-}
-
+import TabsAtom from './TabsAtom'
 class ThreadTabs extends Component {
     state = {
         value: 0
@@ -53,17 +18,21 @@ class ThreadTabs extends Component {
         window.store.subscribe(() => this.forceUpdate());
     }
     render() {
-        let tabs = []
-        if (this.props.tabs) {
-            tabs = this.props.tabs.map((tab, index) => (
-                <Tab key={index} label={tab.title} onClick={() => this.handleClick(index, tab.id)}  {...a11yProps(index)} />
-            ));
-        }
+        const state = window.store.getState();
+        const tabs = state.threads.map(t => (
+            {
+                title: t.title,
+                active: t.id === state.activeThreadId,
+                id: t.id,
+            }
+        ));
         return (
             <Paper square>
-                <Tabs value={this.state.value} aria-label="simple tabs example">
-                    {tabs}
-                </Tabs>
+                <TabsAtom
+                    value={this.state.value}
+                    tabs={tabs}
+                    onClick={this.handleClick}
+                ></TabsAtom>
             </Paper>
         )
     }

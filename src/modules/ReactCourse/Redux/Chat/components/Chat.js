@@ -41,28 +41,11 @@ class Chat extends Component {
         window.store.subscribe(() => this.forceUpdate());
     }
     render() {
-        const state = window.store.getState();
-        let tabs = null;
-        let activeThread = null;
-        let threads = null;
-        let activeThreadId = null;
-        if (state) {
-            activeThreadId = state.activeThreadId;
-            threads = state.threads;
-            activeThread = threads.find((t) => t.id === activeThreadId);
-            tabs = threads.map(t => (
-                {
-                    title: t.title,
-                    active: t.id === activeThreadId,
-                    id: t.id,
-                }
-            ));
-        }
         return (
             <div>
-                <ThreadTabs tabs={tabs} />
+                <ThreadTabs />
                 <br></br>
-                <Thread thread={activeThread} />
+                <Thread />
             </div>
         )
     }
