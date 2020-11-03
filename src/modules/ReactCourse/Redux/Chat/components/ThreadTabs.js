@@ -41,8 +41,6 @@ class ThreadTabs extends Component {
         value: 0
     }
     handleClick = (index, id) => {
-        console.log("index, id", index, id)
-
         this.setState({
             value: index,
         })
