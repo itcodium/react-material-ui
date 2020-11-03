@@ -1,6 +1,6 @@
 import ChatTypes from './Chat.types'
 import uuid from 'uuid'
-function chatReducer(state = {}, action) {
+function chatReducer(state = { threads: [] }, action) {
     return {
         activeThreadId: activeThreadIdReducer(state.activeThreadId, action),
         threads: threadsReducer(state.threads, action),
@@ -14,10 +14,8 @@ function activeThreadIdReducer(state, action) {
     }
 }
 
-messagesReducer(oldThread.messages, action){
 
-}
-function messagesReducer(state, action) {
+function messagesReducer(state = [], action) {
     switch (action.type) {
         case 'ADD_MESSAGE': {
             const newMessage = {
@@ -49,10 +47,13 @@ function findThreadIndex(threads, action) {
                 ))
             );
         }
+        default: {
+            return threads;
+        }
     }
 }
 
-function threadsReducer(state, action) {
+function threadsReducer(state = [], action) {
     switch (action.type) {
         case ChatTypes.ADD_MESSAGE: {
             const threadIndex = state.findIndex(

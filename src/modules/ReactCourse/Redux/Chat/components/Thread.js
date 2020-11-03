@@ -25,20 +25,25 @@ class Thread extends Component {
     }
     render() {
         const { classes } = this.props;
-        const messages = this.props.thread.messages.map((message, index) => (
-            <ListItem key={index} className={classes.listItem} alignItems="flex-start">
-                <ListItemText primary={message.text}
-                    secondary={message.timestamp} />
-                <ListItemSecondaryAction >
-                    <IconButton edge="end" aria-label="add" size="small" onClick={() => this.handleClick(message.id)} >
-                        <DeleteIcon fontSize="inherit" />
-                    </IconButton>
-                </ListItemSecondaryAction>
-            </ListItem>
-        ));
+        let messages = [];
+        let id = null;
+        if (this.props.thread) {
+            id = this.props.thread.id;
+            messages = this.props.thread.messages.map((message, index) => (
+                <ListItem key={index} className={classes.listItem} alignItems="flex-start">
+                    <ListItemText primary={message.text}
+                        secondary={message.timestamp} />
+                    <ListItemSecondaryAction >
+                        <IconButton edge="end" aria-label="add" size="small" onClick={() => this.handleClick(message.id)} >
+                            <DeleteIcon fontSize="inherit" />
+                        </IconButton>
+                    </ListItemSecondaryAction>
+                </ListItem>
+            ));
+        }
         return (
             <Container component="main" maxWidth="sm">
-                <MessageInput threadId={this.props.thread.id} />
+                <MessageInput threadId={id} />
                 <List>
                     {messages}
                 </List>

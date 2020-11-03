@@ -19,6 +19,11 @@ const initialState = {
                     timestamp: Date.now(),
                     id: uuid.v4(),
                 },
+                {
+                    text: 'One minutes to ignition.',
+                    timestamp: Date.now(),
+                    id: uuid.v4(),
+                },
             ],
         },
         {
@@ -28,8 +33,7 @@ const initialState = {
         },
     ],
 };
-window.store = chatCreateStore(chatReducer);
-
+window.store = chatCreateStore(chatReducer, initialState);
 
 class Chat extends Component {
 
@@ -37,18 +41,23 @@ class Chat extends Component {
         window.store.subscribe(() => this.forceUpdate());
     }
     render() {
-        //const messages = window.store.getState().messages;
         const state = window.store.getState();
-        const activeThreadId = state.activeThreadId;
-        const threads = state.threads;
-        const activeThread = threads.find((t) => t.id === activeThreadId);
-        const tabs = threads.map(t => (
-            {
-                title: t.title,
-                active: t.id === activeThreadId,
-                id: t.id,
-            }
-        ));
+        let tabs = null;
+        let activeThread = null;
+        let threads = null;
+        let activeThreadId = null;
+        if (state) {
+            activeThreadId = state.activeThreadId;
+            threads = state.threads;
+            activeThread = threads.find((t) => t.id === activeThreadId);
+            tabs = threads.map(t => (
+                {
+                    title: t.title,
+                    active: t.id === activeThreadId,
+                    id: t.id,
+                }
+            ));
+        }
         return (
             <div>
                 <ThreadTabs tabs={tabs} />

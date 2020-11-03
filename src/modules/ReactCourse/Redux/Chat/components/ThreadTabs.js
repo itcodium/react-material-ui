@@ -55,11 +55,12 @@ class ThreadTabs extends Component {
         window.store.subscribe(() => this.forceUpdate());
     }
     render() {
-        //const { children, value, index } = this.props;
-        /*active={tab.active ? 'active' : ''}   */
-        const tabs = this.props.tabs.map((tab, index) => (
-            <Tab key={index} label={tab.title} onClick={() => this.handleClick(index, tab.id)}  {...a11yProps(index)} />
-        ));
+        let tabs = []
+        if (this.props.tabs) {
+            tabs = this.props.tabs.map((tab, index) => (
+                <Tab key={index} label={tab.title} onClick={() => this.handleClick(index, tab.id)}  {...a11yProps(index)} />
+            ));
+        }
         return (
             <Paper square>
                 <Tabs value={this.state.value} aria-label="simple tabs example">
