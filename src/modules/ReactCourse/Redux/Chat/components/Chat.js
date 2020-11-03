@@ -6,7 +6,7 @@ import ThreadTabs from './ThreadTabs';
 
 import chatReducer from '../Chat.reducer'
 import chatCreateStore from '../Chat.store'
-
+/*
 const initialState = {
     activeThreadId: '1-fca2',
     threads: [
@@ -34,12 +34,12 @@ const initialState = {
     ],
 };
 window.store = chatCreateStore(chatReducer, initialState);
-
+*/
 class Chat extends Component {
-
-    componentDidMount() {
-        window.store.subscribe(() => this.forceUpdate());
-    }
+    /*
+        componentDidMount() {
+            window.store.subscribe(() => this.forceUpdate());
+        }*/
     render() {
         return (
             <div>
