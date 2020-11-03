@@ -28,7 +28,9 @@ const initialState = {
         },
     ],
 };
-window.store = chatCreateStore(chatReducer, initialState);
+window.store = chatCreateStore(chatReducer);
+
+
 class Chat extends Component {
 
     componentDidMount() {

@@ -1,6 +1,6 @@
 import ChatTypes from './Chat.types'
 import uuid from 'uuid'
-function chatReducer(state, action) {
+function chatReducer(state = {}, action) {
     return {
         activeThreadId: activeThreadIdReducer(state.activeThreadId, action),
         threads: threadsReducer(state.threads, action),
@@ -13,21 +13,55 @@ function activeThreadIdReducer(state, action) {
         return state;
     }
 }
-function threadsReducer(state, action) {
+
+messagesReducer(oldThread.messages, action){
+
+}
+function messagesReducer(state, action) {
     switch (action.type) {
-        case ChatTypes.ADD_MESSAGE: {
+        case 'ADD_MESSAGE': {
             const newMessage = {
                 text: action.text,
                 timestamp: Date.now(),
                 id: uuid.v4(),
             };
+            return state.concat(newMessage);
+        }
+        case 'DELETE_MESSAGE': {
+            return state.filter(m => m.id !== action.id);
+        }
+        default: {
+            return state;
+        }
+    }
+}
+function findThreadIndex(threads, action) {
+    switch (action.type) {
+        case 'ADD_MESSAGE': {
+            return threads.findIndex(
+                (t) => t.id === action.threadId
+            );
+        }
+        case 'DELETE_MESSAGE': {
+            return threads.findIndex(
+                (t) => t.messages.find((m) => (
+                    m.id === action.id
+                ))
+            );
+        }
+    }
+}
+
+function threadsReducer(state, action) {
+    switch (action.type) {
+        case ChatTypes.ADD_MESSAGE: {
             const threadIndex = state.findIndex(
                 (t) => t.id === action.threadId
             );
             const oldThread = state[threadIndex];
             const newThread = {
                 ...oldThread,
-                messages: oldThread.messages.concat(newMessage),
+                messages: messagesReducer(oldThread.messages, action),
             };
             return [
                 ...state.slice(0, threadIndex),
@@ -39,17 +73,11 @@ function threadsReducer(state, action) {
         }
         case ChatTypes.DELETE_MESSAGE:
             {
-                const threadIndex = state.findIndex(
-                    (t) => t.messages.find((m) => (
-                        m.id === action.id
-                    ))
-                );
+                const threadIndex = findThreadIndex(state, action);
                 const oldThread = state[threadIndex];
                 const newThread = {
                     ...oldThread,
-                    messages: oldThread.messages.filter((m) => (
-                        m.id !== action.id
-                    )),
+                    messages: messagesReducer(oldThread.messages, action),
                 };
                 return [
                     ...state.slice(0, threadIndex),
