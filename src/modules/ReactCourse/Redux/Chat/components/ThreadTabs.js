@@ -1,14 +1,17 @@
 import React, { Component } from 'react'
 import Paper from '@material-ui/core/Paper';
 import TabsAtom from './TabsAtom'
+
+import chatReducer from '../Chat.reducer'
+import chatCreateStore from '../Chat.store'
+
+window.store = chatCreateStore(chatReducer);
+
 class ThreadTabs extends Component {
     state = {
         value: 0
     }
-    handleClick = (index, id) => {
-        this.setState({
-            value: index,
-        })
+    handleClick = (id) => {
         window.store.dispatch({
             type: 'OPEN_THREAD',
             id: id,
@@ -29,9 +32,14 @@ class ThreadTabs extends Component {
         return (
             <Paper square>
                 <TabsAtom
-                    value={this.state.value}
+                    id={this.state.value}
                     tabs={tabs}
-                    onClick={this.handleClick}
+                    onClick={(id, index) => {
+                        this.handleClick(id);
+                        this.setState({
+                            value: index
+                        })
+                    }}
                 ></TabsAtom>
             </Paper>
         )

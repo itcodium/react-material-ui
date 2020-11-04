@@ -1,6 +1,6 @@
 import ChatTypes from './Chat.types'
 import uuid from 'uuid'
-function chatReducer(state = { threads: [] }, action) {
+function chatReducer(state, action) {
     return {
         activeThreadId: activeThreadIdReducer(state.activeThreadId, action),
         threads: threadsReducer(state.threads, action),
@@ -13,7 +13,6 @@ function activeThreadIdReducer(state, action) {
         return state;
     }
 }
-
 
 function messagesReducer(state = [], action) {
     switch (action.type) {

@@ -1,18 +1,11 @@
 import React, { Component } from 'react'
 import Container from '@material-ui/core/Container';
-
-import MessageInput from './MessageInput';
+import TextFieldSubmit from './TextFieldSubmit';
 import MessageListAtom from './MessageListAtom';
 class Thread extends Component {
     state = {
         value: null
     }
-    handleClick = (index) => {
-        window.store.dispatch({
-            type: 'DELETE_MESSAGE',
-            id: index,
-        });
-    };
     componentDidMount() {
         window.store.subscribe(() => this.forceUpdate());
     }
@@ -24,10 +17,10 @@ class Thread extends Component {
         );
         return (
             <Container component="main" maxWidth="sm">
-                <MessageInput threadId={activeThreadId} />
+                <TextFieldSubmit onSubmit={this.props.onMessageSubmit} threadId={activeThreadId} />
                 <MessageListAtom
                     messages={activeThread.messages}
-                    onClick={this.handleClick}>
+                    onClick={this.props.onMessageClick}>
                 </MessageListAtom>
             </Container>
         )
