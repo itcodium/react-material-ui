@@ -8,7 +8,6 @@ import counterReducer from './Counter/reducers/Counter'
 import Chat from './Chat/components/Chat'
 
 import storeChat from './Chat/Chat.store'
-import storeChat2 from './Chat/Chat.store'
 
 const store = createStore(counterReducer);
 const store2 = createStore(counterReducer)
@@ -23,10 +22,7 @@ class Redux extends React.Component {
                 <Provider store={storeChat}>
                     <Chat></Chat>
                 </Provider>
-                <br></br>
-                <Provider store={storeChat2}>
-                    <Chat></Chat>
-                </Provider>
+
                 <br></br>
                 <Typography variant="h4" component="h4">Contador</Typography>
                 <br></br>

@@ -10,14 +10,15 @@ class ThreadTabs extends Component {
         value: 0
     }
     render() {
+        const { openThread, tabs } = this.props;
         return (
             <Paper square>
                 <TabsAtom
                     id={this.state.value}
-                    tabs={this.props.tabs}
+                    tabs={tabs}
                     onClick={(id, index) => {
                         this.setState({ value: index });
-                        this.props.openThread(id);
+                        openThread(id);
                     }}
                 ></TabsAtom>
             </Paper>

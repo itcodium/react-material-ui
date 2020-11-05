@@ -1,7 +1,8 @@
 import ChatTypes from './Chat.types'
 import uuid from 'uuid'
 
-const defaultState = {
+
+function chatReducer(state = {
     activeThreadId: -1,
     threads: [
         {
@@ -15,8 +16,7 @@ const defaultState = {
             messages: [],
         },
     ],
-};
-function chatReducer(state = defaultState, action) {
+}, action) {
     return {
         activeThreadId: activeThreadIdReducer(state.activeThreadId, action),
         threads: threadsReducer(state.threads, action),
