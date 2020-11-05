@@ -1,12 +1,16 @@
 import ChatTypes from './Chat.types'
 
-export const addMessage = () => ({
-    type: ChatTypes.ADD_MESSAGE
+export const addMessage = (text, activeThreadId) => ({
+    type: ChatTypes.ADD_MESSAGE,
+    text: text,
+    threadId: activeThreadId,
 })
-export const deleteMessage = () => ({
-    type: ChatTypes.DELETE_MESSAGE
+export const deleteMessage = (id) => ({
+    type: ChatTypes.DELETE_MESSAGE,
+    id: id
 })
-export const openThread = () => ({
-    type: ChatTypes.OPEN_THREAD
+export const openThread = (id) => ({
+    type: ChatTypes.OPEN_THREAD,
+    id: id
 })
 

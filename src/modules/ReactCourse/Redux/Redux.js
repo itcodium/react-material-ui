@@ -7,7 +7,9 @@ import Counter from './Counter/Counter/Counter'
 import counterReducer from './Counter/reducers/Counter'
 import Chat from './Chat/components/Chat'
 
-// Counter 
+import storeChat from './Chat/Chat.store'
+import storeChat2 from './Chat/Chat.store'
+
 const store = createStore(counterReducer);
 const store2 = createStore(counterReducer)
 store2.dispatch({ type: 'INCREMENT', amount: 7 });
@@ -18,7 +20,13 @@ class Redux extends React.Component {
             <Container component="main" maxWidth="sm">
                 <Typography variant="h4" component="h4">Chat</Typography>
                 <br></br>
-                <Chat></Chat>
+                <Provider store={storeChat}>
+                    <Chat></Chat>
+                </Provider>
+                <br></br>
+                <Provider store={storeChat2}>
+                    <Chat></Chat>
+                </Provider>
                 <br></br>
                 <Typography variant="h4" component="h4">Contador</Typography>
                 <br></br>

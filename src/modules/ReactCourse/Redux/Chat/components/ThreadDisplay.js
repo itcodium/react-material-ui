@@ -1,37 +1,32 @@
 import React, { Component } from 'react'
 import Container from '@material-ui/core/Container';
-
+import { connect } from 'react-redux';
 import Thread from './Thread';
+import { addMessage, deleteMessage } from '../Chat.actions';
 
 class ThreadDisplay extends Component {
-    componentDidMount() {
-        window.store.subscribe(() => this.forceUpdate());
-    }
     render() {
-        const state = window.store.getState();
-        const activeThreadId = state.activeThreadId;
-        const activeThread = state.threads.find(
-            t => t.id === activeThreadId
+        const activeThread = this.props.threads.find(
+            t => t.id === this.props.activeThreadId
         );
         return (
             <Container component="main" maxWidth="sm">
                 <Thread
                     thread={activeThread}
-                    onMessageClick={(id) => (
-                        window.store.dispatch({
-                            type: 'DELETE_MESSAGE',
-                            id: id,
-                        })
-                    )}
-                    onMessageSubmit={(text) => (
-                        window.store.dispatch({
-                            type: 'ADD_MESSAGE',
-                            text: text,
-                            threadId: activeThreadId,
-                        })
-                    )} />
+                    onMessageClick={(id) => {
+                        this.props.deleteMessage(id);
+                    }}
+                    onMessageSubmit={(text) => {
+                        this.props.addMessage(text, this.props.activeThreadId);
+                    }} />
             </Container>
         )
     }
 }
-export default ThreadDisplay;
+
+const mapStateToProps = (state) => {
+    return state.chatReducer
+}
+const mapDispatchToProps = { addMessage, deleteMessage };
+
+export default connect(mapStateToProps, mapDispatchToProps)(ThreadDisplay);

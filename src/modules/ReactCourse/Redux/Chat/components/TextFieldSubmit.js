@@ -18,7 +18,6 @@ class TextFieldSubmit extends Component {
         })
     };
     handleSubmit = () => {
-        console.log("this.props", this.props)
         this.props.onSubmit(this.state.value);
         this.setState({ value: '' });
     };
