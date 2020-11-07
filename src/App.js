@@ -23,6 +23,8 @@ import Login from './components/pages/Login/Login'
 import Oceans from './modules/ReactCourse/Routes/Oceans'
 import OceanDetail from './modules/ReactCourse/Routes/OceanDetail'
 import Redux from './modules/ReactCourse/Redux/Redux'
+import ReduxComplete from './modules/ReactCourse/ReduxComplete/ReduxComplete'
+
 
 class App extends Component {
 
@@ -50,6 +52,7 @@ class App extends Component {
                   <Route key="70" path="/TimeLogging" component={TimersDashboard} />
                   <Route key="80" path="/Login" component={Login} />
                   <Route key="90" path="/Redux" component={Redux} />
+                  <Route key="91" path="/ReduxComplete" component={ReduxComplete} />
                   <PrivateRoute key="100" path="/oceans" component={Oceans} />
                   <Route
                     key="110"

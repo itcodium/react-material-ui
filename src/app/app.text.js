@@ -52,6 +52,10 @@ const AplicationText =
                 text: "Redux",
                 url: "/Redux",
                 items: []
+            }, {
+                text: "Redux Actions",
+                url: "/ReduxComplete",
+                items: []
             }]
         },
         {
