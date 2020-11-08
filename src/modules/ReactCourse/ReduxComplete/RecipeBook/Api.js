@@ -1,7 +1,7 @@
 
 import axios from 'axios';
 import { setRecipes } from './Actions'
-const URL = 'db.json';
+const URL = './static/data/db.json';
 
 function fetchData(url, callback) {
     axios.get(url)
