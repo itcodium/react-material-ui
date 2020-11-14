@@ -8,11 +8,35 @@ function recipesReducer(state = { recipes: [], ingredients: [] }, action) {
 
             });
         }
-        case Types.SET_RECIPES: {
-            return action.payload;
-        }
+        /* case Types.SET_RECIPES: {
+             console.log('action: ', action);
+             return action.payload;
+ 
+         }*/
         case Types.FETCH_RECIPES: {
             return state;
+        }
+
+
+        case Types.FETCH_RECIPES_SUCCEESS: {
+            console.log('FETCH_RECIPES_SUCCEESS: ', action);
+            return action.payload;
+        }
+        case Types.FETCH_RECIPES_PENDING: {
+            console.log('FETCH_RECIPES_PENDING: ', action);
+            return Object.assign({}, state, {
+                loading: true,
+                error: false,
+            });
+        }
+        case Types.FETCH_RECIPES_FAILURE: {
+            console.log('FETCH_RECIPES_FAILURE: ', action);
+            return Object.assign({}, state, {
+                error: true,
+                loading: false,
+                payload: action.payload
+
+            });
         }
         default: {
             return state;
