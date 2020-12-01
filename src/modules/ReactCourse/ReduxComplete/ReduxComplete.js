@@ -2,9 +2,8 @@ import React from 'react';
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import Types from './RecipeBook/Types';
-
-
 import store from './RecipeBook/Store'
 
 class ReduxComplete extends React.Component {
@@ -16,43 +15,48 @@ class ReduxComplete extends React.Component {
         var seconds = num.getSeconds();
         return hours + ":" + minutes + ":" + seconds;
     }
-    fetchRecipes = () => ({
-        type: Types.API,
-        payload: {
-            url: './static/data/db3.json',
-            success: Types.FETCH_RECIPES_SUCCEESS, // FETCH_RECIPES  SET_RECIPES
-            pending: Types.FETCH_RECIPES_PENDING,
-            error: Types.FETCH_RECIPES_FAILURE
-        }
-    })
+
+    updateUI = () => {
+        const { recipes } = store.getState();
+        this.setState({
+            recipes: recipes.recipes,
+            error: recipes.error,
+            loading: recipes.loading
+        });
+    }
+
     componentDidMount() {
         store.subscribe(this.updateUI);
-        store.dispatch(this.fetchRecipes());
+        store.dispatch(
+            ({
+                type: Types.API,
+                payload: {
+                    url: './static/data/db.json',
+                    pending: Types.PENDING,
+                    success: Types.SUCCESS,
+                    error: Types.ERROR
+                }
+            })
+        );
     }
 
     addRecipe() {
-        store.dispatch({ type: 'ADD_RECIPE', name: 'Pancake ' + ReduxComplete.timeConvert() });
+        store.dispatch({
+            type: Types.RECIPES_ADD,
+            name: 'Pancake ' + ReduxComplete.timeConvert()
+        });
     }
 
-    updateUI = () => {
-        console.log('store.getState(): ', store.getState());
-        const recipes = store.getState();
-        this.setState({ recipes: recipes });
-
-    };
-
     setRecipes = () => {
-        console.log('this.state: ', this.state);
-        if (this.state.recipes.recipes && this.state.recipes.recipes.loading) {
-
-            return <h2>LOADING</h2>
+        if (this.state.loading) {
+            return <CircularProgress />
         }
-        if (this.state.recipes.recipes && this.state.recipes.recipes.error) {
+        if (this.state.error) {
             return <h2>ERROR</h2>
         }
-        if (this.state.recipes.recipes && this.state.recipes.recipes.length) {
+        if (this.state.recipes.length) {
             return <ul>
-                {this.state.recipes.recipes.map((recipe, index) => (
+                {this.state.recipes.map((recipe, index) => (
                     <p key={index}>{recipe.name}</p>
                 ))}
             </ul>

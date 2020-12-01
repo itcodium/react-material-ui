@@ -1,7 +1,4 @@
 
-import axios from 'axios';
-import Types from './Types'
-
 const BASE_URL = "";
 
 const apiMiddleware = ({ dispatch }) => next => action => {
