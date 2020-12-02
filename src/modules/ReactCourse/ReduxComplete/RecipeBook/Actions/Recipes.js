@@ -3,7 +3,7 @@ import Types from '../Types';
 const get = () => ({
     type: Types.API,
     payload: {
-        url: './static/data/db.json',
+        url: './static/data/recipes.json',
         pending: Types.PENDING,
         success: Types.SUCCESS,
         error: Types.ERROR

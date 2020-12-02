@@ -1,11 +1,19 @@
 import React from 'react';
+import { withStyles } from '@material-ui/core/styles';
+import styles from './ReduxComplete.style';
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import CircularProgress from '@material-ui/core/CircularProgress';
-//import Types from './RecipeBook/Types';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
+import ListItemAvatar from '@material-ui/core/ListItemAvatar';
+import Avatar from '@material-ui/core/Avatar';
+import ImageIcon from '@material-ui/icons/Image';
 import recipes from './RecipeBook/Actions/Recipes';
 import store from './RecipeBook/Store'
+
 
 class ReduxComplete extends React.Component {
     state = { recipes: [] };
@@ -18,9 +26,10 @@ class ReduxComplete extends React.Component {
     }
 
     updateUI = () => {
-        const { recipes } = store.getState();
+        const { db } = store.getState();
+        console.log('db: ', db.recipes);
         this.setState({
-            recipes: recipes.recipes,
+            recipes: db.recipes,
             error: recipes.error,
             loading: recipes.loading
         });
@@ -38,33 +47,44 @@ class ReduxComplete extends React.Component {
         }));
     }
 
-    setRecipes = () => {
+    setRecipes = (classes) => {
         if (this.state.loading) {
             return <CircularProgress />
         }
         if (this.state.error) {
-            return <h2>ERROR</h2>
+            return <Typography className={classes.red} variant="h6" component="h2">
+                Error al obtener el listado.
+          </Typography>
         }
         if (this.state.recipes.length) {
-            return <ul>
+            return <List className={classes.root}>
                 {this.state.recipes.map((recipe, index) => (
-                    <p key={index}>{recipe.name} - {recipe.description}</p>
+                    <ListItem>
+                        <ListItemAvatar>
+                            <Avatar>
+                                <ImageIcon />
+                            </Avatar>
+                        </ListItemAvatar>
+                        <ListItemText primary={recipe.name} secondary={recipe.description} />
+                    </ListItem>
                 ))}
-            </ul>
+            </List>
         }
-        return <ul></ul>
     }
+
     render() {
+        const { classes } = this.props;
         return (
             <div>
-                <Typography variant="h4" component="h4">Chat</Typography>
+                <Typography variant="h4" component="h4">The Complete Redux Book</Typography>
+                <br></br>
                 <Button variant="contained" onClick={this.addRecipe} >Add Recipe</Button>
                 <Container component="main" maxWidth="xs">
-                    {this.setRecipes()}
+                    {this.setRecipes(classes)}
                 </Container>
             </div >
         );
     }
 }
 
-export default ReduxComplete;
+export default withStyles(styles)(ReduxComplete);

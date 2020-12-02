@@ -5,7 +5,22 @@ const initialState = {
     recipes: [],
     ingredients: []
 }
-function recipesReducer(state = initialState, action) {
+
+const recipesReducer = (recipes, action) => {
+    switch (action.type) {
+        case Types.RECIPES_ADD:
+            return recipes.concat({
+                name: action.payload.name,
+                description: action.payload.description
+            });
+        default: {
+            return recipes;
+        }
+    }
+};
+
+
+function reducer(state = initialState, action) {
     switch (action.type) {
         case Types.PENDING: {
             return Object.assign({}, state, {
@@ -14,7 +29,9 @@ function recipesReducer(state = initialState, action) {
             });
         }
         case Types.SUCCESS: {
-            return action.payload;
+            return Object.assign({}, state, {
+                recipes: action.payload.recipes
+            });
         }
         case Types.ERROR: {
             return Object.assign({}, state, {
@@ -26,11 +43,7 @@ function recipesReducer(state = initialState, action) {
         }
         case Types.RECIPES_ADD: {
             return Object.assign({}, state, {
-                recipes: state.recipes.concat({
-                    name: action.payload.name,
-                    description: action.payload.description
-                })
-
+                recipes: recipesReducer(state.recipes, action)
             });
         }
         default: {
@@ -40,7 +53,7 @@ function recipesReducer(state = initialState, action) {
 }
 
 const rootReducer = combineReducers({
-    recipes: recipesReducer
+    db: reducer
 });
 
 export default rootReducer;
