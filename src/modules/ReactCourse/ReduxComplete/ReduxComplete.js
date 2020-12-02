@@ -3,7 +3,8 @@ import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import CircularProgress from '@material-ui/core/CircularProgress';
-import Types from './RecipeBook/Types';
+//import Types from './RecipeBook/Types';
+import recipes from './RecipeBook/Actions/Recipes';
 import store from './RecipeBook/Store'
 
 class ReduxComplete extends React.Component {
@@ -27,24 +28,14 @@ class ReduxComplete extends React.Component {
 
     componentDidMount() {
         store.subscribe(this.updateUI);
-        store.dispatch(
-            ({
-                type: Types.API,
-                payload: {
-                    url: './static/data/db.json',
-                    pending: Types.PENDING,
-                    success: Types.SUCCESS,
-                    error: Types.ERROR
-                }
-            })
-        );
+        store.dispatch(recipes.get())
     }
 
     addRecipe() {
-        store.dispatch({
-            type: Types.RECIPES_ADD,
-            name: 'Pancake ' + ReduxComplete.timeConvert()
-        });
+        store.dispatch(recipes.add({
+            name: 'Pancake ' + ReduxComplete.timeConvert(),
+            description: 'test'
+        }));
     }
 
     setRecipes = () => {
@@ -57,7 +48,7 @@ class ReduxComplete extends React.Component {
         if (this.state.recipes.length) {
             return <ul>
                 {this.state.recipes.map((recipe, index) => (
-                    <p key={index}>{recipe.name}</p>
+                    <p key={index}>{recipe.name} - {recipe.description}</p>
                 ))}
             </ul>
         }

@@ -1,4 +1,4 @@
-import { RECIPES } from './Actions';
+import { RECIPES } from './Constants/ActionTypes';
 const Types = {
     API: 'API',
     RECIPES_ADD: 'RECIPES_ADD',

@@ -1,4 +1,6 @@
 
+// https://github.com/agraboso/redux-api-middleware
+// https://redux-saga.js.org/index.html
 const apiMiddleware = ({ dispatch }) => next => action => {
     if (action.type !== 'API') {
         return next(action);

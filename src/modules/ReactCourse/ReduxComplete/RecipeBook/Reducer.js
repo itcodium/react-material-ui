@@ -1,7 +1,11 @@
 import Types from './Types'
 import { combineReducers } from 'redux'
 
-function recipesReducer(state = { recipes: [], ingredients: [] }, action) {
+const initialState = {
+    recipes: [],
+    ingredients: []
+}
+function recipesReducer(state = initialState, action) {
     switch (action.type) {
         case Types.PENDING: {
             return Object.assign({}, state, {
@@ -22,7 +26,10 @@ function recipesReducer(state = { recipes: [], ingredients: [] }, action) {
         }
         case Types.RECIPES_ADD: {
             return Object.assign({}, state, {
-                recipes: state.recipes.concat({ name: action.name })
+                recipes: state.recipes.concat({
+                    name: action.payload.name,
+                    description: action.payload.description
+                })
 
             });
         }
