@@ -7,6 +7,7 @@ const initialState = {
 }
 
 const recipesReducer = (recipes, action) => {
+
     switch (action.type) {
         case Types.RECIPES_ADD:
             return recipes.concat({
@@ -19,10 +20,10 @@ const recipesReducer = (recipes, action) => {
     }
 };
 
-
 function reducer(state = initialState, action) {
+
     switch (action.type) {
-        case Types.PENDING: {
+        case Types.RECIPES_FETCH: {
             return Object.assign({}, state, {
                 loading: true,
                 error: false,
@@ -30,7 +31,9 @@ function reducer(state = initialState, action) {
         }
         case Types.SUCCESS: {
             return Object.assign({}, state, {
-                recipes: action.payload.recipes
+                recipes: action.payload.recipes,
+                error: false,
+                loading: false,
             });
         }
         case Types.ERROR: {

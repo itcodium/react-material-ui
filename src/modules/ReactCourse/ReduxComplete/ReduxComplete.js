@@ -14,7 +14,6 @@ import ImageIcon from '@material-ui/icons/Image';
 import recipes from './RecipeBook/Actions/Recipes';
 import store from './RecipeBook/Store'
 
-
 class ReduxComplete extends React.Component {
     state = { recipes: [] };
     static timeConvert = () => {
@@ -27,11 +26,10 @@ class ReduxComplete extends React.Component {
 
     updateUI = () => {
         const { db } = store.getState();
-        console.log('db: ', db.recipes);
         this.setState({
             recipes: db.recipes,
-            error: recipes.error,
-            loading: recipes.loading
+            error: db.error,
+            loading: db.loading
         });
     }
 
@@ -59,7 +57,7 @@ class ReduxComplete extends React.Component {
         if (this.state.recipes.length) {
             return <List className={classes.root}>
                 {this.state.recipes.map((recipe, index) => (
-                    <ListItem>
+                    <ListItem key={index}>
                         <ListItemAvatar>
                             <Avatar>
                                 <ImageIcon />

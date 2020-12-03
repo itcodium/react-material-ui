@@ -1,6 +1,6 @@
 import { RECIPES } from './Constants/ActionTypes';
 const Types = {
-    API: 'API',
+    RECIPES_FETCH: 'RECIPES_FETCH',
     RECIPES_ADD: 'RECIPES_ADD',
     INGREDIENTS_ADD: 'INGREDIENTS_ADD',
     SUCCESS: RECIPES.SUCCESS,
