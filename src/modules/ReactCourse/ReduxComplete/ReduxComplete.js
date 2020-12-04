@@ -4,15 +4,10 @@ import styles from './ReduxComplete.style';
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
-import CircularProgress from '@material-ui/core/CircularProgress';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
-import ListItemAvatar from '@material-ui/core/ListItemAvatar';
-import Avatar from '@material-ui/core/Avatar';
-import ImageIcon from '@material-ui/icons/Image';
-import recipes from './RecipeBook/Actions/Recipes';
+import recipesAction from './RecipeBook/Actions/Recipes';
 import store from './RecipeBook/Store'
+
+import Recipes from './Components/Recipes'
 
 class ReduxComplete extends React.Component {
     state = { recipes: [] };
@@ -25,51 +20,25 @@ class ReduxComplete extends React.Component {
     }
 
     updateUI = () => {
-        const { db } = store.getState();
+        const { Recipes } = store.getState();
         this.setState({
-            recipes: db.recipes,
-            error: db.error,
-            loading: db.loading
+            recipes: Recipes.recipes,
+            error: Recipes.error,
+            loading: Recipes.loading
         });
     }
 
     componentDidMount() {
         store.subscribe(this.updateUI);
-        store.dispatch(recipes.get())
+        store.dispatch(recipesAction.get())
     }
 
     addRecipe() {
-        store.dispatch(recipes.add({
+        store.dispatch(recipesAction.add({
             name: 'Pancake ' + ReduxComplete.timeConvert(),
             description: 'test'
         }));
     }
-
-    setRecipes = (classes) => {
-        if (this.state.loading) {
-            return <CircularProgress />
-        }
-        if (this.state.error) {
-            return <Typography className={classes.red} variant="h6" component="h2">
-                Error al obtener el listado.
-          </Typography>
-        }
-        if (this.state.recipes.length) {
-            return <List className={classes.root}>
-                {this.state.recipes.map((recipe, index) => (
-                    <ListItem key={index}>
-                        <ListItemAvatar>
-                            <Avatar>
-                                <ImageIcon />
-                            </Avatar>
-                        </ListItemAvatar>
-                        <ListItemText primary={recipe.name} secondary={recipe.description} />
-                    </ListItem>
-                ))}
-            </List>
-        }
-    }
-
     render() {
         const { classes } = this.props;
         return (
@@ -78,7 +47,7 @@ class ReduxComplete extends React.Component {
                 <br></br>
                 <Button variant="contained" onClick={this.addRecipe} >Add Recipe</Button>
                 <Container component="main" maxWidth="xs">
-                    {this.setRecipes(classes)}
+                    <Recipes state={this.state} classes={classes}></Recipes>
                 </Container>
             </div >
         );

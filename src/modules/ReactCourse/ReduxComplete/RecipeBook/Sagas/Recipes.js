@@ -1,7 +1,8 @@
 
 import { call, put, takeEvery } from 'redux-saga/effects'
-import Types from '../Types';
+import RECIPES from '../Types/Recipes';
 
+// https://github.com/baluragala/redux-saga-examples
 
 const apiUrl = `./static/data/recipes.json`;
 function getApi() {
@@ -9,23 +10,22 @@ function getApi() {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
-
         }
     }).then(response => response.json())
         .catch((error) => { throw error })
 }
 
-function* fetchRecipes(action) {
+function* fetchRecipes() {
     try {
-        const recipes = yield call(getApi);
-        yield put({ type: Types.SUCCESS, payload: recipes });
+        const data = yield call(getApi);
+        yield put({ type: RECIPES.SUCCESS, payload: data });
     } catch (e) {
-        yield put({ type: Types.ERROR, message: e.message });
+        yield put({ type: RECIPES.ERROR, message: e.message });
     }
 }
 
-function* recipeSaga() {
-    yield takeEvery(Types.RECIPES_FETCH, fetchRecipes);
+function* saga() {
+    yield takeEvery(RECIPES.FETCH, fetchRecipes);
 }
 
-export default recipeSaga;
+export default saga;

@@ -1,15 +1,9 @@
-import Types from './Types'
-import { combineReducers } from 'redux'
-
-const initialState = {
-    recipes: [],
-    ingredients: []
-}
+import RECIPES from '../Types/Recipes'
 
 const recipesReducer = (recipes, action) => {
 
     switch (action.type) {
-        case Types.RECIPES_ADD:
+        case RECIPES.ADD:
             return recipes.concat({
                 name: action.payload.name,
                 description: action.payload.description
@@ -20,23 +14,23 @@ const recipesReducer = (recipes, action) => {
     }
 };
 
-function reducer(state = initialState, action) {
+function reducer(state = [], action) {
 
     switch (action.type) {
-        case Types.RECIPES_FETCH: {
+        case RECIPES.FETCH: {
             return Object.assign({}, state, {
                 loading: true,
                 error: false,
             });
         }
-        case Types.SUCCESS: {
+        case RECIPES.SUCCESS: {
             return Object.assign({}, state, {
                 recipes: action.payload.recipes,
                 error: false,
                 loading: false,
             });
         }
-        case Types.ERROR: {
+        case RECIPES.ERROR: {
             return Object.assign({}, state, {
                 error: true,
                 loading: false,
@@ -44,7 +38,7 @@ function reducer(state = initialState, action) {
 
             });
         }
-        case Types.RECIPES_ADD: {
+        case RECIPES.ADD: {
             return Object.assign({}, state, {
                 recipes: recipesReducer(state.recipes, action)
             });
@@ -55,8 +49,4 @@ function reducer(state = initialState, action) {
     }
 }
 
-const rootReducer = combineReducers({
-    db: reducer
-});
-
-export default rootReducer;
+export default reducer;

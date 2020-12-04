@@ -1,12 +1,12 @@
-import Types from '../Types';
+import RECIPES from '../Types/Recipes';
 
 const get = () => ({
-    type: Types.RECIPES_FETCH,
+    type: RECIPES.FETCH,
     payload: {}
 })
 
 const add = (payload) => ({
-    type: Types.RECIPES_ADD,
+    type: RECIPES.ADD,
     payload: payload
 })
 

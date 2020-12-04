@@ -18,15 +18,14 @@ class Switch extends React.Component {
     renderChoice = (choice) => {
         const cssClasses = [];
         if (this.state.payMethod === choice) {
-            cssClasses.push(this.props.classes.active); 
+            cssClasses.push(this.props.classes.active);
         }
-        console.log(cssClasses)
         return <div onClick={this.select(choice)} className={cssClasses}>
-            {choice}  
+            {choice}
         </div>
     };
     render() {
-         
+
         return (
             <div className='switch'>
                 {this.renderChoice(CREDITCARD)}

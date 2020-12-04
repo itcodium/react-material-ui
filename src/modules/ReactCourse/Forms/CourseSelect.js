@@ -43,16 +43,11 @@ export class CourseSelect extends React.Component {
         }
     }
 
-/*
     componentDidMount() {
-        this.setState({ _loading: true });
-        this.service.peopleGetAll().then((people) => {
-            console.log("people", people)
-            this.setState({ _loading: false, people: people });
-        });
-    }*/
+
+    }
     componentWillUnmount() {
-      }
+    }
 
     onSelectDepartment = (evt) => {
         const department = evt.target.value;

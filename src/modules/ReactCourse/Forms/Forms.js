@@ -13,7 +13,6 @@ export class Forms extends React.Component {
     }
     onButtonClick = (evt) => {
         const btn = evt.target;
-        console.log(`The user clicked ${btn.name}: ${btn.value}`);
     }
     onFormSubmit = (evt) => {
         const names = [...this.state.names, this.state.name];
